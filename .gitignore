@@ -1,0 +1,14 @@
+# ignore non-text files
+*.gif
+*.jpg
+*.mov
+*.pdf
+*.png
+*.ppt
+
+# ignore symlinks `find . -type l >> .gitignore`
+./setup/quota_stats
+./setup/diskusage.shtml
+./setup/diskusagecern.shtml
+./getstarted/guidelines.shtml
+
