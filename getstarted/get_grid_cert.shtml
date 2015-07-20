@@ -1,0 +1,26 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid - Getting Started - Certificate Procedure"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+<h1>Getting Grid Certificate</h1>
+
+<p>
+For directions on how to get an account at CERN and registering as a member of CMS can be found on <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookGetAccount" target="_blank">Section 1.2</a> (Get an Account) of the <a href="https://twiki.cern.ch/twiki/bin/view/CMS/WorkBookGetAccount" target="_blank">CMS twiki</a>.
+</p>
+
+<p>
+   Next, you'll need to get a personal certificate signed by a
+   <a href="https://lcg-voms.cern.ch:8443/vo/cms/vomrs?path=/RootNode/CAAction&action=execute">CMS-registered
+   Certificate Authority (CA)</a>.
+
+   Please follow <a href="certificate_procedures.html">these procedures</a> to obtain one.
+   This may take a day or two; we are currently working to streamline the process.
+</p>
+<p>
+   Next, you'll need to <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/EndUsers#How_to_Register_Your_New_Certifi" target="_blank">register yourself</a> as a member of the CMS Virtual Organization (VO) using your personal certificate.
+</p>
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
