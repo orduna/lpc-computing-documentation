@@ -1,0 +1,30 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - Computing Environment Setup: Tutorials, Documentation, How Tos"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>Computing Environment Setup: Tutorials, Documentation, How Tos</h2>
+
+
+<ul>
+	<li><a href="https://twiki.cern.ch/twiki/bin/view/CMS/Tutorials" target="_blank">CMS Tutorials</a></li>
+	<li><a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBook" target="_blank">CMS Offline Workbook</a></li>
+	<li><a href="https://twiki.cern.ch/twiki/bin/view/Main/GutSoftTutorials" target="_blank">CMS LPC Tutorials</a></li>
+	<li><a href="http://cmsdca.fnal.gov/" target="_blank">dCache Status</a></li>
+	<li><a href="https://cmsweb.cern.ch/dbs_discovery/" target="_blank">DBS Discovery Database Search</a></li>
+</ul>
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
