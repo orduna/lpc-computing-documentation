@@ -1,5 +1,4 @@
-<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid - Getting Started - Certificate Procedure"-->
-
+<!--#set var="TITLE" value="Getting a Grid Certificate"-->
 <!--#include virtual="/includes/atwork_top.shtml"-->
 <!-- Sidebar -->
 <!--#include virtual="_sidebar.shtml"-->
