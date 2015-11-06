@@ -1,30 +1,21 @@
-<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - Computing Environment Setup: Tutorials, Documentation, How Tos"-->
-
+<!--#set var="TITLE" value="Tutorials, Documentation, How To's"-->
 <!--#include virtual="/includes/atwork_top.shtml"-->
-
-
-
-
-<h1>User Software and Computing</h1>
-
-
-<!-- Sidebar -->
 <!--#include virtual="_sidebar.shtml"-->
-<!-- End: Sidebar -->
 
+<h1>Tutorials, Documentation, How To's</h1>
 
-<h2>Computing Environment Setup: Tutorials, Documentation, How Tos</h2>
+<h3>CMS Tutorials</h3>
 
+A few tutorial sessions organized by the CMS user support (CRAB3, CMS Data Analysis School, etc.) can be found <a href="https://twiki.cern.ch/twiki/bin/view/CMS/Tutorials" target="_blank">here</a>.
 
-<ul>
-	<li><a href="https://twiki.cern.ch/twiki/bin/view/CMS/Tutorials" target="_blank">CMS Tutorials</a></li>
-	<li><a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBook" target="_blank">CMS Offline Workbook</a></li>
-	<li><a href="https://twiki.cern.ch/twiki/bin/view/Main/GutSoftTutorials" target="_blank">CMS LPC Tutorials</a></li>
-	<li><a href="http://cmsdca.fnal.gov/" target="_blank">dCache Status</a></li>
-	<li><a href="https://cmsweb.cern.ch/dbs_discovery/" target="_blank">DBS Discovery Database Search</a></li>
+<h3>CMS Offline Workbook</h3>
+
+The <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBook" target="_blank">CMS Offline Workbook</a> is a comprehensive source of information with background information and tutorials on accessing computing resources and using the software for physics analysis within the CMS collaboration.
+
+<h3>LPC Hands-On Tutorials</h3>
+<a href="https://twiki.cern.ch/twiki/bin/view/Main/GutSoftTutorials" target="_blank">CMS LPC Tutorials</a></li>
+    <li><a href="http://cmsdca.fnal.gov/" target="_blank">dCache Status</a></li>
+    <li><a href="https://cmsweb.cern.ch/dbs_discovery/" target="_blank">DBS Discovery Database Search</a></li>
 </ul>
-
-
-
 
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
