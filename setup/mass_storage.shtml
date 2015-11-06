@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Software and Computing Subproject - Access to Mass Storage at FNAL"--><!--#include virtual="/includes/atwork_top.shtml"-->
+</head>
+<body>
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"--><!-- End: Sidebar -->
+<h1>Access to Mass Storage<h1>
+<h2> EOS </h2>
+<p>EOS is a disk based mass storage system used on the LPC cluster. It is mounted on the LPC interactive nodes and the LPC batch nodes at the path</p>
+<center><code>/eos/uscms/store/user/</code></center>
+<p>
+<p>To get a EOS /store/user directory at Fermilab, submit a request by logging into <a href="https://fermi.service-now.com/fsc" target="_blank">Service Now</a> with your services account.</p>
+<p>Go to the "Self-Service" box, click on "Service Catalog" and look for "Scientific Computing" and fill the form named "CMS Storage Space Request".</p>
+<center><a href="video/CMSStorageSpaceRequest.mov" target="_blank">Show me how (&beta;) - 128 MB</a></center>
+<p>
+<p>Unix file commands (cp and mv) work to move files into and out of EOS (which is different from dcache). You can also be able to read and write files from programs like Root and CMSSW as well although utilizing the xrootd protocol works more quickly.</p>
+
+<p>SRM access - there is also an SRM endpoint available at <br><br>
+<code>srm://cmseos.fnal.gov:8443/srm/v2/server?SFN=/eos/uscms
+</code> <br><br>
+and the command to use is:
+<br><br>
+<code>
+srmcp -2 -debug file:////uscms/home/catalind/eos-a srm://cmseos.fnal.gov:8443/srm/v2/server?SFN=/eos/uscms/store/user/catalind/d
+</code>
+</p>
+<p>EOS allows also xrootd access with the following syntax:<br><br>
+<code>
+xrdcp -d 2 /etc/issue root://cmseos:1094//eos/uscms/store/user/catalind/b 
+</code>
+</p>
+<p> Now with xrootd you can access both dcache and eos files using the 
+UNL redirector (or just the FNAL one).<br>
+<code>
+UNL: xrootd.unl.edu<br>
+FNAL: cmssrv32.fnal.gov<br>
+</code>
+More instructions on using xrootd protocol with CMSSW are posted <a href="https://twiki.cern.ch/CMSPublic/WorkBookXrootdService"> here </a>
+<br>The CERN EOS endpoint is<br><code>srm://srm-eoscms.cern.ch:8443/srm/v2/server?SFN=/eos/cms/store/</code><br>
+</p>
+
+<h2> Transferring files Out of Enstore</h2>
+There tools available for helping users transfer files out of dcache/enstore into EOS. These tools are documented 
+<a href="http://uscms.org/uscms_at_work/computing/setup/fts3-user-tools.html">here</a> 
+
+<!-- OLD Dcache info 
+<br>
+<h2>dCache and enstore</h2>
+<p>At
+Fermilab there are two cooperating systems: <strong>enstore</strong>
+and
+<strong>dCache</strong>. Enstore is a network attached tape system
+allowing sequential
+access. dCache is a disk farm allowing for random access. All access to
+the mass storage
+should be done through dCache.</p>
+<p><img src="/uscms_at_work/software_computing/images/massstorage.gif"
+ height="250" width="400"></p>
+<p>As shown
+in the diagram above, dCache serves as a front end to Enstore. All
+files written into
+dCache will be automatically written to tape (enstore) and if a file
+doesn't reside on
+disk in dCache the file will automatically be staged from enstore
+(tape) to disk
+(dCache). Some features of the enstore dCache combination are:</p>
+<p>-dCache makes a multi-terabyte server farm look like one coherent
+and homogeneous
+storage system.<br>
+- Rate adaptation between the application and the tertiary storage
+resources.<br>
+- Optimized usage of expensive tape robot systems and drives by
+coordinated read and
+write requests.<br>
+- No explicit staging is necessary to access the data (but pre staging
+possible and in
+some cases desirable).<br>
+- The data access method is unique independent of where the data
+resides.<br>
+- High performance and fault tolerant transport protocol between
+applications and data
+servers.<br>
+- Can be accessed directly from your application (e.g. <a
+ href="http://root.cern.ch/">ROOT</a>: TDCacheFile class).df</p>
+<p><strong>Enstore</strong></p>
+<p><a href="http://www-stken.fnal.gov/enstore/" target="_blank">Enstore system status</a></p>
+<p><strong>dCache</strong></p>
+<a href="http://cmsgridftp.fnal.gov/" target="_blank">Fermilab USCMS dCache status page</a></p>
+<h1>Using dCache</h1>
+<br><strong>Note</strong>: Users do not have permissions to create their own directory in <code>/pnfs/cms</code>. Instead they must request a user directory for which they have permissions to write files. <br><br>
+<p> To get a user directory created in dcache send an email to cms-t1@fnal.gov and request a /store/user directory at Fermilab. You will need to include your DN name from running grid-proxy-info and your hypernews username. You may also request /store/user space at your supporting Tier 2 center. Go to <a href="http://www.uscms.org/uscms_at_work/software_computing/tier2/store_user.shtml">User Space at US CMS Tier-2 Centers and the FNAL LPC</a> and send an email to the appropriate person and directory will be created at your supporting Tier 2 center.</p>
+<br><br>
+<p>Both systems use
+the same name space and can be accessed via the pnfs pseudo file
+system. For example:</p>
+<p><code>ls /pnfs/cms/WAX/11/store/user/username</code></p>
+<p>lists the files in username directory. 
+<p><strong>Note!</strong> pnfs might look like a regular file system
+but it's <strong>not</strong>!<br>
+Restrict commands to:<br>
+<code>mkdir, rmdir, rm, dccp and srmcp</code><br>
+(<em>don't cd into /pnfs, don&#8217;t run find commands, don't run"ls -r"</em>).<br>
+If you need to see a list of files in pnfs see <a
+ href="http://cmsdca.fnal.gov/dcache/StoreOnlyFiles.txt"> this page</a>.
+</p>
+<p>Handling of many
+small files might present problems to the system therefore it is
+strongly recommended to
+<strong>tar</strong> collections of small files before moving them
+into dCache!<br>
+</p>
+<p>
+PNFS does not work well when the number of files in a directory gets too large
+PNFS checks each file in a directory when it makes a new file, this scales linearly.  (So if no one ever accesses the directory, pnfs works fine)
+Rule-of-thumb numbers:
+Noticeable at 1000 files/directory
+Bad overall performance for everyone at 10K files/directory
+System doesn't work at all at 50K files/directory  (we recently had a case with ~100K files in a directory)
+This is a well known effect - and production services have been configured to never exceed the 1000 files/directory limit.Please check if you have any directory on PNFS with more than 2500 files at <a href="http://cmsdca.fnal.gov/dcache/list2500Dirs.txt">http://cmsdca.fnal.gov/dcache/list2500Dirs.txt</a>
+</p>
+<p>For files over 2GB the ls command will show 1k for the file size. To
+get the true file size use the special dcache commands <span
+ style="font-weight: bold;">dcsize dcls</span> and <span
+ style="font-weight: bold;">dcdu</span></p>
+<br>
+<h3>To copy files from dCache with dccp:</h3>
+<p>To copy the file over to your local disk, do</p>
+<p><code>/opt/d-cache/dcap/bin/dccp <br> /pnfs/cms/WAX/11/store/username/myfile.data $PWD</code></p>
+<p>dCache can also be accessed (read only) via a URL like
+syntax in case you don't have access to the pnfs file system</p>
+<p> <code>/opt/d-cache/dcap/bin/dccp <br>dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/username/myfile.data $PWD</code></p>
+<p><strong>Note:</strong> /pnfs/cms maps to /pnfs.fnal.gov/usr/cms on
+cmsgridftp.fnal.gov.<br>
+<br>
+</p>
+
+
+<h3>To copy files into dCache with srmcp:</h3>
+<p><strong>NOTE:</strong> srmcp requires
+authentication. Please see <a
+ href="SRM.shtml">dCache/SRM
+file transfer through srmcp</a> for instructions on getting your grid-certificate and
+registering with the CMS
+VOMS so that you are authorized to copy files into dCache with srmcp.</p>
+<p>Then use srmcp to copy the file into dcache</p>
+<p><code>/opt/d-cache/srm/bin/srmcp
+"file://localhost/${PWD}/myfile.dat"
+"srm://cmssrm.fnal.gov:8443/11/store/user/username/myfile.data"</code></p>
+<p>or, to copy the file from dDache to your local disk, do</p>
+<p><code>srmcp
+"srm://cmssrm.fnal.gov:8443/resilient/username/myfile.data"
+"file://localhost/${PWD}/myfile.dat"</code></p>
+<p><code>Note:</code> The SRM automatically adds /pnfs/cms/WAX to the url path. For example, if the path of a file on /pnfs is <code>/pnfs/cms/WAX/11/store/user/username/myfile.dat</code> it maps to the url <code>srm://cmssrm.fnal.gov:8443/11/store/user/username/myfile.dat</code></p>
+Removing /pnfs/cms/WAX from the path gives the path for the url.</p>
+<p> In order to copy file to dcache from a condor batch job you need to set the following in your executable script:
+<br><code> setenv  X509_USER_PROXY /uscms/home/username/x509up_u###</code>
+<br> Before you submit the job you should do <code> voms-proxy-init; cp /tmp/x509_u##### $HOME </code>
+<br> where /tmp/x509_u#### is the name of your proxy file from vomx-proxy-info.
+<br>
+</p>
+<p>
+<code>Note:</code> LFNs beginning with <code>/store map to PFNs
+/pnfs/cms/WAX/11/store</code>.
+</p>
+<h3>Accessing files in dCache using a ROOT application:</h3>
+<p>One nice feature of the dCache system is the fact that files can be written and read directly with
+a ROOT application.&nbsp; Just replace TFile with TDCacheFile. The code
+fragment below demonstrates the use of the TDCacheFile class, it also shows both ways of accessing the files (pnfs and URL).</p>
+<p><code>#include
+&lt;TDCacheFile.h&gt;<br>
+&nbsp; int testdcache()&nbsp;<br>
+{ TFile *hfile = new&nbsp; TDCacheFile
+("dcap://cmsgridftp.fnal.gov:24125<br>
+/pnfs/fnal.gov/usr/cms/WAX/11/store/user/wenzel/hsimple_dcache.root",<br>
+"READ","Demo ROOT file with histograms",0);<br>
+hfile-&gt;ls();&nbsp;<br>
+hfile-&gt;Print();<br>
+hpx-&gt;Draw();<br>
+return 0;}</code></p>
+<p>ROOT is used by CMSSW therefore it is setup with the
+CMSSW runtime environment. To set this up: run <code>scramv1 list CMSSW</code>
+to list CMSSW versions
+which are available and their location, change directories to the
+location of a version
+of CMSSW, then run eval <code>`scramv1 runtime -csh`</code></p>
+<p>An example is shown below:</p>
+<p><code>
+scramv1 list
+CMSSW<br>
+cd /uscmst1/prod/sw/cmssw/slc5_amd64_gcc472/cms/cmssw/CMSSW_6_2_0<br>
+eval `scramv1 runtime -csh`<br>
+cd -<br>
+root
+</code></p>
+<p>The commands can be executed directly</p>
+<p><code>
+root [0] .L ${ROOTSYS}/lib/libDCache.so<br>
+root [1] TFile *hfile = new TDCacheFile
+("dcap://cmsgridftp.fnal.gov:24125<br>
+/pnfs/fnal.gov/usr/cms/WAX/11/store/user/wenzel/hsimple_dcache.root"<br>
+,"READ","Demo ROOT file with histograms",0);<br>
+root [2] hfile-&gt;ls();<br>
+root [3] hfile-&gt;Print();<br>
+root [4] hpx-&gt;Draw();
+</code></p>
+ -->
+<p>For questions concerning this page and MassStorage send
+email to: <a href="mailto:cms-t1@fnal.gov">cms-t1@fnal.gov</a></p>
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
+</body>
+</html>
