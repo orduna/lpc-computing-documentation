@@ -1,20 +1,24 @@
-<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid - Getting Started - Certificate Procedure"-->
-
+<!--#set var="TITLE" value="Getting Started"-->
 <!--#include virtual="/includes/atwork_top.shtml"-->
-<!-- Sidebar -->
 <!--#include virtual="_sidebar.shtml"-->
-<!-- End: Sidebar -->
 
-<h2>Getting Started</h2>
-        <li><a href="/uscms_at_work/physics/computing/getstarted/index.shtml">Getting Started</a></li>
-                <ul style="">
+<h1>Getting Started</h1>
 
-                        <li><a href="/uscms_at_work/physics/computing/getstarted/get_grid_cert.shtml">Getting a Grid Certificate</a></li>
-                        <li><a href="/uscms_at_work/physics/computing/getstarted/getaccount.shtml">Getting an LPC Analysis Cluster Account</a></li>
-                	<li><a href="/uscms_at_work/physics/computing/getstarted/uaf.shtml">Connecting to LPC Analysis Cluster</a>
-                        <li><a href="/uscms_at_work/physics/computing/getstarted/guidelines.shtml">Guidelines for LPC Analysis Cluster Users</a>
-                </ul>
-        </li>
+<h2>Getting a CERN account</h2>
+
+<p>
+Directions on how to get an account at CERN and register as a member of CMS can be found on <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookGetAccount" target="_blank">Section 1.2 Getting a Computing Account</a> of the <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBook" target="_blank">The CMS Offline WorkBook</a>.
+</p>
+
+<h2>Getting a Personal Certificate from CERN</h2>
+
+<p>
+A personal certificate from CERN can be obtained by following the instructions on <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/PersonalCertificate#How_to_get_a_personal_certificat">this document</a>.
+</p>
+
+<center>(<a href="showMeHow/certificateMacSafari.shtml">Show me how - MacBook+Safari [&beta;]</a>)</center>
+<h2>Getting a Personal Certificate from CERN</h2>
 
 
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
+
