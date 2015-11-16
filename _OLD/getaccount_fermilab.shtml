@@ -1,0 +1,70 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - Getting Started: Get an Account at Fermilab"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>Getting Started: Get an Account at Fermilab</h2>
+
+
+<p><strong>How to get a CMS Computing Account at Fermilab</strong></p>
+
+<p><strong>Off-Site Users:</strong></p>
+
+<p>To apply for a CMS computing account at Fermilab from off-site, simply follow the
+steps below.</p>
+
+<p><strong>Step 1.</strong> Apply to use Fermilab computers from off-site.</p>
+
+<p>Read the information about <a href=
+"http://computing.fnal.gov/cd/forms/requirements_offsite_new.html">getting started using
+Fermilab computers</a>. This is where you will get your accounts. Step 4 links you to the
+form to request computing privileges.</p>
+
+<p><strong>Step 2.</strong> Select CMS as your experiment (affiliation) from the list
+provided.</p>
+
+<p>On the <a href=
+"https://computing.fnal.gov/cgi-bin/remedy/Remote.pl,">application form</a>, select CMS
+as your experiment and you will get your CMS computing privileges. You will receive
+e-mail notification, and if requested, a cryptocard will be mailed to you. If you have
+any questions, please contact the <a href="mailto:helpdesk@fnal.gov">Fermilab Help
+Desk</a>.</p>
+
+<p>If you just need to <strong>renew your Fermilab ID</strong>,
+please go to the <a href=
+"https://computing.fnal.gov/cgi-bin/remedy/Remote.pl">application form</a> which is for
+new or renewing users. Fill out the form and select CMS as your affiliation, and your ID
+will be renewed.</p>
+
+<p><strong>On-Site Users:</strong></p>
+
+<p>If you are an <strong>on-site user</strong> (employee, visitor, contractor) and already
+have a valid Fermilab ID, please go to the <a href=
+"http://computing.fnal.gov/cgi-bin/remedy/CMS.pl">CMS Account Request form</a> to get
+your CMS accounts.</p>
+
+<p><strong>All Users:</strong></p>
+
+<p>If you have accounts but require additional items such as a
+cryptocard or special principal, please do NOT use the forms linked above, but fill out
+"Request Additional Kerberos Items" on this <a href=
+"http://computing.fnal.gov/cd/forms/extra_kerb_req_form.html">Fermilab
+form</a>.</p>
+
+<p>For general information on Fermilab computing, and other forms, please
+<a href="http://computing.fnal.gov/cd/forms/">check here</a>.</p>
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->

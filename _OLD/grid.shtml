@@ -1,0 +1,134 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software &amp; Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>U.S. CMS Grid</h2>
+
+<p>The US CMS Grid is part of the WorldWide LHC Computing Grid for LHC science analysis. The US CMS grid environment is part of the <a href="http://www.opensciencegrid.org" target="_blank">Open Science Grid</a> infrastructure. The national and international grid infrastructures such as OSG and the <a href="http://lcg.web.cern.ch/LCG/" target="_blank">LHC Computing Grid Project</a> provide the basis for the Worldwide CMS computing system. The USCMS Grid software infrastructure is a collaboration across CMS, with the Fermilab Computing Division, with other physics groups in the US and with computer scientists at various universities.</p>
+
+<table width="100%" border=0>
+  <tbody>
+    <tr>
+      <TD width="40%"><a href="http://www.uscms.org/SoftwareComputing/Grid/WMS-Evaluation/GettingStarted/index.html">Getting Started Guide (OSG/LCG)</a></td>
+      <TD width="50%">How to get started on the Open Science Grid</td>
+    </tr>
+    <tr>
+      <TD width="40%"><a href="http://helpdesk.fnal.gov/" target="_blank">http://helpdesk.fnal.gov</a></td>
+      <TD width="50%">For user support on US CMS Grid Infrastructure</td>
+    </tr>
+    <tr>
+      <td><a href="http://helpdesk.fnal.gov/" target="_blank">http://helpdesk.fnal.gov</a></td>
+      <td>For support of US CMS Grid Infrastructure on Tier-2 sites </td>
+    </tr>
+    <tr>
+      <td><a href="mailto:osg-general@opensciencegrid.org">osg-general@opensciencegrid.org</a></td>
+      <td>Mail list for non-Tier-1/Tier-2 Support on Open Science Grid</td>
+    </tr>
+    <tr>
+      <td><a href="http://www.uscms.org/SoftwareComputing/Grid/Policy/">Site and VO Policy</a></td>
+      <td>For Grid sites supporting the US CMS Virtual Organization </td>
+    </tr>
+    <tr>
+      <td><a href="http://www.uscms.org/SoftwareComputing/Grid/Config/">VOMS and GUMS configuration</a> </td>
+      <td>For Grid sites supporting the US CMS Virtual Organization</td>
+    </tr>
+    <tr>
+      <td><a href="http://listserv.fnal.gov/archives/cms-gridservices-osg.html" target="_blank">Grid Facilities meetings</a> </td>
+      <td>Biweekly meetings at 11 am Fridays. </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Grid Services</h2>
+
+<table width="100%" border=0>
+  <tbody>
+    <tr>
+      <td><a href="http://uscms.org/SoftwareComputing/Grid/DPE/gridinfo.html">Distributed Processing Environment</a></td>
+      <td>US CMS specific application software layer on the core grid infrastructure.</td>
+    </tr>
+    <tr>
+      <td><a href="http://uscms.org/SoftwareComputing/Grid/VO/index.html">VO Management Software</a></td>
+      <td>Joint effort by US CMS, SDSS, and iVDGL at Fermilab</td>
+    </tr>
+    <tr>
+      <td><a href="http://computing.fnal.gov/docs/products/voprivilege/" target="_blank">VO Privilege software </a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><a href="http://www.uscms.org/SoftwareComputing/Grid/WMS-Evaluation/MOP/index.html">MOP</a></td>
+      <td>System for distributing CMS production jobs over GRID</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>LHC Computing Grid Project </h2>
+
+<table width="100%" border=0>
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>The US CMS Tier-1 Center has Compute and Storage sites that are part of the LHC Project Computing Grid software infrastructure</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Contributions to the Open Science Grid</h2>
+
+<table width="100%" border=0>
+  <tbody>
+    <tr>
+      <td><a href="http://osg.ivdgl.org/twiki/bin/view/Integration/WebHome" target="_blank">Integration</a></td>
+      <td>US CMS contributes to the OSG Integration Grid and activities. The <a href="http://osg.ivdgl.org/twiki/bin/view/Integration/WebHome" target="_blank">web site</a> has a lot of helpful documentation available. </td>
+    </tr>
+    <tr>
+      <td><a href="http://www.opensciencegrid.org/index.php?option=com_content&amp;task=view&amp;id=29&amp;elMenu=Grid%20Support" target="_blank">Operations</a></td>
+      <td>The US CMS Support Center is part of OSG Operations. </td>
+    </tr>
+    <tr>
+      <td><a href="http://www.uscms.org/SoftwareComputing/Grid/WMS-Evaluation/Validation">Validation</a></td>
+      <td>US CMS contributes a daily validation service to the OSG software maintainers. </td>
+    </tr>
+    <tr>
+      <td><a href="http://www.uscms.org/SoftwareComputing/Grid/WMS-Evaluation/WMS-Evaluation">WMS Evaluation</a></td>
+      <td>US CMS evaluation of Workload Management Systems for CMS and OSG. </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <TD colSpan=2>
+	  
+	  
+<h2>Use of OSG and LCG at FNAL</h2>
+
+	  
+	  </td>
+    </tr>
+    <tr>
+      <td><a href="http://cmssrv02.fnal.gov/condor/" target="_blank">Condormon</a></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->

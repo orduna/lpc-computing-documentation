@@ -1,0 +1,34 @@
+<div class="sidebar">
+
+<h2>In This Section:</h2>
+
+<ul style="">
+	<li><a href="/uscms_at_work/physics/computing/getstarted.shtml">Getting Started</a>
+		<ul style="">
+			<li><a href="/uscms_at_work/physics/computing/getaccount.shtml">Get an Account</a></li>
+		</ul>
+	</li>
+	<li><a href="/uscms_at_work/physics/computing/setup.shtml">Computing Environment Setup</a>
+		<ul style="">
+			<li><a href="/uscms_at_work/physics/computing/setup_resources.shtml">Resources</a></li>
+			<li><a href="https://twiki.cern.ch/twiki/bin/view/CMS/WorkBook" target="_blank">Setup Software</a></li>
+			<li><a href="/uscms_at_work/physics/computing/setup_tutorials.shtml">Tutorials, Documentation, How Tos</a></li>
+		</ul>
+	</li>
+	<li><a href="/uscms_at_work/physics/computing/status.shtml">System Status</a>
+		<ul style="">
+			<li><a href="/uscms_at_work/physics/computing/status_downtimes.shtml">Downtimes</a></li>
+			<li><a href="/uscms_at_work/physics/computing/status_condor.shtml">Condor</a></li>
+			<li><a href="http://cmssrv02.fnal.gov/ganglia/?c=CMS_UAF%2520Cluster" target="_blank">Ganglia</a></li>
+			<li><a href="http://www-stken.fnal.gov/enstore/" target="_blank">Enstore</a></li>
+			<li><a href="http://cmsdca.fnal.gov/" target="_blank">dCache</a></li>
+		</ul>
+	</li>
+	<li><a href="/uscms_at_work/physics/computing/grid/index.shtml">U.S. CMS Grid</a>
+		<ul style="">
+			<li><a href="/uscms_at_work/physics/computing/grid/vo/index.shtml">VO</a></li>
+		</ul>
+	</li>
+</ul>
+
+</div>

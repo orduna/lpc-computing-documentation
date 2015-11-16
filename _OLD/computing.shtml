@@ -1,0 +1,39 @@
+<!--#set var="TITLE" value="U.S. CMS"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Computing</h1>
+
+
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+<ul>
+	<li><a href="http://www.uscms.org/SoftwareComputing/UserComputing/GetAccount.html" target="_blank">Get an Account</a></li>
+	<li><a href="https://twiki.cern.ch/twiki/bin/view/CMS/WorkBook" target="_blank">CMS Software</a></li>
+	<li><a href="http://www.uscms.org/SoftwareComputing/UserComputing/test/Request.html" target="_blank">Request Disk Space</a></li>
+	<li><a href="http://www.uscms.org/SoftwareComputing/UserComputing/GeneralSetup.html" target="_blank">Set up the Environment</a></li>
+	<li><a href="http://www.uscms.org/SoftwareComputing/UserComputing/ConnectUAF.html" target="_blank">UAF</a></li>
+</ul>
+
+</div>
+<!-- End: Sidebar -->
+
+
+<p>The User Analysis Farm (UAF) is part of the Tier 1 facility at Fermilab. The UAF is a small farm running the LINUX operating system providing interactive computing for users. The load balancing is done on the network switch. Low level monitoring of the hardware like CPU usage, memory usage etc. is provided by <a 
+href="http://ganglia.sourceforge.net/" target="_blank">GANGLIA</a> and for the UAF have a look <a 
+href="http://cmssrv02.fnal.gov/ganglia/?c=US-CMS%20UAF%20FNAL%20TIER-1&amp;m=&amp;r=hour&amp;s=descending&amp;hc=4" target="_blank">here</a>. To check the status of the batch system please have a look <a href="http://cmssrv03.fnal.gov/condor/" target="_blank">here</a>. </p>
+<p>Below you find a schematic view of the CMS User Computing at Fermilab as of November 2005 (click on the image to obtain .jpeg file). Click on the links to access a pressentation about the UAF given at <a 
+href="http://indico.cern.ch/conferenceDisplay.py?confId=7397">CMS101</a> (<a 
+href="/uscms_at_work/physics/computing/files/CMS101_UAF_nov06.pdf">pdf</a>, <a href="/uscms_at_work/physics/computing/files/CMS101_UAF_nov06.ppt">ppt</a>).</p>
+
+<p><a href="/uscms_at_work/physics/computing/images/confg_200703.jpg" target="_blank"><img src="/uscms_at_work/physics/computing/images/confg_200703-s.jpg" alt="User Computing Configuration" width="500" height="348" border="0" /></a></p>
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
