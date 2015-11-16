@@ -1,4 +1,5 @@
-<!--#set var="TITLE" value="Getting a Grid Certificate"-->
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid - Getting Started - Certificate Procedure"-->
+
 <!--#include virtual="/includes/atwork_top.shtml"-->
 <!-- Sidebar -->
 <!--#include virtual="_sidebar.shtml"-->
@@ -7,7 +8,7 @@
 <h1>Getting Grid Certificate</h1>
 
 <p>
-For directions on how to get an account at CERN and registering as a member of CMS can be found on <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookGetAccount" target="_blank">Section 1.2</a> (Get an Account) of the <a href="https://twiki.cern.ch/twiki/bin/view/CMS/WorkBookGetAccount" target="_blank">CMS twiki</a>.
+   Directions for getting an account at CERN and registering as a member of CMS <a href="https://twiki.cern.ch/twiki/bin/view/CMS/WorkBookGetAccount"> on the CMS twiki</a>
 </p>
 
 <p>
@@ -19,7 +20,22 @@ For directions on how to get an account at CERN and registering as a member of C
    This may take a day or two; we are currently working to streamline the process.
 </p>
 <p>
-   Next, you'll need to <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/EndUsers#How_to_Register_Your_New_Certifi" target="_blank">register yourself</a> as a member of the CMS Virtual Organization (VO) using your personal certificate.
+   Next, you'll need to register yourself as a member of a Virtual Organization (VO) using your personal certificate.
+<ul>
+   <li>
+      If you have already registered a personal certificate (e.g., from the DOE CA) with the CMS VO in the past, then that 
+      certificate will be called your primary certificate.  If that primary certificate has not yet expired, then please follow these <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/EndUsers#Registering_your_new_certifi_AN1">instructions</a> for  how to register your new personal certificate (e.g., from the CERN CA) with the CMS VO.</li>
+   <li>
+      CMS VO: Go to the <a href="http://lcg.web.cern.ch/LCG/registration.htm">LCG Users Registration</a>
+      (start with step 4).  You'll need to already be registered with the CMS Secretariat in order for your request to be approved.   </li>
+      <li>For more comprehensive instructions, <a href="http://cmsdoc.cern.ch/cms/aprom/www/top/CMS_VO.html" target="_blank">check here</a>. </li>
+   </ul>
+</p>
+
+
+<p>
+   This is work in progress, more to come ...  In the meantime, a good and mostly relevant reference is
+   <a href="http://fermigrid.fnal.gov/user-guides.html">the Fermigrid User Guide</a>.
 </p>
 
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
