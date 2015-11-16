@@ -42,13 +42,16 @@ You will need a cmslpc account because the tools are only available from the cms
 <p>
 You will need a valid proxy to do the transfers.
 </p>
+<p>
+You may also want to check your quota on EOS.  See the quota section below for details and how to view your current quota.
+</p>
 <h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Steps"></a> Steps </span></h2>
 
 <p>
 1) Create a proxy before initiating the transfers. It is required to have a valid cms proxy:
 </p>
 <p>
-<strong>voms-proxy-init -voms cms</strong>
+<strong>voms-proxy-init -voms cms -valid 192:0</strong>
 </p>
 <p>
 2) Create the delegation. This is required to do the transfers:
@@ -85,7 +88,7 @@ the line is the TO destination location on <span class="twikiLink">EOS</span>.
 <strong><br>ftsuser-transfer-submit-list</strong>
 </p>
 <p>
-Submits all files listed in a given file to FTS to transfer from <span class="twikiLink">EOS</span> or dCache. If no destination is provided, the destination will match the source.<em><br><br>Usage: /usr/local/bin/ftsuser-transfer-submit-list FROMDCACHE|FROMEOS list-of-LFNs <br> -h, --help: shows this help message<br> example usage: ftsuser-transfer-submit-directory FROMDCACHE mylist<br> example usage: ftsuser-transfer-submit-directory FROMEOS mylist<br> where mylist is a file containing either sourceLFNs or pairs of sourceLFN destinationLFN<br> example for mylist: /resilient/catalind/A.txt /store/user/catalind/test52342.txt</em>
+Submits all files listed in a given file to FTS to transfer from <span class="twikiLink">EOS</span> or dCache. If no destination is provided, the destination will match the source.<em><br><br>Usage: /usr/local/bin/ftsuser-transfer-submit-list FROMDCACHE|FROMEOS list-of-LFNs <br> -h, --help: shows this help message<br> example usage: ftsuser-transfer-submit-list FROMDCACHE mylist<br> example usage: ftsuser-transfer-submit-list FROMEOS mylist<br> where mylist is a file containing either sourceLFNs or pairs of sourceLFN destinationLFN<br> example for mylist: /resilient/catalind/A.txt /store/user/catalind/test52342.txt</em>
 </p>
 <p>
 </p>
@@ -138,6 +141,11 @@ This system offers a web based interface to monitor transfers:
 </p>
 <p>
 <a href="https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/" target="_top">https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/</a>
+</p>
+<p>
+To filter which transfers are displayed on the monitoring pages, click the Filter button.  To see only 
+your transfers, select your DN from the dropdown list.  You may also need to modify the Time window 
+based on when you did your transfers.  By default it only shows transfers in the last 12 hours.  
 </p>
 <h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Quotas"></a> Quotas </span></h2>
 
