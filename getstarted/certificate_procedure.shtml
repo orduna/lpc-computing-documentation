@@ -10,11 +10,4 @@ Please follow <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/EndUsers">
 We recommend getting a personal certificate from the CERN CA
 because the DOEgrids CA will no longer issue certificates after March 23, 2013.
 
-
-<h2>Host and Service Certificates:</h2>
-
-Please follow <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/SysAdmins">these instructions</a>.
-If you previously had certificates from the DOEgrids CA, 
-then you will now need to request certifcates from the OSG CA.
-
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
