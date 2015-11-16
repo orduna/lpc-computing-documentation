@@ -1,0 +1,24 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - How to get a CERN computer Account"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+<h1>User Software and Computing</h1>
+
+<h2>How to get a CERN computer Account</h2>
+
+<p>
+   See <a href="http://cmsdoc.cern.ch/comp/comp_quick_guide.html#AccountCreation">CERN Account Creation.</a>
+</p>
+
+<p>This form should be set to Salavat Abdullin (<a href="mailto:salavat.abdoulline@cern.ch">salavat.abdoulline@cern.ch</a>)
+   at CERN, who can help expedite the forms.
+</p>
+
+<h3>How to get an account on the FNAL CMS cluster</h3>
+
+<p>
+   get a <a href="/uscms_at_work/data_computing/facility_operations/uaf.shtml">valid FNAL ID</a>
+</p>
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
