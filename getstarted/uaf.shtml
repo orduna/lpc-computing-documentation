@@ -14,38 +14,45 @@
 
 <p>Any modern Linux distribution with OpenSSH configured with gssapi and Kerberos configured for the FNAL.GOV realm should be able to connect to the LPC cluster.</p>
 
-<p>It is assumed that you already have a Fermilab ID and kerberos principal. If not visit the "<a href="/uscms_at_work/physics/computing/getstarted/getaccount.shtml">Get an Account</a>" section.</p>
+<p>It is assumed that you already have a Fermilab ID and Kerberos principal. If not visit the "<a href="/uscms_at_work/physics/computing/getstarted/getaccount.shtml">Get an Account</a>" section.</p>
 
 <p>Access to the LPC cluster is controlled by a switch which redirects incoming connections to individual nodes in a round-robin queue.</p>
 
-<p><h2>Connecting to the LPC from a Linux or Mac OSX PC</h2></p>
+<p><h2>Connecting to the LPC from Linux or OS X</h2></p>
 
-<p>To connect to the LPC cluster you need to have kerberos and openssh with gss support installed on your system. This is already included in Scientific Linux and Mac OSX.  In addtion you will need get the <a href="http://security.fnal.gov/krb5.conf">krb5.conf file for Fermilab</a> and save it to your home directory. Then run <br> <code>cp krb5.conf /etc/krb5.conf</code> as root on Linux or <br><code>cp krb5.conf /Library/Preferences/edu.mit.Kerberos</code><br> as admin on Mac OSX 10.6 and earlier <b>or</b> <br><code> cp krb5.conf /etc/krb5.conf</code><br> as admin on Mac OSX 10.7 and later.</p>
+<p>To connect to the LPC cluster you need to have Kerberos and openssh with gss support installed on your system. This is already included in Scientific Linux and OS X. In addtion you will need to get the krb5.conf file for Fermilab that corresponds to your specific OS, which you can download from: <a href="http://computing.fnal.gov/authentication/krb5conf/">Fermilab Kerberos Configuration Files</a>.</p>
 
-Also make the following edit to ~/.ssh/config on your local machine:<br>
-<code>
+<p>Save the appropriate file to your home directory. Then run</p>
+
+<p><code>sudo cp krb5.conf /etc/krb5.conf</code></p>
+
+<p>you will be prompted for you root or admin password, depending on your system.</p>
+
+<p>Also make sure the following lines are present in your <code>~/.ssh/config</code> file:</p>
+
+<p><code>
         GSSAPIAuthentication yes<br>
         GSSAPIDelegateCredentials yes<br>
-</code>
+</code></p>
 
 <p>To connect to the LPC cluster:</p>
 
-<p>Get an addressless and forwardable kerberos ticket for the FNAL.GOV kerberos realm:</p>
+<p>Get an addressless and forwardable Kerberos ticket for the FNAL.GOV Kerberos realm:</p>
 
-<code>/usr/kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
+<code>/usr/Kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
 or for MAC's <br>
 Leopard:<br>
-<code>/usr/kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
+<code>/usr/Kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
 Snow Leopard:<br>
-<code>/usr/kerberos/bin/kinit -a -f user@FNAL.GOV</code><br>
+<code>/usr/Kerberos/bin/kinit -a -f user@FNAL.GOV</code><br>
 
-<p>You will be prompted for your kerberos password in the FNAL.GOV realm.</p>
+<p>You will be prompted for your Kerberos password in the FNAL.GOV realm.</p>
 
-<p>To verify that you have an addressless and forwardable kerberos ticket:</p>
+<p>To verify that you have an addressless and forwardable Kerberos ticket:</p>
 
 <code>klist -a -f</code> 
 
-<h3>Mac OS X 10.7 and later</h3>
+<h3>OS X 10.7 and later</h3>
 
 
 <li>In the <code>Applications</code> folder, open the
@@ -78,6 +85,18 @@ if you have proviously created or mofified this file.
 <code>ssh username@cmslpc-sl5.fnal.gov </code>
 <br><br>
 
+<h3>OS X 10.10 (Yosemite)</h3><br>
+
+While at this point Yosemite is not in the list of <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010790" target="_blank">Fermilab supported OS X</a> (meaning that Fermilab-owned machines are not recommended to upgrade from previous versions of OS X), users can still use their non-Fermilab equipment, upgraded to (or bought with) Yosemite, to have access to LPC resources.<p><br>
+
+A change in the user's Kerberos password is required to gain access. Use <code>kpasswd</code> to change your password (from somewhere other than your Yosemite machine). You should be able to <code>kinit</code> locally once the password change propagates to the KDC slave servers (20 minutes or so). Then, you can access LPC resources with:<br>
+
+<ul>
+<li> SL5 using the alias <code>cmslpc-sl5.fnal.gov</code>, or
+<li> SL6 using the alias <code>cmslpc-sl6.fnal.gov</code>.
+</ul><p>
+
+
 <h2>KNOWN ISSUES and WORK AROUNDS</h2>
 
 <p>1) To log into the cluster from an SLC machine<br> 
@@ -87,7 +106,7 @@ if you have proviously created or mofified this file.
     the -X and -Y options on the ssh command line:<br />
      <code>ssh -X -Y cmslpc-sl5</code><br />
     This will enable X11 forwarding.</p>
-<p>3) Some users need to edit the <code>[libdefaults]</code> section of the /etc/krb5.conf file (Linux) or <br>/Library/Preferences/edu.mit.Kerberos file (Mac OSX) to include the following: <br>
+<p>3) Some users need to edit the <code>[libdefaults]</code> section of the /etc/krb5.conf file (Linux) or <br>/Library/Preferences/edu.mit.Kerberos file (OS X) to include the following: <br>
 <code> allow_weak_crypto = true </code> <br>
 
 <p>4) There is a known issue between the unpatched version of krb5-libs v1.9 on a linux client and the FERMI KDC's. The incompatablity
@@ -110,7 +129,7 @@ settings mentioned above set correctly. If all of this still does not result in 
 <p>Other versions of ssh for Linux or Windows PC's may not work correctly (i.e. AFS authentication error messages at login) with the round robin queue. If accessing the LPC cluster through the queue produces error messages, you can try accessing the LPC cluster through one of the following direct access nodes:</p>
 
 <ul>
-	<li> <code>ssh cmslpc41.fnal.gov (SL5)</code> </li>
+	<li> <code>ssh cmslpc41.fnal.gov (SL6)</code> </li>
 	<li> <code>ssh cmslpc42.fnal.gov (SL5)</code> </li>
 </ul>
     
@@ -119,7 +138,7 @@ settings mentioned above set correctly. If all of this still does not result in 
 
 <p><strong>Non-kerberized ssh clients</strong></p>
     
-<p>Any ssh client without kerberos authentication can be used to connect to the LPC cluster. A Cryptocard is used to generate a password in this case.</p>
+<p>Any ssh client without Kerberos authentication can be used to connect to the LPC cluster. A Cryptocard is used to generate a password in this case.</p>
     
 <p><h2>Connecting to the LPC Cluster from a Windows PC</h2></p>
     
@@ -128,7 +147,7 @@ settings mentioned above set correctly. If all of this still does not result in 
 
 <h3>Kerberos and SSH:</h3>
     
-<p>Version 0.62 of PuTTY supports Kerberos authentication for SSH on Windows and can be found at <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a>. Download the Installer  to your desktop and run it. Putty will be installed in c:/Program Files/Putty. You will also need to download and install MIT Kerberos for Windows. The installer can be found at <a href="http://web.mit.edu/kerberos/www/dist/index.html"> the MIT Kerberos download page</a>. In addtion you will need get the <a href="http://security.fnal.gov/krb5.conf">krb5.conf file for Fermilab</a> and save it to \Windows\krb5.ini replacing this file if it exists.</p>
+<p>Version 0.62 of PuTTY supports Kerberos authentication for SSH on Windows and can be found at <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a>. Download the Installer  to your desktop and run it. Putty will be installed in c:/Program Files/Putty. You will also need to download and install MIT Kerberos for Windows. The installer can be found at <a href="http://web.mit.edu/Kerberos/www/dist/index.html"> the MIT Kerberos download page</a>. In addtion you will need get the <a href="http://security.fnal.gov/krb5.conf">krb5.conf file for Fermilab</a> and save it to \Windows\krb5.ini replacing this file if it exists.</p>
     
 <p>To get your Kerberos ticket:<br /> 
     Select Start ->All Programs->Kerberos for Windows->Network Identity Manager<br /> 
@@ -196,6 +215,7 @@ settings mentioned above set correctly. If all of this still does not result in 
     Select Start->Network->AFS->fnal.gov->files->home <br>
     Select room1, room2 or room3 until you find you home directory <br>
     Click and drag that folder to your desktop to create a symbolic link.
+
  	</p>
 
 
