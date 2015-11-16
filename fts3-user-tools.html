@@ -1,11 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html><head>
   
-  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<META http-equiv="refresh" content="0;URL=http://uscms.org/uscms_at_work/computing/setup/fts3-user-tools.html">
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Software and Computing Subproject - User transfer tools via FTS"--
+><!--#include virtual="/includes/atwork_top.shtml"-->
+<!--  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
   <title>fts3-user-tools.html</title>
-
+-->
   
-</head><body>
+</head>
+
+<body>
+
 <h1>FTS User tools </h1>
 
 <p>
@@ -170,7 +176,7 @@ Say I want to copy some of my data out of my resilient area into <span class="tw
  It lives in /pnfs/cms/WAX/resilient/dmason/eleventhgrid. I want to put 
 it into /eos/uscms/store/dmason/examplecopy. I do this then:
 </p>
-<pre>[dmason@cmslpc30 ~]$ voms-proxy-init -voms cms -hours 200<br>Enter GRID pass phrase:<br>Your identity: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=dmason/CN=664436/CN=David Alexander Mason<br>Creating temporary proxy ........................................ Done<br>Contacting  lcg-voms.cern.ch:15002 [/DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch] "cms" Done<br>Creating proxy ........................................................ Done<br>Your proxy is valid until Fri Jan 24 22:28:19 2014<br>[dmason@cmslpc30 ~]$ ftsuser-delegation <br>Using proxy at /tmp/x509up_u1234<br>Delegation id 58d662372cf46db5:<br><br>Renewing now:<br>-----BEGIN CERTIFICATE REQUEST-----<br>MIHJMHUCAQAwEDEOMAwGA1UEChMFRHVtbXkwXDANBgkqhkiG9w0BAQEFAANLADBI<br>AkEA7g/QcT+sHiT6FolpCqvHJmUBTNy5qHWdVWLsSPe/pod2kuIyX6/q9ZjiDKgU<br>D5gXHx2e5IQOtHasdsfa2O8HMrQIDAQABoAAwDQYJKoZIhvcNAQEEBQADQQCHkimX<br>xoGLM9dtrW49Kn9hxKHf8fiwK1/a90NloFiSsqAHauyi0HqsjNtLk8zpumLWa3pS<br>S3WB57QgcIqb4EvR<br>-----END CERTIFICATE REQUEST-----<br><br>{<br>  "termination_time": "2014-01-25T04:28:19"<br>}<br><br>Ongoing transfers can be monitored through the web interface:<br>    https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/<br></pre>
+<code>[dmason@cmslpc30 ~]$ voms-proxy-init -voms cms -hours 200<br>Enter GRID pass phrase:<br>Your identity: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=dmason/CN=664436/CN=David Alexander Mason<br>Creating temporary proxy ........................................ Done<br>Contacting  lcg-voms.cern.ch:15002 [/DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch] "cms" Done<br>Creating proxy ........................................................ Done<br>Your proxy is valid until Fri Jan 24 22:28:19 2014<br>[dmason@cmslpc30 ~]$ ftsuser-delegation <br>Using proxy at /tmp/x509up_u1234<br>Delegation id 58d662372cf46db5:<br><br>Renewing now:<br>-----BEGIN CERTIFICATE REQUEST-----<br>MIHJMHUCAQAwEDEOMAwGA1UEChMFRHVtbXkwXDANBgkqhkiG9w0BAQEFAANLADBI<br>AkEA7g/QcT+sHiT6FolpCqvHJmUBTNy5qHWdVWLsSPe/pod2kuIyX6/q9ZjiDKgU<br>D5gXHx2e5IQOtHasdsfa2O8HMrQIDAQABoAAwDQYJKoZIhvcNAQEEBQADQQCHkimX<br>xoGLM9dtrW49Kn9hxKHf8fiwK1/a90NloFiSsqAHauyi0HqsjNtLk8zpumLWa3pS<br>S3WB57QgcIqb4EvR<br>-----END CERTIFICATE REQUEST-----<br><br>{<br>  "termination_time": "2014-01-25T04:28:19"<br>}<br><br>Ongoing transfers can be monitored through the web interface:<br>    https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/<br></code>
 
 <p>
 Then we make the file to feed the FTS system:
@@ -192,5 +198,12 @@ what is listed.
 <p>
 You then feed FTS:
 </p>
-<pre>ftsuser-transfer-submit-list FROMDCACHE testcopy <br>Using proxy at /tmp/x509up_u7178<br><br><br>  "cred_id": "58d662372cf46db5", <br>  "job_id": "066e468a-7eed-11e3-8607-782bcb2fb7b4", <br>  "job_state": "SUBMITTED", <br>  "user_dn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=dmason/CN=664436/CN=David Alexander Mason", <br>  "vo_name": "cms", <br>  "voms_cred": "/cms/Role=NULL/Capability=NULL /cms/integration/Role=NULL/Capability=NULL /cms/production/Role=NULL/Capability=NULL /cms/uscms/Role=NULL/Capability=NULL"<br><br><br>Ongoing transfers can be monitored through the web interface:<br>    https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/<br>And after a bit I'm noticing:<br>[dmason@cmssrv168 filecopy]$  ls /eos/uscms/store/user/dmason/examplecopy<br>eleventhgrid_Flat10PU  eleventhgrid_noPU<br> <br></pre>
+<code>ftsuser-transfer-submit-list FROMDCACHE testcopy <br>Using proxy at /tmp/x509up_u7178<br><br><br>  "cred_id": "58d662372cf46db5", <br>  "job_id": "066e468a-7eed-11e3-8607-782bcb2fb7b4", <br>  "job_state": "SUBMITTED", <br>  "user_dn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=dmason/CN=664436/CN=David Alexander Mason", <br>  "vo_name": "cms", <br>  "voms_cred": "/cms/Role=NULL/Capability=NULL /cms/integration/Role=NULL/Capability=NULL /cms/production/Role=NULL/Capability=NULL /cms/uscms/Role=NULL/Capability=NULL"<br><br><br>Ongoing transfers can be monitored through the web interface:<br>    https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/<br>And after a bit I'm noticing:<br>[dmason@cmssrv168 filecopy]$  ls /eos/uscms/store/user/dmason/examplecopy<br>eleventhgrid_Flat10PU  eleventhgrid_noPU<br> <br></code>
 </body></html>
+
+<p>For questions concerning this page and the CMS LPC send
+email to: <a href="mailto:cms-t1@fnal.gov">cms-t1@fnal.gov</a></p>
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
+</body>
+</html>
+
