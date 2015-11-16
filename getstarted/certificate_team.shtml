@@ -1,55 +1,55 @@
-	<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid - Getting Started - Certificate Team"-->
+    <!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid - Getting Started - Certificate Team"-->
 
 <!--#include virtual="/includes/atwork_top.shtml"-->
 
 <h1>Certificate Team</h1>
 
 <table border="1" cellpadding="2">
-	<tr> <td><b>Institute</b></td> <td><b>Name</b></td> <td><b>Phone</b></td> <td><b>E-mail</b></td> </tr>
-	<tr> <td>Baylor</td> <td>Kennichi Hatakeyama</td> <td>(254) 710-2286</td> <td>hatake AT fnal.gov</td> </tr>
-	<tr> <td>Buffalo</td> <td>Andrew Godshalk</td> <td>(518) 878-5856</td> <td>godshalk AT buffalo.edu</td> </tr>
-	<tr> <td>Brown</td> <td>Jack Fowler</td> <td>(401) 863-2347</td> <td>fowler AT hep.brown.edu</td> </tr>
-	<tr> <td>Caltech</td><td>Steven Lo<br>Dorian Kcira</br></td><td>(626) 395-6696<br>(626) 395-2562</br></td> <td>slo AT hep.caltech.edu<br>dkcira AT caltech.edu</br></td></tr>
-	<tr> <td>Carnegie Mellon</td><td>Dongwook Jang</td><td>(630) 840-2032</td> <td>dwjang AT fnal.gov</td></tr> 
-	<tr> <td>Cornell</td> <td>Dan Riley</td> <td>(607) 255-3080</td> <td>Daniel.Riley AT cornell.edu</td> </tr>
-	<tr> <td>Fermilab</td> <td>Patrick Gartung</td> <td>(630) 840-3832</td> <td>gartung AT fnal.gov</td></tr>
-        <tr> <td>FIT</td> <td>Xenia Fave</td> <td>(757) 404-3915</td> <td>xfave2008 AT my.fit.edu</td></tr> 
-	<tr> <td>FIU</td> <td>Jorge Rodriguez</td> <td>(305) 348-0259</td> <td>jrodrig AT fiu.edu</td></tr>
-	<tr> <td>FSU</td> <td>Brendan Diamond</td> <td>(850) 644-5281</td> <td>brendandiamond AT gmail.com</td></tr>
-	<tr> <td>JHU</td> <td>Petar Maksimovic</td> <td>(410) 516-3819</td> <td>petar AT fnal.gov<br>petar AT jhu.edu</td></tr>
-	<tr> <td>MIT</td> <td>Maxim Goncharov</td> <td>(617) 253-7596</td> <td>maxi AT fnal.gov</td></tr>
-	<tr> <td>Northeastern</td> <td>George Alverson</td> <td>(617) 373-2938<br>(617) 529-0857</td> <td>George.Alverson AT cern.ch</td></tr>
-	<tr> <td>Notre Dame</td> <td>Serguei Fedorov</td> <td>(574) 631-2508</td> <td> Serguei.Fedorov.1 AT nd.edu</td></tr>
-	<tr> <td>Princeton</td> <td>Chris Tully</td> <td>(609) 258-1534</td> <td>tully AT fnal.gov</td></tr>
-	<tr> <td>Purdue</td> <td>Fengping Hu<br>Han Zhang</td> <td>(765) 494-0032<br>(765) 496-2969</td> <td>fhu AT purdue.edu<br>zhang292 AT purdue.edu</td></tr>
-	<tr> <td>Rockefeller</td> <td>Anwar Bhatti</td> <td>(630) 840-5111</td> <td>bhatti AT fnal.gov</td></tr>
-	<tr> <td>Rutgers</td> <td>Pieter Jacques</td> <td>(732) 445-5500 x4431</td> <td>jacques AT physics.rutgers.edu</td></tr>
-	<tr> <td>Texas A&amp;M</td> <td>Vadim Khotilovich</td> <td>(979) 458-2173</td> <td>khotilov AT fnal.gov</td></tr>
-	<tr> <td>Texas Tech</td> <td>Alan Sill</td> <td>(806) 742-4350</td> <td>Alan.Sill AT ttu.edu</td></tr>
-	<tr> <td>UC Davis</td> <td>Maxwell Chertok</td> <td>(530) 754-7351</td> <td>chertok AT physics.ucdavis.edu</td></tr>
-	<tr> <td>UCLA</td> <td>David Saltzberg</td> <td>(310) 206-4542</td> <td>saltzberg AT physics.ucla.edu</td></tr>
-	<tr> <td>UC Riverside</td> <td>Robert Clare</td> <td>(951) 827-5335</td> <td>Robert.Clare AT ucr.edu</td></tr>
-	<tr> <td>UCSD</td> <td>Terrence Martin</td> <td>(858) 822-0361</td> <td>tmartin AT physics.ucsd.edu</td></tr>
-	<tr> <td>U. Colorado</td> <td>Doug Johnson</td> <td>(303) 492-4506</td> <td>drjohn AT pizero.colorado.edu</td></tr>
-	<tr> <td>UERJ</td> <td>Jose Sanches<br>Eduardo Revoredo</br></td> <td>+55.21.2334.0386</td> <td>jose.afonso.lajas.sanches AT cern.ch<br>erevored AT cern.ch</td></tr>
-	<tr> <td>U. Florida</td> <td>Bockjoo Kim<br>Yu Fu</br></td> <td>(352) 392-3123<br>(352) 392-7850</br></td> <td>bockjoo AT phys.ufl.edu<br>yfu AT phys.ufl.edu</br></td></tr>
-	<tr> <td>U. Illinois at Chicago</td> <td>Len Apanasevich</td> <td>(630) 840-8503</td> <td>apana AT fnal.gov</td></tr>
-	<tr> <td>U. Iowa</td> <td>Burak Bilki</td> <td>(319) 355-1941</td> <td>burak-bilki AT uiowa.edu</td></tr>
-	<tr> <td>U. Kansas</td> <td>Steve Sanders</td> <td>(785) 864-4626</td> <td>ssanders AT ku.edu</td></tr>
-	<tr> <td>U. Maryland</td> <td>Nick Hadley<br>Marguerite Tonjes</td> <td>(301) 405-6063<br>(301) 405-1853</td> <td>hadley AT umd.edu<br>mtonjes AT umd.edu</td></tr>
-        <tr> <td>U. Minnesota</td> <td>Graham Allan</td> <td>(612) 624-5040</td> <td>allan AT physics.umn.edu</td></tr>
-        <tr> <td>U. Mississippi</td> <td>David Sanders</td> <td>(662) 915-5438</td> <td>sanders AT phy.olemiss.edu</td></tr>
-	<tr> <td>U. Nebraska</td> <td>Ken Bloom</td> <td>(402) 472-6093</td> <td>kenbloom AT unl.edu</td></tr>
-	<tr> <td>U. Puerto Rico</td> <td>Hector Mendez</td> <td>(787) 832-4040x3799</td> <td>mendez AT fnal.gov</td></tr>
-	<tr> <td>U. Rochester</td> <td>Marek Zielinski</td> <td>(630) 840-2373</td> <td>marek AT fnal.gov</td></tr>
-	<tr> <td>U. Sao Paolo</td> <td>Eduardo Gregores</td> <td>+55.11.3177-9005</td> <td>gregores AT fnal.gov</td></tr>
-	<tr> <td>U. South Alabama</td> <td>Romulus Godang</td> <td>(251) 460-6224</td> <td>godang AT fnal.gov</td></tr>
-	<tr> <td>U. Tennessee</td> <td>Gerald Ragghianti</td> <td>(865) 974-2448</td> <td>gragghia AT utk.edu</td></tr>
-	<tr> <td>U. Wisconsin</td> <td>Dan Bradley<br>Will Maier</br></td> <td>(608) 263-0545<br>(608) 263-9692</br></td> <td>dan AT hep.wisc.edu<br>wcmaier AT hep.wisc.edu</br></td></tr>
-	<tr> <td>Vanderbilt</td> <td>Kevin Buterbaugh</td> <td>(615) 343-0288</td> <td>klb AT accre.vanderbilt.edu</td></tr>
-	<tr> <td>Wayne State</td> <td>Rob Harr</td> <td>(313) 577-2677</td> <td>harr AT cern.ch</td></tr>
-	<tr> <td>U. Virginia</td> <td>Chris Neu</td> <td>(434) 243-8490</td> <td>chris.neu AT virginia.edu</td></tr>
-	<tr> <td>CINVESTAV and <br> Mexican Institutes </td><td>Alberto Sanchez-Hernandez </td> <td> +52 (55) 5747 3831 <br> +52 (55) 5747 3800  x6115 </td> <td> asanchez AT fnal.gov <br> asanchez@fis.cinvestav.mx </td> </tr>
+    <tr> <td><b>Institute</b></td> <td><b>Name</b></td> <td><b>Phone</b></td> <td><b>E-mail</b></td> </tr>
+    <tr> <td>Baylor</td> <td>Kennichi Hatakeyama</td> <td>(254) 710-2286</td> <td>hatake AT fnal.gov</td> </tr>
+    <tr> <td>Buffalo</td> <td>Andrew Godshalk</td> <td>(518) 878-5856</td> <td>godshalk AT buffalo.edu</td> </tr>
+    <tr> <td>Brown</td> <td>Jack Fowler</td> <td>(401) 863-2347</td> <td>fowler AT hep.brown.edu</td> </tr>
+    <tr> <td>Caltech</td><td>Steven Lo<br>Dorian Kcira</br></td><td>(626) 395-6696<br>(626) 395-2562</br></td> <td>slo AT hep.caltech.edu<br>dkcira AT caltech.edu</br></td></tr>
+    <tr> <td>Carnegie Mellon</td><td>Manfred Paulini</td><td>(412) 268-3887</td> <td>paulini AT cmu.edu</td></tr>
+    <tr> <td>Cornell</td> <td>Dan Riley</td> <td>(607) 255-3080</td> <td>Daniel.Riley AT cornell.edu</td> </tr>
+    <tr> <td>Fermilab</td> <td>Service Desk</td> <td>(630) 840-2345</td> <td>&nbsp;</td></tr>
+    <!--tr> <td>FIT</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td></tr-->
+    <tr> <td>FIU</td> <td>Jorge Rodriguez</td> <td>(305) 348-0259</td> <td>jrodrig AT fiu.edu</td></tr>
+    <tr> <td>FSU</td> <td>Brendan Diamond</td> <td>(850) 644-5281</td> <td>brendandiamond AT gmail.com</td></tr>
+    <!--tr> <td>JHU</td> <td>nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td></tr-->
+    <tr> <td>MIT</td> <td>Maxim Goncharov</td> <td>(617) 253-7596</td> <td>maxi AT fnal.gov</td></tr>
+    <tr> <td>Northeastern</td> <td>George Alverson</td> <td>(617) 373-2938<br>(617) 529-0857</td> <td>George.Alverson AT cern.ch</td></tr>
+    <tr> <td>Notre Dame</td> <td>Serguei Fedorov</td> <td>(574) 631-2508</td> <td> Serguei.Fedorov.1 AT nd.edu</td></tr>
+    <!--tr> <td>Princeton</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td></tr-->
+    <tr> <td>Purdue</td> <td>Manoj Kumar Jha</td> <td>&nbsp;</td> <td>jha2 AT purdue.edu</td></tr>
+    <tr> <td>Rockefeller</td> <td>Anwar Bhatti</td> <td>(630) 840-5111</td> <td>bhatti AT fnal.gov</td></tr>
+    <tr> <td>Rutgers</td> <td>Pieter Jacques</td> <td>(732) 445-5500 x4431</td> <td>jacques AT physics.rutgers.edu</td></tr>
+    <tr> <td>Texas A&amp;M</td> <td>Vadim Khotilovich</td> <td>(979) 458-2173</td> <td>khotilov AT fnal.gov</td></tr>
+    <tr> <td>Texas Tech</td> <td>Alan Sill</td> <td>(806) 742-4350</td> <td>Alan.Sill AT ttu.edu</td></tr>
+    <tr> <td>UC Davis</td> <td>Maxwell Chertok</td> <td>(530) 754-7351</td> <td>chertok AT physics.ucdavis.edu</td></tr>
+    <tr> <td>UCLA</td> <td>David Saltzberg</td> <td>(310) 206-4542</td> <td>saltzberg AT physics.ucla.edu</td></tr>
+    <tr> <td>UC Riverside</td> <td>Robert Clare</td> <td>(951) 827-5335</td> <td>Robert.Clare AT ucr.edu</td></tr>
+    <tr> <td>UCSD</td> <td>Terrence Martin</td> <td>(858) 822-0361</td> <td>tmartin AT physics.ucsd.edu</td></tr>
+    <tr> <td>U. Colorado</td> <td>Doug Johnson</td> <td>(303) 492-4506</td> <td>drjohn AT pizero.colorado.edu</td></tr>
+    <tr> <td>UERJ</td> <td>Jose Sanches<br>Eduardo Revoredo</br></td> <td>+55.21.2334.0386</td> <td>jose.afonso.lajas.sanches AT cern.ch<br>erevored AT cern.ch</td></tr>
+    <tr> <td>U. Florida</td> <td>Bockjoo Kim<br>Yu Fu</br></td> <td>(352) 392-3123<br>(352) 392-7850</br></td> <td>bockjoo AT phys.ufl.edu<br>yfu AT phys.ufl.edu</br></td></tr>
+    <tr> <td>U. Illinois at Chicago</td> <td>Len Apanasevich</td> <td>(630) 840-8503</td> <td>apana AT fnal.gov</td></tr>
+    <tr> <td>U. Iowa</td> <td>Burak Bilki</td> <td>(319) 355-1941</td> <td>burak-bilki AT uiowa.edu</td></tr>
+    <tr> <td>U. Kansas</td> <td>Steve Sanders</td> <td>(785) 864-4626</td> <td>ssanders AT ku.edu</td></tr>
+    <tr> <td>U. Maryland</td> <td>Nick Hadley<br>Marguerite Tonjes</td> <td>(301) 405-6063<br>(301) 405-1853</td> <td>hadley AT umd.edu<br>mtonjes AT umd.edu</td></tr>
+    <tr> <td>U. Minnesota</td> <td>Graham Allan</td> <td>(612) 624-5040</td> <td>allan AT physics.umn.edu</td></tr>
+    <tr> <td>U. Mississippi</td> <td>David Sanders</td> <td>(662) 915-5438</td> <td>sanders AT phy.olemiss.edu</td></tr>
+    <tr> <td>U. Nebraska</td> <td>Ken Bloom</td> <td>(402) 472-6093</td> <td>kenbloom AT unl.edu</td></tr>
+    <tr> <td>U. Puerto Rico</td> <td>Hector Mendez</td> <td>(787) 832-4040x3799</td> <td>mendez AT fnal.gov</td></tr>
+    <!--tr> <td>U. Rochester</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td></tr-->
+    <tr> <td>U. Sao Paolo</td> <td>Eduardo Gregores</td> <td>+55.11.3177-9005</td> <td>gregores AT fnal.gov</td></tr>
+    <!--tr> <td>U. South Alabama</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td></tr-->
+    <tr> <td>U. Tennessee</td> <td>Gerald Ragghianti</td> <td>(865) 974-2448</td> <td>gragghia AT utk.edu</td></tr>
+    <tr> <td>U. Wisconsin</td> <td>Dan Bradley<br>Will Maier</br></td> <td>(608) 263-0545<br>(608) 263-9692</br></td> <td>dan AT hep.wisc.edu<br>wcmaier AT hep.wisc.edu</br></td></tr>
+    <tr> <td>Vanderbilt</td> <td>Kevin Buterbaugh</td> <td>(615) 343-0288</td> <td>klb AT accre.vanderbilt.edu</td></tr>
+    <tr> <td>Wayne State</td> <td>Rob Harr</td> <td>(313) 577-2677</td> <td>harr AT cern.ch</td></tr>
+    <tr> <td>U. Virginia</td> <td>Chris Neu</td> <td>(434) 243-8490</td> <td>chris.neu AT virginia.edu</td></tr>
+    <tr> <td>CINVESTAV and <br> Mexican Institutes </td><td>Alberto Sanchez-Hernandez </td> <td> +52 (55) 5747 3831 <br> +52 (55) 5747 3800  x6115 </td> <td> asanchez AT fnal.gov <br> asanchez@fis.cinvestav.mx </td> </tr>
 </table>
 
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
