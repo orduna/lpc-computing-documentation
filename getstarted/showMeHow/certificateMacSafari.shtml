@@ -1,0 +1,51 @@
+<!--#set var="TITLE" value="Show me how to get a personal certificate from CERN"-->
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+<h2>Getting a Personal Certificate from CERN</h2>
+
+<p><div align="right">
+<img src="http://images.apple.com/v/mac/compare/c/compare/images/product_macbook_pro_13_large.png" height="60px">&nbsp;<img src="http://images.apple.com/pr/products/images/products_safari20110301.png" height="60px">
+</div></p><br>
+
+<p>
+Open Safari and go to <a href="https://gridca.cern.ch/gridca/" target="_new">https://gridca.cern.ch/gridca/</a>. Click "New User certificate"
+
+<center><a href="Screenshot_2014-09-12_14.38.56.png"><img width="50%" src="Screenshot_2014-09-12_14.38.56.png"></a></center>
+
+You will be prompted to sign in:
+
+<center><a href="Screenshot_2014-09-12_14.39.15.png"><img width="50%" src="Screenshot_2014-09-12_14.39.15.png"></a></center>
+
+After doing so, you will be asked to verify your identity by providing your password and your birth date:
+
+<center><a href="Screenshot_2014-09-12_14.39.28.png"><img width="50%" src="Screenshot_2014-09-12_14.39.28.png"></a></center>
+
+Fill the information and click "Next". Follow the instructions on the new page and click "Submit"
+
+<center><a href="Screenshot_2014-09-12_14.40.38.png"><img width="50%" src="Screenshot_2014-09-12_14.40.38.png"></a></center>
+
+Once you are notified that your new certificate is ready, click on the link provided to download your certificate to your MacBook.
+
+<center><a href="Screenshot_2014-09-12_14.40.57.png"><img width="50%" src="Screenshot_2014-09-12_14.40.57.png"></a></center>
+
+On your MacBook, open Keychain Access:
+
+<center><a href="Screenshot_2015-07-21_09.47.59.png"><img width="50%" src="Screenshot_2015-07-21_09.47.59.png"></a></center>
+
+Go to the "File" menu, and click on "Import Items..."
+
+<center><a href="Screenshot_2014-09-12_14.52.15.png"><img width="50%" src="Screenshot_2014-09-12_14.52.15.png"></a></center>
+
+Navigate to the location where your certificate was downloaded to:
+
+<center><a href="Screenshot_2014-09-12_14.52.33.png"><img width="50%" src="Screenshot_2014-09-12_14.52.33.png"></a></center>
+
+select your certificate, the Destination Keychain (in this case "login") and click "Open". Once imported, your certificate will appear under "My Certificates" category for the Keychain selected on the previous step.
+
+<center><a href="Screenshot_2014-09-12_14.53.16.png"><img width="50%" src="Screenshot_2014-09-12_14.53.16.png"></a></center>
+
+Your certificate should now be available to Safari.
+
+</p>
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
+
