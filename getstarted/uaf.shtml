@@ -1,0 +1,203 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Data and Computing - Facility Operations - Connect to UAF"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h1>Connect to LPC Cluster</h1>
+
+
+<h2>How to get access to the cluster:</h2>
+
+<p>Any modern Linux distribution with OpenSSH configured with gssapi and Kerberos configured for the FNAL.GOV realm should be able to connect to the LPC cluster.</p>
+
+<p>It is assumed that you already have a Fermilab ID and kerberos principal. If not visit the "<a href="/uscms_at_work/physics/computing/getstarted/getaccount.shtml">Get an Account</a>" section.</p>
+
+<p>Access to the LPC cluster is controlled by a switch which redirects incoming connections to individual nodes in a round-robin queue.</p>
+
+<p><h2>Connecting to the LPC from a Linux or Mac OSX PC</h2></p>
+
+<p>To connect to the LPC cluster you need to have kerberos and openssh with gss support installed on your system. This is already included in Scientific Linux and Mac OSX.  In addtion you will need get the <a href="http://security.fnal.gov/krb5.conf">krb5.conf file for Fermilab</a> and save it to your home directory. Then run <br> <code>cp krb5.conf /etc/krb5.conf</code> as root on Linux or <br><code>cp krb5.conf /Library/Preferences/edu.mit.Kerberos</code> as admin on Mac OSX.</p>
+
+Also make the following edit to ~/.ssh/config on your local machine:<br>
+<code>
+        GSSAPIAuthentication yes<br>
+        GSSAPIDelegateCredentials yes<br>
+</code>
+
+<p>To connect to the LPC cluster:</p>
+
+<p>Get an addressless and forwardable kerberos ticket for the FNAL.GOV kerberos realm:</p>
+
+<code>/usr/kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
+or for MAC's <br>
+Leopard:<br>
+<code>/usr/kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
+Snow Leopard:<br>
+<code>/usr/kerberos/bin/kinit -a -f user@FNAL.GOV</code><br>
+
+<p>You will be prompted for your kerberos password in the FNAL.GOV realm.</p>
+
+<p>To verify that you have an addressless and forwardable kerberos ticket:</p>
+
+<code>klist -a -f</code> 
+
+<h3>Mac OS X 10.7 and later</h3>
+
+
+<li>In the <code>Applications</code> folder, open the
+<strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Utilities</code></strong> folder. Then, open <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Keychain Access</code></strong>.
+<br><br>
+</li>
+<li>From the <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Keychain Access</code></strong> menu, select
+<strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Ticket Viewer</code></strong>.
+<br><br>
+</li>
+<li>Click <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Add Identity</code></strong>. In the "Identity:" field, enter your
+Network ID username in the format
+<code>&#160;<cite>username</cite>@FNAL.GOV&#160;</code>. Then enter
+your passphrase in the "Password:" field.
+
+<p><strong>Note:</strong> <code>FNAL.GOV</code> must be in
+all capital letters.</p>
+</li>
+<li>Click <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Continue</code></strong> to get your initial Kerberos ticket.
+<br><br>
+</li>
+<li>To make this your default Kerberos identity, click <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Set as
+Default</code></strong>.</li>
+
+
+<br><br>
+<p>Connect to the SL5 cluster:</p>
+
+<code>ssh username@cmslpc-sl5.fnal.gov </code>
+<br><br>
+
+<h2>KNOWN ISSUES and WORK AROUNDS</h2>
+
+<p>1) To log into the cluster from an SLC machine<br> 
+<code>kinit -A -f user@FNAL.GOV; ssh -2 user@cmslpc-sl5.fnal.gov </code></p> 
+
+<p>2) MAC users who have updated their ssh to a version greater than 3.8 will need to use both
+    the -X and -Y options on the ssh command line:<br />
+     <code>ssh -X -Y cmslpc-sl5</code><br />
+    This will enable X11 forwarding.</p>
+<p>3) Some users need to edit the <code>[libdefaults]</code> section of the /etc/krb5.conf file (Linux) or <br>/Library/Preferences/edu.mit.Kerberos file (Mac OSX) to include the following: <br>
+<code> allow_weak_crypto = true </code> <br>
+
+<p>4) There is a known issue between the unpatched version of krb5-libs v1.9 on a linux client and the FERMI KDC's. The incompatablity
+makes login to a FERMI system fail. If you have v1.9* krb5-libs rpm on your client and are having login issues please update to the
+newest version of the rpm to see if that resolves the issue. The patched version is avaiable in the security errata of all the major 
+linux distributions. If you have the most current version or the patched patched version does not help please make sure all the other 
+settings mentioned above set correctly. If all of this still does not result in successful login, please contact the fermi service desk.<br>
+
+<p>5) The versions of ssh that do not work with the round robin queue are the ones that do not support gssapi or do not handle the redirection correctly and break afs authentication. The ones known not to work correctly are:</p>
+
+<ul>
+	<li>OpenSSH with gssapi support in SL3 breaks afs authentication </li>
+	<li>WRQ Reflection X ssh client (based on OpenSSH 3.6.2 with gssapi) breaks afs authentication </li>
+	<li>Any Fermi OpenSSH before 3.5p1f12 breaks afs authentication. </li>
+</ul>
+
+<p>For these versions the LPC cluster direct access nodes must be used if you would like to access your afs area to edit your public_html directory.</p>
+
+<p><strong>LPC cluster direct access nodes.</strong></p>
+<p>Other versions of ssh for Linux or Windows PC's may not work correctly (i.e. AFS authentication error messages at login) with the round robin queue. If accessing the LPC cluster through the queue produces error messages, you can try accessing the LPC cluster through one of the following direct access nodes:</p>
+
+<ul>
+	<li> <code>ssh cmslpc22.fnal.gov (SL5)</code> </li>
+	<li> <code>ssh cmslpc42.fnal.gov (SL5)</code> </li>
+</ul>
+    
+<p>The direct access nodes are equivalent to other LPC cluster nodes except that they can be accessed directly.</p>
+    
+
+<p><strong>Non-kerberized ssh clients</strong></p>
+    
+<p>Any ssh client without kerberos authentication can be used to connect to the LPC cluster. A Cryptocard is used to generate a password in this case.</p>
+    
+<p><h2>Connecting to the LPC Cluster from a Windows PC</h2></p>
+    
+<p>Connecting to the LPC cluster through the round-robin queue from a Windows PC is known to work with Kerberized PuTTY. Other terminal programs such as WRQ Relection ssh and openssh for Cygwin only work with the direct access nodes (see above). Directions are given below for establishing a connection to the LPC cluster with Kerberized PuTTY. Directions for installing Cygwin/X or Xming, both free X servers for Windows, are also given. These packages are optional since commercial alternatives such as WRQ Reflection and Exceed exist. Also included are directions for using WinSCP and OpenAFS for Windows to access files in your account.</p>
+    
+
+<h3>Kerberos and SSH:</h3>
+    
+<p>Version 0.62 of PuTTY supports Kerberos authentication for SSH on Windows and can be found at <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a>. Download the Installer  to your desktop and run it. Putty will be installed in c:/Program Files/Putty. You will also need to download and install MIT Kerberos for Windows. The installer can be found at <a href="http://web.mit.edu/kerberos/www/dist/index.html"> the MIT Kerberos download page</a>. In addtion you will need get the <a href="http://security.fnal.gov/krb5.conf">krb5.conf file for Fermilab</a> and save it to \Windows\krb5.ini replacing this file if it exists.</p>
+    
+<p>To get your Kerberos ticket:<br /> 
+    Select Start ->All Programs->Kerberos for Windows->Network Identity Manager<br /> 
+    Enter your Kerberos principal, password and FNAL.GOV for the realm and click Login.</p> 
+    
+
+<p>To connect to the LPC cluster for the first time with PuTTY:<br /> 
+    Double click on the PuTTY icon in the directory where you unzipped the zip file.<br /> 
+    In the PuTTY configuration window:<br />
+    select Session and enter cmslpc-sl5.fnal.gov in the HostName field<br /> 
+    select Connection->Data and enter your username in the Auto-login username field<br /> 
+    select Connection->SSH and select "2 only" for "Preferred SSH protocol version"<br>
+    select Connection->SSH->X11 and check "Enable X11 forwarding" <br />
+    select Connection->SSH->Auth->GSSAPI and check both boxes <br/>
+    select Session and enter LPC in the Saved Sessions field and click Save <br />
+  double click on LPC in the Saved Sessions list</p>
+    
+
+<p>To connect to the LPC cluster with PuTTY:<br /> 
+  Double click the PuTTY icon. <br />
+  In the PuTTY configuration window: <br />
+  select Session and double click on LPC in the Saved Sessions list</p> 
+  
+
+<h3>Kerberos and SFTP:</h3> 
+    
+
+<p>WinSCP supports Kerberos authentication for SFTP on Windows can be downloaded from <a href="http://winscp.net/eng/index.php">http://winscp.net/eng/index.php</a>. Follow the directions <a href="http://winscp.net/eng/docs/ui_login_authentication">here</a> check Advanced options and under SSH->Authentication check both boxes for GSSAPI Authentication. Use this program to transfer files to and from the LPC cluster.</p>
+    
+
+<h3>X servers:</h3>
+    
+<p><a href="http://x.cygwin.com"/>Cygwin/X</a> and <a href="http://sourceforge.net/projects/xming/"/>Xming</a>  are implementations of X11 on the Windows platform. With X11 forwarding enabled in PuTTY and an X server running, programs like Root and emacs can be displayed on the Windows desktop.</p>
+    
+<p>To install Cygwin/X follow the download and installation directions from the user's guide. </p>
+
+    
+<p>After installing Cygwin/X copy c:\cygwin\X11R6\bin\startxwin.bat to the desktop. Edit startxwin.bat and remove the line <br />
+    run xterm -e /usr/bin/bash -l </p>
+    
+
+<p>To start the Xserver double click on startxwin.bat.</p>
+    
+
+<h3>OpenAFS:</h3>
+    
+<p>Files from your afs home area can be accessed through AFS. The OpenAFS client for Windows allows users to access their files in AFS.</p>
+    
+<p>The OpenAFS client for Windows can be downloaded from <a href="http://www.openafs.org/pages/windows.html">here</a>.</p>
+    
+<p>During the installation enter fnal.gov as the AFS cell. After installation is complete you will be required to reboot to activate the OpenAFS client. After rebooting the OpenAFS client will prompt you to enter your AFS username and password to obtain an AFS ticket. This prompt can be canceled since the AFS ticket can be obtained using aklog.</p>
+    
+<p>To get your AFS ticket: <br />
+    Obtain your Kerberos ticket as described above. <br />
+    
+
+    <p>To access AFS files: <br />
+    On Windows XP: <br/>
+    Select Start ->All Programs->OpenAFS->Authetication or the padlock icon in the system tray.<br />
+    In the AFS client window select Drive Letters and click on Add.<br />
+    Enter the path in AFS that you want to access. <br />
+    Select Start->My Computer and double click on the newly created drive letter.</p>
+    <p>
+    On Windows Vista and Windows 7: </br>
+    Select Start->Network->AFS->fnal.gov->files->home <br>
+    Select room1, room2 or room3 until you find you home directory <br>
+    Click and drag that folder to your desktop to create a symbolic link.
+ 	</p>
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
+
