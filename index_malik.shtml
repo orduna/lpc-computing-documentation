@@ -1,0 +1,36 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software &amp; Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<p>The goal of USCMS Software and Computing (USCMSSC) project is to provide the software and computing resources needed to enable US physicists to fully participate in the physics program of CMS. To realize this goal, US physicists should play a key role in all stages of computing related activities, from development of the reconstruction software and computing infrastructure to the examination of physics results.</p>
+<p>The central CMS software repository and distribution is at CERN. For more information, visit the <a 
+href="http://cms.cern.ch/iCMS/jsp/page.jsp?mode=cms&action=url&urlkey=CMS_COMPUTING" target="_blank">CMS CCS 
+(Computing and Core 
+Software)</a> Home at CERN.</p>
+<p>The objective of USCMSSC web pages is to provide most current information to the USCMSSC team, including collaborators, about:</p>
+<p><a href="/uscms_at_work/physics/computing/getstarted/getaccount.shtml">User Computing</a>, including information about establishing accounts, computing setups, tutorials and the components of CMS software</p>
+<p><a href="http://cms.cern.ch/iCMS/jsp/page.jsp?mode=cms&action=url&urlkey=CMS_OFFLINE" target="_blank">CMS 
+Software</a>, distribution, associated software tools and related documentation</p>
+<p><a href="http://www.uscms.org/uscms_at_work/data_computing/facility_operations/batch_system.shtml">LPC 
+CAF (Central Analysis Facility)</a>, a batch system (called Condor) available for users 
+which allows them to submit jobs into the lpc batch farm or the production farm
+<p>U.S. CMS <a href="/uscms_at_work/physics/computing/grid/index.shtml">Grid</a>, information about the deployment, development and on-going management of the grid environment for USCMS</p>
+<p><a href="/uscms_at_work/physics/computing/project_office.shtml">Project Management</a> information including work breakdown structure (WBS), funding resources, reviews, and various project related documents </p>
+
+
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
