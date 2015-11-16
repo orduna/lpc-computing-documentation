@@ -12,7 +12,7 @@
 <h3>Tier 1 Center</h3>
 
 <p>
-   Follow <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010788">Getting account at Fermilab</a>
+   Follow <a href="/uscms_at_work/physics/computing/getstarted/getaccount_fermilab.shtml">Getting account at Fermilab</a>
    You may also apply for Windows account separately.  You can get an account to Tier 1 machines even if you are not coming
    to Fermilab. See instructions described in step 1 of the above procedure. You may apply for a Fermilab e-mail account when
    you apply for an user account. To find more about Strong Authentication and Kerberos at Fermilab, go
