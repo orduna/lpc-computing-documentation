@@ -1,0 +1,54 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - U.S. CMS Grid - Getting Started - Certificate Procedure"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+<h1>Certificate Procedures</h1>
+
+<h2>Personal ("User") Certificates:</h2>
+
+<h3> CERN Certificate Authority </h3>
+
+If you have accounts at CERN we recommend you use the <a href="https://ca.cern.ch/ca/"> CERN CA </a> to obtain a personal certificate automatically within a few minutes. You will be prompted for your CERN account name and password. The steps for obtaining certificates from the CERN CA are explained at <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/PersonalCertificate">PersonalCertificate</a>.
+
+
+
+<h3> DOE Certificate Authority </h3>	
+	<li>Note: the DOE CA will no longer issue certificates after March 23, 2013.  If possible, please obtain a 
+       personal certficate from the CERN CA.
+   </li>
+	<li>Contact a member of the <a href="certificate_team.html">USCMS certificate team</a>.  This
+       person should be as local as possible (preferably within your home institution).  You'll need to contact
+       them in a manner than can be authenticated -- via phone, video, or face-to-face; <b>e-mail is not acceptable
+       for this purpose since you can't yet digitally sign it!</b>
+
+       Let them know that you are requesting a personal certificate and that they should expect to hear from a
+       OSG Registration Authority in the near future. (After completing - Please continue on to next step.)
+   </li>
+	<li>Go to <a href="http://www.doegrids.org/pages/How-To-Import.html">DOEGrids CA import</a> and follow the instructions
+       to import DOEGrids as a Certificate Authority into your browser.  You only need to do this once.
+   </li>
+   <li>Go to <a href="https://pki1.doegrids.org/">DOEGrids PKI</a> and click on "New User" under the enrollment tab.
+       Fill out the appropriate fields;<B> the affiliation/registration authority field should be OSG, the VO Name is CMS</B>,
+       and your sponsor is the member of the USCMS certificate team that you contacted.  <b> In the comments section, add "USCMS".</b><br>
+   <i> If you are employed by FNAL use FNAL for the affiliation/registration authority. </i>
+	</li>
+	<li>Be patient.  The OSG Registration Authority needs to verify that you are who you say you are before they
+       are allowed to issue a certificate.
+	</li>
+	<li>If your certificate was rejected: was the sponsor you listed on the
+	    <a href="certificate_team.html">USCMS certificate team</a>?  If so, did you contact them to let them know you were
+	    going to request a certificate?
+	</li>
+</ol>
+
+
+
+<h2>Host and Service Certificates:</h2>
+<ul>
+	<li>Go to <a href="https://pki1.doegrids.org/">DOEGrids</a> and click on "Grid or SSL Server" under the enrollment tab.
+       Fill out the appropriate fields; <b>the affiliation/registration authority field should be OSG.</b>
+       Additionally, in the comments section, <b>you must enter "USCMS"</b>.
+	</li>
+</ul>
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
