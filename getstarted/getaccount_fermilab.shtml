@@ -1,0 +1,54 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - Getting Started: Get an Account at Fermilab"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+<h1>User Software and Computing</h1>
+
+<h2>Getting Started: Get an Account at Fermilab</h2>
+
+<h3>How to get a CMS Computing Account at Fermilab</h3>
+
+<h4>Remote Users:</h4>
+
+<p>If you are a USCMS Computing Remote user and fall into one of the following categories: 
+<ul>
+      <li>Never had FERMI or CMS computing privileges </li>
+      <li>Had Fermi Computing privileges but not CMS computing privileges </li>
+      <li>Need to renew your Fermilab Kerberos credentials,</li>
+</ul>
+
+   <p>use the following steps:<br />
+</p>
+<ul>
+<li>   Read the information about <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010788" target="_blank">getting started as a non-employee off-site Fermilab user</a>. This is where you will apply for your accounts.
+<li>   On the <a href="http://computing.fnal.gov/xms/Services/Getting_Services/Forms/Request_for_Fermilab_visitor_ID_and_computer_accounts" target="_blank">application form</a>, select CMS
+        as your experiment and complete the form. You will get your CMS computing privileges. You will receive
+  e-mail notification, and if requested, a cryptocard will be mailed to you. 
+</ul> 
+
+<p>To request an account on the CMS Computing systems: </p>
+<ul>
+  <li>Log into the Fermilab Service Desk (Your Services account password is required)</li>
+  <li>Select Request Things -&gt; Accounts -&gt; Request CMS/MINOS Account and check CMS Account. (The form should be auto-filled from your info.)</li>
+  <li>Submit the form.</li>
+  <li>If you have any questions, please contact the <a href="mailto:servicedesk@fnal.gov" target="_blank">Fermilab Service Desk</a>.</li>
+</ul>
+
+<p> To renew your Fermilab Kerberos credentials follow the directions on <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010797">this page</a> under the heading Renew Accounts. </p>
+
+<h4>On-Site Users:</h4>
+
+<p>
+        If you are an <strong>on-site user</strong> (employee, visitor or contractor working locally) and already have a valid Fermilab ID
+        and a services account please do the following:
+<ul>
+<li>Log into the <a href="https://fermi.service-now.com/fsc" target="_blank">Fermilab Service Desk</a> 
+<li>Select Request Things -> Accounts -> Request CMS/MINOS Account and check CMS Account. 
+<i>(The form should be auto-filled from your info.)</i>
+<li> Submit the form.
+</ul>
+<p>
+	If you are a <strong> new on-site user </strong> you need to obtain a Fermilab ID and computer accounts following the directions on <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010797">this page</a> for new visitors or employees.
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
