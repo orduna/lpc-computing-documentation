@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>fts3-user-tools.html</title>
+
+  
+</head><body>
+<h1>FTS User tools </h1>
+
+<p>
+</p>
+
+<p>
+</p>
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Purpose"></a> Purpose </span></h2>
+
+<p>
+The purpose of the ftsuser tools is to facilitate the transfer of files between dCache and <span class="twikiLink">EOS</span>
+ using the FTS system. We have set up a special FTS machine dedicated to
+ users for these transfers. If you have large amounts of data to move, 
+you may also contact cms-t1 for help. Transfers are to be done from the 
+cmslpc machines at FNAL.
+</p>
+<p>
+With the changes to our storage and tape systems, the new system has 
+less files from tape already staged to disk and the space to maintain 
+those files for long periods of time. It is recommended that if you want
+ to guarantee availability of files while working, you should move them 
+to <span class="twikiLink">EOS</span> and work from there.
+</p>
+<p>
+Files on dCache resilient are also no longer going to be available when 
+the system changes are complete. To preserve files in this space, we 
+recommend moving them to <span class="twikiLink">EOS</span>.
+</p>
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Requirements"></a> Requirements </span></h2>
+
+<p>
+You will need a cmslpc account because the tools are only available from the cmslpc interactive nodes.
+</p>
+<p>
+You will need a valid proxy to do the transfers.
+</p>
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Steps"></a> Steps </span></h2>
+
+<p>
+1) Create a proxy before initiating the transfers. It is required to have a valid cms proxy:
+</p>
+<p>
+<strong>voms-proxy-init -voms cms</strong>
+</p>
+<p>
+2) Create the delegation. This is required to do the transfers:
+</p>
+<p>
+<strong>ftsuser-delegation</strong>
+</p>
+<p>
+Delegates a new proxy to the FTS server for transfers. Returns the delegation id and expiration time for the proxy.<em><br><br>Usage: /usr/local/bin/ftsuser-delegation<br> -h, --help: shows this help message</em>
+</p>
+<p>
+<br>3) Prepare a list of the LFNs of the dcache and dos space to provide
+ to the transfer commands. Run the following command to get a list of 
+files in the dCache area:
+</p>
+<p>
+<strong>ftsuser-build-xfer-list -p resilient -o transfer-list.txt username substring dest-path</strong>
+</p>
+<p>
+<em>Usage: ftsuser-build-xfer-list [options] username substring dest-path<br> username: your username (i.e. burt)<br> substring: word to filter files by (i.e. <span class="twikiNewLink">ZMuMu</span> )<br>
+ dest-path: destination prefix path under /eos/uscms/store/user/username
+ (i.e. the 'dest-path' part of /store/user/burt/dest-path)<br><br>options:<br> -h, --help show this help message and exit<br> -o OUTPUT, --output=OUTPUT<br> write output to file<br> -p PREFIX, --prefix=PREFIX<br> read from prefix (choices: resilient, storeuser)<br> (default: resilient)</em>
+</p>
+<p>
+This will create a text file of the files you actually want to transfer 
+from the output above. You should have one line for each file. The first
+ item in the line is the FROM location on dCache and the second item in 
+the line is the TO destination location on <span class="twikiLink">EOS</span>.
+</p>
+<p>
+4) Submit the transfer:
+</p>
+<p>
+<strong><br>ftsuser-transfer-submit-list</strong>
+</p>
+<p>
+Submits all files listed in a given file to FTS to transfer from <span class="twikiLink">EOS</span> or dCache. If no destination is provided, the destination will match the source.<em><br><br>Usage: /usr/local/bin/ftsuser-transfer-submit-list FROMDCACHE|FROMEOS list-of-LFNs <br> -h, --help: shows this help message<br> example usage: ftsuser-transfer-submit-directory FROMDCACHE mylist<br> example usage: ftsuser-transfer-submit-directory FROMEOS mylist<br> where mylist is a file containing either sourceLFNs or pairs of sourceLFN destinationLFN<br> example for mylist: /resilient/catalind/A.txt /store/user/catalind/test52342.txt</em>
+</p>
+<p>
+</p>
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Other_useful_commands_to_manage"></a> Other useful commands to manage transfers </span></h2>
+
+<p>
+<strong>ftsuser-transfer-cancel</strong>
+</p>
+<p>
+Cancels a file transfer job.<br><br><em>Usage: /usr/local/bin/ftsuser-transfer-cancel fts-job-id<br> -h, --help: shows this help message<br> example usage: user-transfer-cancel 3282b87c-4be0-11e3-ab7c-782bcb3c8ee8</em>
+</p>
+<p>
+<strong><br>ftsuser-transfer-list</strong>
+</p>
+<p>
+Lists current FTS jobs with their status. Can also get status for a given job id.<br><br><em>Usage: /usr/local/bin/ftsuser-transfer-list [fts-job-id]<br> -h, --help: shows this help message<br> example usage: ftsuser-transfer-list 3282b87c-4be0-11e3-ab7c-782bcb3c8ee8</em>
+</p>
+<p>
+<strong><br>ftsuser-whoami </strong>
+</p>
+<p>
+Shows proxy info if a valid proxy is found.<br><br><em>Usage: /usr/local/bin/ftsuser-whoami<br> -h, --help: shows this help message</em>
+</p>
+<p>
+<strong>ftsuser-transfer-submit-file</strong>
+</p>
+<p>
+Submits a file transfer to FTS either from FNAL <span class="twikiLink">EOS</span>
+ or dCache. Destination LFN is optional, if not specified will default 
+to the source LFN. The destination filename will match the source 
+filename.<em><br><br>Usage: /usr/local/bin/ftsuser-transfer-submit-file FROMDCACHE|FROMEOS source-LFN [destination-LFN]<br> -h, --help: shows this help message<br> example usage: ftsuser-transfer-submit FROMDCACHE /resilient/catalind/A.txt /store/user/catalind/test52342.txt<br> example usage: ftsuser-transfer-submit FROMEOS /store/user/catalind/test52342.txt</em><strong><br></strong>
+</p>
+<p>
+<strong>ftsuser-transfer-submit-dir</strong>
+</p>
+<p>
+Submits all files in a directory to FTS to transfer from <span class="twikiLink">EOS</span>
+ or dCache. This is not a recursive action, only the files in the 
+immediate directory will be transferred. If you have a set of nested 
+files and directories, each directory will have to be transferred 
+separately.
+</p>
+<p>
+If no destination is provided, the destination will match the source.<em><br><br>Usage: /usr/local/bin/ftsuser-transfer-submit-dir FROMDCACHE|FROMEOS source-LFN [destination-LFN]<br> -h, --help: shows this help message<br> example usage: ftsuser-transfer-submit-directory FROMDCACHE /resilient/catalind/testdir /store/user/catalind/<br> example usage: ftsuser-transfer-submit-directory FROMEOS /store/user/catalind/testdir</em>
+</p>
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Monitoring"></a> Monitoring </span></h2>
+
+<p>
+This system offers a web based interface to monitor transfers:
+</p>
+<p>
+<a href="https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/" target="_top">https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/</a>
+</p>
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Quotas"></a> Quotas </span></h2>
+
+<p>
+Quotas from dCache aren't necessarily the same on <span class="twikiLink">EOS</span>. By default, all users are given 2TB of space on <span class="twikiLink">EOS</span> unless they request an increase. You can check <span class="twikiLink">DataViewer</span> to see your current quotas and request and increase in <span class="twikiLink">EOS</span> if needed:
+</p>
+<p>
+<a href="https://cmsjobmon.fnal.gov/DataViewer/" target="_top">https://cmsjobmon.fnal.gov/DataViewer/</a>
+</p>
+<p>
+NOTE: If you have space on dCache you will already have space on <span class="twikiLink">EOS</span> but the quotas do not transfer. It will be difficult to get large quotas on <span class="twikiLink">EOS</span> that you may have had on dCache. Please only transfer and maintain the files you need at a given time to <span class="twikiLink">EOS</span>.
+</p>
+<p>
+</p>
+<hr>
+<p>
+</p>
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="An_Example"></a> An Example </span></h2>
+
+<p>
+Say I want to copy some of my data out of my resilient area into <span class="twikiLink">EOS</span>.
+ It lives in /pnfs/cms/WAX/resilient/dmason/eleventhgrid. I want to put 
+it into /eos/uscms/store/dmason/examplecopy. I do this then:
+</p>
+<pre>[dmason@cmslpc30 ~]$ voms-proxy-init -voms cms -hours 200<br>Enter GRID pass phrase:<br>Your identity: /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=dmason/CN=664436/CN=David Alexander Mason<br>Creating temporary proxy ........................................ Done<br>Contacting  lcg-voms.cern.ch:15002 [/DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch] "cms" Done<br>Creating proxy ........................................................ Done<br>Your proxy is valid until Fri Jan 24 22:28:19 2014<br>[dmason@cmslpc30 ~]$ ftsuser-delegation <br>Using proxy at /tmp/x509up_u1234<br>Delegation id 58d662372cf46db5:<br><br>Renewing now:<br>-----BEGIN CERTIFICATE REQUEST-----<br>MIHJMHUCAQAwEDEOMAwGA1UEChMFRHVtbXkwXDANBgkqhkiG9w0BAQEFAANLADBI<br>AkEA7g/QcT+sHiT6FolpCqvHJmUBTNy5qHWdVWLsSPe/pod2kuIyX6/q9ZjiDKgU<br>D5gXHx2e5IQOtHasdsfa2O8HMrQIDAQABoAAwDQYJKoZIhvcNAQEEBQADQQCHkimX<br>xoGLM9dtrW49Kn9hxKHf8fiwK1/a90NloFiSsqAHauyi0HqsjNtLk8zpumLWa3pS<br>S3WB57QgcIqb4EvR<br>-----END CERTIFICATE REQUEST-----<br><br>{<br>  "termination_time": "2014-01-25T04:28:19"<br>}<br><br>Ongoing transfers can be monitored through the web interface:<br>    https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/<br></pre>
+
+<p>
+Then we make the file to feed the FTS system:
+</p>
+<pre>ftsuser-build-xfer-list -o testcopy -p resilient dmason eleventhgrid examplecopy</pre>
+
+<p>
+This will make a file with a pair of from and to files -- you should check this:
+</p>
+<pre>more testcopy<br>/resilient/dmason/eleventhgrid_noPU/reco/reco_750_1400_225_3501.root /store/user<br>/dmason/examplecopy/eleventhgrid_noPU/reco/reco_750_1400_225_3501.root<br>/resilient/dmason/eleventhgrid_noPU/tree/tree_750_400_375_1501.root /store/user/<br>dmason/examplecopy/eleventhgrid_noPU/tree/tree_750_400_375_1501.root<br> <br>etc etc.  </pre>
+
+<p>
+Note that it isn't the full path -- these will be the LFN's FTS wants to
+ see.  But look that beyond /store/user/username, etc. is where you 
+actually wanted to put your files, and make sure that the contents of 
+the list actually contain what you copy.  It will literally only copy 
+what is listed.
+</p>
+<p>
+You then feed FTS:
+</p>
+<pre>ftsuser-transfer-submit-list FROMDCACHE testcopy <br>Using proxy at /tmp/x509up_u7178<br><br><br>  "cred_id": "58d662372cf46db5", <br>  "job_id": "066e468a-7eed-11e3-8607-782bcb2fb7b4", <br>  "job_state": "SUBMITTED", <br>  "user_dn": "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=dmason/CN=664436/CN=David Alexander Mason", <br>  "vo_name": "cms", <br>  "voms_cred": "/cms/Role=NULL/Capability=NULL /cms/integration/Role=NULL/Capability=NULL /cms/production/Role=NULL/Capability=NULL /cms/uscms/Role=NULL/Capability=NULL"<br><br><br>Ongoing transfers can be monitored through the web interface:<br>    https://cmsfts3-users.fnal.gov:8449/fts3/ftsmon/<br>And after a bit I'm noticing:<br>[dmason@cmssrv168 filecopy]$  ls /eos/uscms/store/user/dmason/examplecopy<br>eleventhgrid_Flat10PU  eleventhgrid_noPU<br> <br></pre>
+</body></html>
