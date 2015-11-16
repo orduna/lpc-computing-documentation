@@ -1,0 +1,51 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - Getting Started: Get an Account"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>Getting Started: Get an Account</h2>
+
+
+<h3>Tier 1 Center</h3>
+
+<p>Follow <a href="http://www.uscms.org/SoftwareComputing/UserComputing/GetAccountFermilab.html">Getting account at Fermilab</a> You may also apply for Windows NT account separately.You can get an account to Tier 1 machines even if you are not coming to Fermilab. See instructions described in step 1 of the above procedure. You may apply for a Fermilab e-mail account when you apply for an user account. To find more about Strong Authentication and Kerberos at Fermilab, go to: <a href="http://www.fnal.gov/docs/strongauth" 
+target="_blank">http://www.fnal.gov/docs/strongauth</a></p>
+
+<h3>Tier 2 Centers</h3>
+
+<p>For general information about the Tier 2 centers, <a href="http://www.uscms.org/SoftwareComputing/Tier2/index.html">look here</a>.</p>
+
+<p><strong>Caltech:</strong> (Center of advanced Computing): Follow instructions for <A 
+href="http://bill.cacr.caltech.edu/CFDOCS/Cacr/main.cfm" target=_blank>getting an account</a>. Fill out the form and FAX it back. <A 
+href="mailto:julian@cacr.caltech.edu">Tier 2 manager</a> is responsible for signing it. Please e-mail him an introduction beforehand identifying the purpose of the requester.</p>
+<p><strong>University of Florida:</strong> At Florida, access is granted on a case by case basis and depends on intended usage and verbal authentication. Send an e-mail to <A 
+href="mailto:t2-admins@phys.ufl.edu">t2-admins@phys.ufl.edu</a></p>
+
+
+<p><a href="http://www.cmsaf.mit.edu/"><strong>MIT</strong></a><br />
+<strong><a href="http://t2.unl.edu/cms">Nebraska</a></strong><br />
+<strong><a href="http://www.physics.purdue.edu/Tier2">Purdue</a></strong><br />
+<strong><a href="http://tier2.ucsd.edu/">UCSD</a></strong><br />
+<strong><a href="http://www.hep.wisc.edu/cms/comp">Wisconsin</a></strong></p>
+
+<h3>Tier 0 (CERN) Center</h3>
+<p><a href="http://cmsdoc.cern.ch/comp/comp_quick_guide.html#AccountCreation" target=_blank>Request a CERN account</a></p>
+
+
+
+
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
