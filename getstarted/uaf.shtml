@@ -20,7 +20,7 @@
 
 <p><h2>Connecting to the LPC from a Linux or Mac OSX PC</h2></p>
 
-<p>To connect to the LPC cluster you need to have kerberos and openssh with gss support installed on your system. This is already included in Scientific Linux and Mac OSX.  In addtion you will need get the <a href="http://security.fnal.gov/krb5.conf">krb5.conf file for Fermilab</a> and save it to your home directory. Then run <br> <code>cp krb5.conf /etc/krb5.conf</code> as root on Linux or <br><code>cp krb5.conf /Library/Preferences/edu.mit.Kerberos</code> as admin on Mac OSX.</p>
+<p>To connect to the LPC cluster you need to have kerberos and openssh with gss support installed on your system. This is already included in Scientific Linux and Mac OSX.  In addtion you will need get the <a href="http://security.fnal.gov/krb5.conf">krb5.conf file for Fermilab</a> and save it to your home directory. Then run <br> <code>cp krb5.conf /etc/krb5.conf</code> as root on Linux or <br><code>cp krb5.conf /Library/Preferences/edu.mit.Kerberos</code><br> as admin on Mac OSX 10.6 and earlier <b>or</b> <br><code> cp krb5.conf /etc/krb5.conf</code><br> as admin on Mac OSX 10.7 and later.</p>
 
 Also make the following edit to ~/.ssh/config on your local machine:<br>
 <code>
@@ -69,7 +69,8 @@ all capital letters.</p>
 </li>
 <li>To make this your default Kerberos identity, click <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Set as
 Default</code></strong>.</li>
-
+<li> You may need to do <br> <code> mv /Library/Preferences/edu.mit.Kerberos /Library/Preferences/edu.mit.Kerberos.bak </code> <br>
+if you have proviously created or mofified this file.
 
 <br><br>
 <p>Connect to the SL5 cluster:</p>
@@ -109,7 +110,7 @@ settings mentioned above set correctly. If all of this still does not result in 
 <p>Other versions of ssh for Linux or Windows PC's may not work correctly (i.e. AFS authentication error messages at login) with the round robin queue. If accessing the LPC cluster through the queue produces error messages, you can try accessing the LPC cluster through one of the following direct access nodes:</p>
 
 <ul>
-	<li> <code>ssh cmslpc22.fnal.gov (SL5)</code> </li>
+	<li> <code>ssh cmslpc41.fnal.gov (SL5)</code> </li>
 	<li> <code>ssh cmslpc42.fnal.gov (SL5)</code> </li>
 </ul>
     
@@ -184,7 +185,7 @@ settings mentioned above set correctly. If all of this still does not result in 
     Obtain your Kerberos ticket as described above. <br />
     
 
-    <p>To access AFS files: <br />
+    <p>To access AFS files: <br> <br>
     On Windows XP: <br/>
     Select Start ->All Programs->OpenAFS->Authetication or the padlock icon in the system tray.<br />
     In the AFS client window select Drive Letters and click on Add.<br />
