@@ -31,117 +31,42 @@
 <p>Also make sure the following lines are present in your <code>~/.ssh/config</code> file:</p>
 
 <p><code>
-        GSSAPIAuthentication yes<br>
-        GSSAPIDelegateCredentials yes<br>
+GSSAPIAuthentication yes<br>
+GSSAPIDelegateCredentials yes<br>
 </code></p>
 
 <p>To connect to the LPC cluster:</p>
 
-<p>Get an addressless and forwardable Kerberos ticket for the FNAL.GOV Kerberos realm:</p>
+<p>Get a Kerberos ticket for the FNAL.GOV Kerberos realm:</p>
 
-<code>/usr/Kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
-or for MAC's <br>
-Leopard:<br>
-<code>/usr/Kerberos/bin/kinit -A -f user@FNAL.GOV</code><br>
-Snow Leopard:<br>
-<code>/usr/Kerberos/bin/kinit -a -f user@FNAL.GOV</code><br>
+<code>kinit <i>username</i>@FNAL.GOV</code></p>
 
 <p>You will be prompted for your Kerberos password in the FNAL.GOV realm.</p>
 
-<p>To verify that you have an addressless and forwardable Kerberos ticket:</p>
+<p>If you want to verify that a Kerberos ticket was created, you can issue the following command:</p>
 
-<code>klist -a -f</code> 
+<p><code>klist</code></p>
 
-<h3>OS X 10.7 and later</h3>
+<p><a href="video/kinit_klist.mov" target="_blank">Show me how (&beta;)</a></p>
 
+<p><strong>LPC interactive nodes.</strong></p>
 
-<li>In the <code>Applications</code> folder, open the
-<strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Utilities</code></strong> folder. Then, open <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Keychain Access</code></strong>.
-<br><br>
-</li>
-<li>From the <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Keychain Access</code></strong> menu, select
-<strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Ticket Viewer</code></strong>.
-<br><br>
-</li>
-<li>Click <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Add Identity</code></strong>. In the "Identity:" field, enter your
-Network ID username in the format
-<code>&#160;<cite>username</cite>@FNAL.GOV&#160;</code>. Then enter
-your passphrase in the "Password:" field.
-
-<p><strong>Note:</strong> <code>FNAL.GOV</code> must be in
-all capital letters.</p>
-</li>
-<li>Click <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Continue</code></strong> to get your initial Kerberos ticket.
-<br><br>
-</li>
-<li>To make this your default Kerberos identity, click <strong xmlns:xi="http://www.w3.org/2001/XInclude"><code>Set as
-Default</code></strong>.</li>
-<li> You may need to do <br> <code> mv /Library/Preferences/edu.mit.Kerberos /Library/Preferences/edu.mit.Kerberos.bak </code> <br>
-if you have proviously created or mofified this file.
-
-<br><br>
-<p>Connect to the SL5 cluster:</p>
-
-<code>ssh username@cmslpc-sl5.fnal.gov </code>
-<br><br>
-
-<h3>OS X 10.10 (Yosemite)</h3><br>
-
-While at this point Yosemite is not in the list of <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010790" target="_blank">Fermilab supported OS X</a> (meaning that Fermilab-owned machines are not recommended to upgrade from previous versions of OS X), users can still use their non-Fermilab equipment, upgraded to (or bought with) Yosemite, to have access to LPC resources.<p><br>
-
-A change in the user's Kerberos password is required to gain access. Use <code>kpasswd</code> to change your password (from somewhere other than your Yosemite machine). You should be able to <code>kinit</code> locally once the password change propagates to the KDC slave servers (20 minutes or so). Then, you can access LPC resources with:<br>
+<p>There are two sets of interactive nodes, running Scientific Linux (SL) 5 and 6, respectively. To access either one, get a Kerberos ticket on your local computer (see above) and then:
 
 <ul>
-<li> SL5 using the alias <code>cmslpc-sl5.fnal.gov</code>, or
-<li> SL6 using the alias <code>cmslpc-sl6.fnal.gov</code>.
-</ul><p>
-
-
-<h2>KNOWN ISSUES and WORK AROUNDS</h2>
-
-<p>1) To log into the cluster from an SLC machine<br> 
-<code>kinit -A -f user@FNAL.GOV; ssh -2 user@cmslpc-sl5.fnal.gov </code></p> 
-
-<p>2) MAC users who have updated their ssh to a version greater than 3.8 will need to use both
-    the -X and -Y options on the ssh command line:<br />
-     <code>ssh -X -Y cmslpc-sl5</code><br />
-    This will enable X11 forwarding.</p>
-<p>3) Some users need to edit the <code>[libdefaults]</code> section of the /etc/krb5.conf file (Linux) or <br>/Library/Preferences/edu.mit.Kerberos file (OS X) to include the following: <br>
-<code> allow_weak_crypto = true </code> <br>
-
-<p>4) There is a known issue between the unpatched version of krb5-libs v1.9 on a linux client and the FERMI KDC's. The incompatablity
-makes login to a FERMI system fail. If you have v1.9* krb5-libs rpm on your client and are having login issues please update to the
-newest version of the rpm to see if that resolves the issue. The patched version is avaiable in the security errata of all the major 
-linux distributions. If you have the most current version or the patched patched version does not help please make sure all the other 
-settings mentioned above set correctly. If all of this still does not result in successful login, please contact the fermi service desk.<br>
-
-<p>5) The versions of ssh that do not work with the round robin queue are the ones that do not support gssapi or do not handle the redirection correctly and break afs authentication. The ones known not to work correctly are:</p>
-
-<ul>
-	<li>OpenSSH with gssapi support in SL3 breaks afs authentication </li>
-	<li>WRQ Reflection X ssh client (based on OpenSSH 3.6.2 with gssapi) breaks afs authentication </li>
-	<li>Any Fermi OpenSSH before 3.5p1f12 breaks afs authentication. </li>
+        <li> SL6: <code>ssh <i>username</i>@cmslpc-sl6.fnal.gov</code> </li>
+        <li> SL5: <code>ssh <i>username</i>@cmslpc-sl5.fnal.gov</code> </li>
 </ul>
 
-<p>For these versions the LPC cluster direct access nodes must be used if you would like to access your afs area to edit your public_html directory.</p>
-
-<p><strong>LPC cluster direct access nodes.</strong></p>
-<p>Other versions of ssh for Linux or Windows PC's may not work correctly (i.e. AFS authentication error messages at login) with the round robin queue. If accessing the LPC cluster through the queue produces error messages, you can try accessing the LPC cluster through one of the following direct access nodes:</p>
+<p>Some (older) versions of ssh for Linux or Windows PC's may not work correctly (i.e. AFS authentication error messages at login) with the <code>cmslpc-slX</code> aliases. If accessing the LPC cluster through these produces error messages, you can try accessing the LPC cluster through one of the following direct access nodes:</p>
 
 <ul>
-	<li> <code>ssh cmslpc41.fnal.gov (SL6)</code> </li>
-	<li> <code>ssh cmslpc42.fnal.gov (SL5)</code> </li>
+	<li> SL6: <code>ssh <i>username</i>@cmslpc41.fnal.gov</code> </li>
+	<li> SL5: <code>ssh <i>username</i>@cmslpc42.fnal.gov</code> </li>
 </ul>
-    
-<p>The direct access nodes are equivalent to other LPC cluster nodes except that they can be accessed directly.</p>
-    
 
-<p><strong>Non-kerberized ssh clients</strong></p>
-    
-<p>Any ssh client without Kerberos authentication can be used to connect to the LPC cluster. A Cryptocard is used to generate a password in this case.</p>
-    
-<p><h2>Connecting to the LPC Cluster from a Windows PC</h2></p>
-    
+<p><h2>Connecting to the LPC Cluster from a Windows PC</h2> (to be reviewed)</p>
+
 <p>Connecting to the LPC cluster through the round-robin queue from a Windows PC is known to work with Kerberized PuTTY. Other terminal programs such as WRQ Relection ssh and openssh for Cygwin only work with the direct access nodes (see above). Directions are given below for establishing a connection to the LPC cluster with Kerberized PuTTY. Directions for installing Cygwin/X or Xming, both free X servers for Windows, are also given. These packages are optional since commercial alternatives such as WRQ Reflection and Exceed exist. Also included are directions for using WinSCP and OpenAFS for Windows to access files in your account.</p>
     
 
