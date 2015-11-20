@@ -110,7 +110,7 @@ Monday morning.  Most services will be intermittent throughout the morning.    T
 <li> Paul R - Get copy of oracle fts database, and then flush all data that is on the database node
 <li> David/Anil - Apply oracle security updates
 <li> Lisa - Coordinate  bluearc & hds vendors on their firmware updates
-<li> Merina - Reboot all SL4 nodes to enable new kernels
+<li> Merina - Reboot all nodes (SL4 & SL5) to enable new kernels
 <li> Catalin - reshoot all workers and interactive nodes
 <li> Tony - OSG CE update?
 <li> Paul T - backup zabbix
