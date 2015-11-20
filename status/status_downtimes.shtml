@@ -1,0 +1,62 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - System Status: Downtimes"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>System Status: Downtimes</h2>
+
+
+
+<h3>USCMS Tier-1 Facilities Downtimes</h3> 
+
+<p>Information on upcoming USCMS Tier-1 Facilities downtimes will be posted on this page, and on the mailing list <a href="mailto:uscmst1-downtime@fnal.gov">uscmst1-downtime@fnal.gov</a>.</p> 
+
+<p>During this final phase before data taking, we are trying to limit our downtimes to once/month - generally the 3rd or 4th Thursday of the month. Although large parts of the Tier-1 resources will may be down from 6 AM to 6 PM during these downtimes, we will try to have most items working by noon. </p>
+
+<span class="big" style="color: #cc0000;">
+<p><strong>Downtime: Thursday September 6 - Outage from 6 AM - Noon</strong></p>
+
+<ul>
+
+<li><strong>JB: Upgrade production dCache </strong></li>
+
+<li><strong>PT/BH: Upgrade Condor </strong></li>
+
+<li><strong>DF/TM: Add memory to gatekeepers </strong></li>
+
+<li><strong>MA: Clean out cruft from grid home areaa, install cleanout cronjob </strong></li>
+
+<li><strong>JK: Reshoot all batch workers </strong></li>
+
+<li><strong>PT: Lastlogin on interactive nodes </strong></li>
+
+<li><strong>TM:Disable cmswn1-44 </strong></li>
+
+<li><strong>PR: FTS2 into production </strong></li>
+
+<li><strong>What else</strong> </li>
+
+</ul>
+</span>
+
+
+<p>Please send all questions and comments to <a href="mailto:cms-t1@fnal.gov">cms-t1@fnal.gov</a> </p>
+
+
+
+
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
