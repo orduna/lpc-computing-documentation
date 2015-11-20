@@ -67,8 +67,9 @@ sleep_\$(Cluster)_\$(Process).stdout</a><br>
 sleep_\$(Cluster)_\$(Process).stderr</a><br>
 <a href="#code_07">Log = sleep_\$(Cluster)_\$(Process).log</a><br>
 <a href="#code_08">notify_user = ${LOGNAME}@FNAL.GOV</a><br>
+<a href="#code_10">x509userproxy = $ENV(X509_USER_PROXY)</a><br>
 <a href="#code_09">Arguments = 60</a><br>
-<a href="#code_10">Queue 5</a><br>
+<a href="#code_11">Queue 5</a><br>
 </code>
 <br>
 <code class="red"><a href="#code_11" style="color: rgb(170, 0, 0);">+EOF</a><br>
@@ -330,6 +331,11 @@ finishes (your email), in the example, the computer should have put
 your email address here. You will recieve a seperate email for every
 process in you job that completes. <br>
 <a href="#condor_1">BACK</a></p>
+<a name="code_10"></a>
+<p><code>x509userproxy = $ENV(X509_USER_PROXY)</code><br>
+This line tells your job to bring along your grid proxy, which is
+needed for accessing files over xrootd (root://)<br>
+<a href="#condor_1">BACK</a></p>
 <a name="code_09"></a>
 <p><code>Arguments = 60</code><br>
 Here you put any command line arguments for your program, if you have
@@ -337,7 +343,7 @@ none, exclude this line. In this example the program needs one argument
 for the number of seconds to wait. This argument tells the program to
 wait for one minute. <br>
 <a href="#condor_1">BACK</a></p>
-<a name="code_10"></a>
+<a name="code_11"></a>
 <p><code>+LENGTH="SHORT"</code><br>
 Include this line to forfeit your job if it runs longer than an hour
 real time, without this line your job will be forfeit if it runs longer
