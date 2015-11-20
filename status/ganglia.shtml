@@ -1,0 +1,24 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - System Status"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"--><title>ganglia</title>
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>Ganglia</h2>
+<p><a href="https://cmssrv02/ganglia/?c=CMSLPC&amp;m=&amp;r=hour&amp;s=descending&amp;hc=4" target="_blank">CMSLPC Interactive</a></p>
+<p><a href="https://cmssrv02/ganglia/?c=CMSLPC%20sl5&amp;m=&amp;r=hour&amp;s=descending&amp;hc=4" target="_blank">CMSLPC-SL5 Interactive</a></p>
+<p>
+  
+  <a href="https://cmssrv02/ganglia/?c=LPCCAF%20Work%20Cluster%202&amp;m=&amp;r=hour&amp;s=descending&amp;hc=4" target="_blank">LPC work cluster</a></p>
+<p><a href="https://cmssrv02/ganglia/?c=USCMS-FNAL%20Work%20Cluster%201&amp;m=&amp;r=hour&amp;s=descending&amp;hc=4" target="_blank">T1 Work Cluster</a></p>
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
