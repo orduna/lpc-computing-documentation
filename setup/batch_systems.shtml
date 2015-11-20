@@ -9,43 +9,38 @@
 <!--#include virtual="_sidebar.shtml"--><!-- End: Sidebar -->
 <h2>Facility Operations: Batch System</h2>
 Batch Systems:
-<!-- 
-<p>The batch system available for users of the UAF is condor which
-allows the user to submit jobs into the lpc batch farm or the
-production farm. On this page we will describe how to use this batch
-system.</p>
-<ol>
-  <li><strong><a href="#condor_1">How do I use Condor to submit to the
-lpc batch farm?</a></strong></li>
-  <li><strong><a href="#condor_2">How do I use CondorG to submit to the
-production batch farm?</a></strong></li>
-  <li><strong><a href="https://twiki.cern.ch/twiki/bin/view/CMS/CRABonLPCCAF">How do I use CRAB to manage condor batch jobs</a></li>
-  <li><strong><a href="http://www.uscms.org/uscms_at_work/physics/lpc/support/lpc_computing/RunManyCondor.shtml">Wrapper around 
-condor designed to make it easy to run many different sections (or jobs) at once on the CMSLPC CAF or CERN's batch system</a></li>
-</ol>
-
--->
 
 <p>The batch system available for users of the UAF is condor which
 allows the user to submit jobs into the lpc batch farm or the
 production farm. On this page we will describe how to use this batch
 system.</p>
+
 <ol type="a">
-<li><strong>A system that makes it easy to submit many slightly different jobs to the batch system 
-( <a href="http://www.uscms.org/uscms_at_work/physics/lpc/support/lpc_computing/RunManyCondor.shtml">click here</a>)
+ <li>A system that makes it easy to submit many slightly different jobs to the batch system
+   (<a href="http://www.uscms.org/uscms_at_work/physics/lpc.old/support/lpc_computing/RunManyCondor.shtml">click here</a>)
+ </li>
 
-<li><strong>A complete, detailed example of how to submit a simple job as described below:
+<li>A complete, detailed example of how to submit a simple job as described below:</li>
 <ol>
-<li><strong><a href="#condor_1">How do I use Condor to submit to the lpc batch farm?</a></strong></li>
-<li><strong><a href="#condor_2">How do I use CondorG to submit to the production batch farm?</a></strong></li>
-<li><strong><a href="https://twiki.cern.ch/twiki/bin/view/CMS/CRABonLPCCAF">How do I use CRAB to manage condor batch jobs</a></li>
-<li><strong><a href="#condor_4">How do I report worker nodes with problems</a></strong></li>
-</ol>
-</ol>
+<li><a href="#condor_1">How do I use Condor to submit to the lpc batch farm?</a></li>
+<li><a href="#condor_2">How do I manage file input and output in Condor?</a></li>
+<li><a href="#condor_3">How do I use CondorG to submit to the production batch farm?</a></li>
+<li><a href="https://twiki.cern.ch/twiki/bin/view/CMS/CRABonLPCCAF">How do I use CRAB to manage condor batch jobs</a></li>
+<li><a href="#condor_4">How do I report worker nodes with problems</a></li>
+<li><a href="#condor_5">How do I make sure my non-CRAB jobs are NOT accessing shared/BlueArc mounted disk on the job node?</a></li>
+</ol></ol>
 
 
 
 <p>For any information not covered below, visit the condor user's manual</p>
+<p>One important note: compilation of code is <b>not supported</b> on the remote worker node. This includes
+ROOT's ACLiC (i.e. the plus signs at the end of
+<code class="red">root -b -q foo.C+</code>). You can compile on the LPC interactive nodes and
+transfer the executables and shared libraries for use on the worker.
+If you <b>need</b> an SLF5 worker node, you can add <code class="green">(OpSysMajorVer =?= 5)</code> to
+your Requirements string in your Condor JDL. This pool of SLF5 workers
+will shrink as we reinstall nodes to SLF6, however.</p>
+
 <a name="condor_1"></a>
 <h3>1. How do I use Condor to submit to the lpc batch farm? </h3>
 <p>The first step to using the condor system is writing the condor
@@ -254,13 +249,13 @@ the job from cmswn088.fnal.gov:</p>
 <p>You can view information about all requests and their submitters
 across all the system with this command:</p>
 <code class="red">condor_status -submitters</code>
-<p>To cancel a job type condor_rm followed by the job number, for this
+<p>To cancel a job type Condor_rm followed by the job number, for this
 example, 154:</p>
 <code class="red">condor_rm 154</code>
-<p>Again if you are now logged into a different node you must supply
-the name of the computer from which you submitted the job, for example
-if you had been logged onto cmswn088.fnal.gov:</p>
-<code class="red">condor_rm -name cmswn094 154</code>
+<p>Again if you are now logged into a different node you must rsh to the node the job was submitted
+from and do the remove:
+<br>
+<code class="red">rsh cmslpc01 condor_rm 154</code>
 <p>If you don't remember what machine you submitted the job from, use
 the condor_q -submitter command from above, it will tell you what
 machine you used for your requests.</p>
@@ -306,7 +301,8 @@ This directs the standard output of the program to a file, in other
 words, everything that would normally be displayed on the screen, so
 that you can read it after it is finished running. Where you see
 $(Cluster) condor will substitute the job number, and $(Process) will
-become the process number, in this case, 0-4. <br>
+become the process number, in this case, 0-4. Make sure you are NOT using 
+a full path on this setting so the condor scratch area is utilized. <br>
 <a href="#condor_1">BACK</a></p>
 <a name="code_06"></a>
 <p><code>Error = sleep_$(Cluster)_$(Process).stderr</code><br>
@@ -314,7 +310,8 @@ This is the same as the Output line, except it applies to standard
 error, this is extremely useful for debugging or figuring out what is
 going wrong (all most always something). Where you see $(Cluster)
 condor will substitute the job number, and $(Process) will become the
-process number, in this case, 0-4. <br>
+process number, in this case, 0-4. Make sure you are NOT using 
+a full path on this setting so the condor scratch area is utilized.<br>
 <a href="#condor_1">BACK</a></p>
 <a name="code_07"></a>
 <p><code>Log = sleep_$(Cluster)_$(Process).log</code><br>
@@ -323,7 +320,8 @@ the ip address of the computer that is processing the job, the time it
 starts and finishes, how many attempts were made to start the job and
 other such data. It is recommended to use a log file, where you see
 $(Cluster) condor will substitute the job number, and $(Process) will
-become the process number, in this case, 0-4. <br>
+become the process number, in this case, 0-4. Make sure you are NOT using 
+a full path on this setting so the condor scratch area is utilized. <br>
 <a href="#condor_1">BACK</a></p>
 <a name="code_08"></a>
 <p><code>notify_user = ${LOGNAME}@FNAL.GOV</code><br>
@@ -365,10 +363,11 @@ where the job runs and then copy any output files back to the directory you subm
 these or read/write data from dcache instead of doing file reads or writes directlly from the Bluearc NFS
 mounted file systems. Direct reads/writes to Bluearc can cause severe performance problems. If this happens 
 the CMS T1 Facility team may end of up having to kill your jobs.
-<p> The options for telling condor to copy files into and out of your job are:
-Should_Transfer_Files = YES
-Transfer_Input_Files = file1, file2
-WhenToTransferOutput = ON_EXIT 
+<p> The options for telling condor to copy files into and out of your job are: <br>
+<code>Should_Transfer_Files = YES </code><br>
+<code>Transfer_Input_Files = file1, file2 </code><br>
+<code>WhenToTransferOutput = ON_EXIT </code><br> 
+<p> In addtion you need to make sure you use the correct 
 <a href="#condor_2">BACK</a></p>
 <a name="condor_3"></a>
 <h3>3. How do I use CondorG to submit to the production batch farm?</h3>
@@ -392,6 +391,81 @@ cmsosgce.fnal.gov/jobmanager-condor</code></li>
 <br>
 <br>
 <a href="https://cmsjobmon.fnal.gov/cgi-bin/heldNode.cgi-bin">https://cmsjobmon.fnal.gov/cgi-bin/heldNode.cgi-bin</a>
+<a name="condor_5"></a>
+<h3> 5. How to I make sure my non-CRAB jobs are not accessing shared/Bluearc disk?</h3> 
+<p> 
+The LPC uses shared filesystems, /uscms/home, /uscms_data/d# and /uscmst1b_scratch/lpc1, between the worker nodes and the interactive nodes. 
+Unfortunately, direct access to these shared filesystems from the workers can negatively affect performance for running jobs and 
+more importantly for interactive users on the cmslpc nodes. The T1 team monitors for this activity and an automated system suspends 
+("holds") jobs when performance is slow and user jobs have too many open file descriptors to these shared filesystems. This short write-up is 
+intended to help you avoid the BlueArc shared filesystems in your batch jobs. 
+
+<h4>Example #1: A Bad Example</h4>
+This is an example of what not to do: this code will perform reads and writes on the shared filesystem directly from the batch job. It also changes the working directory right into the shared filesystem as well.
+
+<pre> bad1.jdl (Note the use of the full path BlueArc to Output/Error/Log):
+<code>
+universe = vanilla
+Executable = bad1.sh
+Output = /uscms_data/d2/burt/bad1.out
+Error = /uscms_data/d2/burt/bad1.err
+Log = /uscms_data/d2/burt/bad1.log
+</code>
+
+bad1.sh (Note the cd to the BlueArc mounted data area):
+<code>
+#!/bin/bash
+# cms software setup
+cd /uscms_data/d2/burt
+root -b -q bad1.C
+</code>
+
+bad1.C (Note the use of the full path BlueArc):
+<code>
+{
+TFile f("/uscms_data/d2/burt/input_file.root");
+output_ntuples = process(f); // do some calculation
+TFile g("/uscms_data/d2/burt/output_file.root", "w");
+g.write(output_ntuples);
+}
+</code> </pre>
+
+<h4>Example #2: A Good Example </h4>
+
+In this case, we avoid the shared filesystem as much as possible. The inputs are transferred to a temporary area on the worker node's 
+local disk, pointed to by the variable _CONDOR_SCRATCH_DIR.
+
+<pre>
+good1.jdl:
+<code>
+universe = vanilla
+Executable = good1.sh
+Output = good1.out
+Error = good1.err
+Log = good1.log
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /uscms_data/d2/burt/input_file.root, /uscms_data/d2/burt/good1.C
+</code>
+
+good1.sh:
+<code>
+#!/bin/bash
+# cms software setup
+cd ${_CONDOR_SCRATCH_DIR}
+root -b -q good1.C
+</code>
+good1.C:
+<code>
+{
+TFile f("input_file.root");
+output_ntuples = process(f); // do some calculation
+TFile g("output_file.root", "w");
+g.write(output_ntuples);
+}
+</code>
+</pre>
+
 <br>
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
 </body>
