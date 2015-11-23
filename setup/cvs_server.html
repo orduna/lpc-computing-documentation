@@ -1,0 +1,72 @@
+<html><head><!-- Style Sheet Header--><title>CERN cvs server access</title></head>
+
+<body alink="#333333" bgcolor="#ffffff" link="#0000ff" text="#990000" vlink="#0000ff">
+<!-- End Style Sheet Header -----------Insert Text Here --------------------->
+<center><h1>Accessing the CERN CVS Server from FNAL</h1>
+The source code repository for CMS software projects
+</center>
+<p>
+<br><a href="#Anonymous">Checkout and update only</a>
+<br><a href="#Developer">Checkout/update/checkin as a developer</a>
+</p><hr>
+The following directions are adapted from <a href="http://cmsdoc.cern.ch/cmsoo/projects/cvs_server.html"> the directions at CERN</a> for use at FNAL.  
+To use these directions you should log into the CMSLPC cluster and set up the environment using
+<br> <font color="#ff0099"> 'source  /uscmst1/prod/sw/cms/cshrc prod'</font>.
+
+<h3>Check-out and update only</h3>
+<p>
+Anybody can read from the CERN cvs server. If you need to be able to change
+the repository then goto the <a href="#Developer">developer</a> section.
+
+</p>
+<ol>
+<li>
+Set your CVSROOT environmental variable
+<br>
+
+<p> Use the command 
+</p><pre><font color="#ff0099"><b>  cmscvsroot <font color="#000099"><em>project_name</em></font></b></font></pre>
+to set CVSROOT.
+<p>
+</p></li><li>Authenticate with the server with the command <font color="#ff0099">
+cvs login</font> 
+<br>
+At the prompt enter the password <font color="#ff0099">98passwd</font>
+<p>
+</p></li><li>You are now authenticated to use cvs as an anonymous user.
+</li></ol>
+<br>Note that code checked out with "anonymous" access can not be checked in from an anonymous checkout directory. Modified files must be moved to a directory checked out as a developer before in can be checked in.
+<br>
+<a name="Developer">
+<h3>Checkout/update/checkin as a developer</h3></a>
+<ol>
+<li>
+To checkin to the server you must:
+<ul>
+<li> have a registered CERN account (for authentication).
+</li><li> be registered as a project developer on the server.
+</li></ul>
+<p>
+</p></li>
+<li>
+To set your CVSROOT for authenticated access type
+<p>
+<font color="#ff0099">
+<b>
+project <font color="#000099"><em>project_name</em></font>
+</b></font>
+</p>
+<li>
+To get you CERN authentication (kerberos ticket) type 
+<p>
+<font color="#ff0099">
+<b>
+kserver_init</font>
+</b>
+<p> Enter your CERN AFS account name and password.
+</p>
+</li>
+</ol>
+The CERN authentication lasts 12 hours, so the script should be run once per day or before a major checkin. 
+
+<!-- End Style Sheet Footer--></body></html>
