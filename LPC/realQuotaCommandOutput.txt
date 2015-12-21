@@ -1,0 +1,11 @@
+[jjesus@cmslpc37 ~]$ eos root://cmseos.fnal.gov quota | grep -B4 `whoami`
+# _______________________________________________________________________________________________
+# ==> Quota Node: /eos/uscms/store/user/
+# _______________________________________________________________________________________________
+user       used bytes logi bytes used files aval bytes aval logib aval files filled[%]  vol-status ino-status
+jjesus     17.88 GB   8.94 GB    98.06 k-   4.00 TB    2.00 TB    500.00 k-  0.45       ok         ok
+# _______________________________________________________________________________________________
+# ==> Quota Node: /eos/uscms/store/user/lpctau/
+# _______________________________________________________________________________________________
+user       used bytes logi bytes used files aval bytes aval logib aval files filled[%]  vol-status ino-status
+jjesus     13 B       13 B       1 -        0 B        0 B        0 -        100.00     ignored    ignored
