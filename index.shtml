@@ -5,17 +5,13 @@
 
 
 
-<h1>User Software &amp; Computing</h1>
+<h1>User Software and Computing</h1>
 
-
-<!-- Sidebar -->
-<!--#include virtual="_sidebar.shtml"-->
-<!-- End: Sidebar -->
 
 <ul style="">
-        <li><a href="/uscms_at_work/computing/getstarted/index.shtml">Getting Started</a></li>
-        <li><a href="/uscms_at_work/computing/setup/index.shtml">Computing Environment Setup</a></li>
-        <li><a href="/uscms_at_work/computing/status/index.shtml">System Status</a></li>
+        <li><a href="/uscms_at_work/computing/getstarted/index.shtml">Getting Started</a></li><br>
+        <li><a href="/uscms_at_work/computing/setup/index.shtml">Computing Environment Setup</a></li><br>
+        <li><a href="/uscms_at_work/computing/status/index.shtml">System Status</a></li><br>
         <li><a href="/uscms_at_work/computing/grid/index.shtml">U.S. CMS Grid</a></li>
 </ul>
 
