@@ -1,0 +1,35 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - System Status: Condor"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>System Status: Condor</h2>
+
+
+<!-- Image breaks design
+<img src="images/condor_title-s.gif" alt="Condor - High Throughput Computing" width="350" height="57" border="0" />
+-->
+
+<ul>
+<li><a href="http://cmswiki.fnal.gov/twiki/bin/view/USCMS/Jobmon" target="_blank">Condorview</a></li>
+<li><a href="https://cmsjobmon.fnal.gov/condor_t1/overview.html" target="_blank">Condor Tier 1 </a></li>
+<li><a href="https://cmsjobmon.fnal.gov/condor_lpc/overview.html" target="_blank">Condor LPC</a> </li>
+</ul>
+
+
+
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
