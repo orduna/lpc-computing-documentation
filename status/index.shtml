@@ -1,0 +1,37 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - System Status"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>System Status</h2>
+
+                <ul style="">
+                        <li><a href="http://www.uscms.org/uscms_at_work/physics/computing/status/status_downtimes.html">Downtimes</a></li>
+                        <li><a href="/uscms_at_work/physics/computing/status/status_condor.shtml">Condor</a></li>
+                        <li><a href="http://www.uscms.org/uscms_at_work/physics/computing/status/ganglia.shtml" target="_self">Ganglia</a></li>
+                        <li><a href="http://www-stken.fnal.gov/enstore/" target="_blank">Enstore</a></li>
+                        <li><a href="http://cmsdca.fnal.gov/" target="_blank">dCache</a></li>
+                </ul>
+
+
+
+
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
