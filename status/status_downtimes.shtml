@@ -1,0 +1,141 @@
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - System Status: Downtimes"-->
+
+<!--#include virtual="/includes/atwork_top.shtml"-->
+
+
+
+
+<h1>User Software and Computing</h1>
+
+
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"-->
+<!-- End: Sidebar -->
+
+
+<h2>System Status: Downtimes</h2>
+
+
+
+<h3>USCMS Tier-1 Facilities Downtimes</h3> 
+
+<p>
+Information on upcoming USCMS Tier-1 Facilities downtimes will be
+posted on this 
+<a href="http://www.uscms.org/uscms_at_work/physics/computing/status/status_downtimes.shtml">downtime webpage</a>
+and on the mailing list 
+<a href="mailto:uscmst1-downtime@fnal.gov">uscmst1-downtime@fnal.gov</a>.
+</p>
+
+<p>
+During data taking, we are trying to limit our downtimes to as
+infrequently as possible.  When necessary, the downtime will generally
+be on a Thursday.
+</p>
+
+
+
+
+<!-- *********************************************************************************************************** -->
+<!-- Urgent message section -->
+
+<font color="#ff0000" face="Verdana, Arial, Helvetica, sans-serif" size="4">
+<strong>
+
+<pre>
+
+
+
+
+
+
+
+
+</pre>
+<!-- PUT URGENT MESSAGES RIGHT HERE -->
+
+<!-- xxxxxxxxxxxx xxxxxx TEST URGENT MESSAGE. -->
+
+<!--END URGENT MESSAGE -->
+<pre>
+
+
+
+
+
+</pre>
+<p>
+
+</strong>
+</font>
+
+<!-- *********************************************************************************************************** -->
+
+
+
+
+
+
+
+<!-- *********************************************************************************************************** -->
+<!-- Next upcoming downtime section -->
+
+<p><p><p>
+<span class="big" style="color: #cc0000;">
+<font color="#ff0000" face="Verdana, Arial, Helvetica, sans-serif" size="4">
+<strong>
+
+Mon Nov 8, 2010 6 AM to midnight - Chicago time <p>
+U.S. CMS at FNAL Site outage
+
+<p>
+</strong></font>
+
+<p>
+Almost all of the USCMS facility at FNAL will be affected by work we will be performing on
+Monday morning.  Most services will be intermittent throughout the morning.    This includes:
+<ul>
+
+<li> Catalin/Andrey -  Convert 5 cmslpc SL4 nodes into SL5 cmslpc-sl5 nodes. Configure remaining 2 SL4 nodes as direct access nodes.
+<li> Lisa - Configure BlueArc scratch disk as a 6-month max lifetime area, except for 3-day lifetime area.
+<li> Rich - Upgrade nexsan firmware
+<li> Paul T - Install new PNFS node
+<li> Paul T - Update condor to rev 7.4.3 on servers & gatekeepers, interactive nodes
+<li> Catalin  - Update condor on workers
+<li> Jon - Install new Rev of dCache - 1.9.5.23
+<li> Catalin - Install new kernels & java components on dCache nodes
+<li> Catalin - Make postgres deployments on dCache consistent across all nodes
+<li> Lisa - Configure Postgres config files using bcfg2
+<li> Paul R - Upgrade phedex, fts, glite, glibc...
+<li> Paul R - Get copy of oracle fts database, and then flush all data that is on the database node
+<li> David/Anil - Apply oracle security updates
+<li> Lisa - Coordinate  bluearc & hds vendors on their firmware updates
+<li> Merina - Reboot all nodes (SL4 & SL5) to enable new kernels
+<li> Catalin - reshoot all workers and interactive nodes
+<li> Tony - OSG CE update?
+<li> Paul T - backup zabbix
+<li> Matt Crawford / Jon - investigate pnfs mount issue for stkensrv3
+<li> David / Lisa / Andrey - bluearc 10GE tests
+<li> Catalin - provide xrootd access to data for CMS VO
+</ul>
+<p>
+<p>                               
+<p>                               
+<p>                               
+
+<!--*********************************************************************************************************** --> 
+
+
+</span>
+
+
+<p>Please send all questions and comments to <a href="mailto:cms-t1@fnal.gov">cms-t1@fnal.gov</a> </p>
+
+
+
+
+
+
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
