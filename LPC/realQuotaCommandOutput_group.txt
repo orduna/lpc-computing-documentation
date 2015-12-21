@@ -1,4 +1,4 @@
-[jjesus@cmslpc37 ~]$ eos root://cmseos.fnal.gov quota | grep -A4 lpctau ~/public_html/nano/quota.txt
+[jjesus@cmslpc37 ~]$ eosgrpquota lpctau
 # ==> Quota Node: /eos/uscms/store/user/lpctau/
 # _______________________________________________________________________________________________
 user       used bytes logi bytes used files aval bytes aval logib aval files filled[%]  vol-status ino-status
