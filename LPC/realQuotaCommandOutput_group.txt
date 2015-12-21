@@ -1,0 +1,12 @@
+[jjesus@cmslpc37 ~]$ eos root://cmseos.fnal.gov quota | grep -A4 lpctau ~/public_html/nano/quota.txt
+# ==> Quota Node: /eos/uscms/store/user/lpctau/
+# _______________________________________________________________________________________________
+user       used bytes logi bytes used files aval bytes aval logib aval files filled[%]  vol-status ino-status
+jjesus     1.11 GB    1.11 GB    4 -        0 B        0 B        0 -        100.00     ignored    ignored   
+By group ...
+--
+# ==> Quota Node: /eos/uscms/store/user/lpctau/
+# _______________________________________________________________________________________________
+# ...............................................................................................
+group      used bytes logi bytes used files aval bytes aval logib aval files filled[%]  vol-status ino-status
+us_cms     3.88 TB    1.94 TB    326.23 k-  20.00 TB   10.00 TB   1.00 M-    19.40      ok         ok        
