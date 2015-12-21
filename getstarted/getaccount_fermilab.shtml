@@ -21,9 +21,9 @@
 </p>
 <ul>
 <li>   Read the information about <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010788" target="_blank">getting started as a non-employee off-site Fermilab user</a>. This is where you will apply for your accounts.
-<li>   On the <a href="https://fermi.service-now.com/new_acct_request.do" target="_blank">application form</a>, select CMS
-        as your experiment and complete the form. You will get your CMS computing privileges. You will receive
-  e-mail notification, and if requested, a cryptocard will be mailed to you. 
+<li>   On the <a href="https://fermi.service-now.com/new_acct_request.do" target="_blank">application form</a>, select "E-892/919 (CMS)" as your experiment<br>
+	<center><a href="./images/affiliation_CMS.png" title="E-892/919 (CMS)" target="_blank"><img src="./images/affiliation_CMS.png" width="300px"></a></center>
+and complete the form. You will get your CMS computing privileges. You will receive e-mail notification, and if requested, a cryptocard will be mailed to you. 
 </ul> 
 
 <p>If you are a remote user but already have a FERMI ID do the following to request an account on the CMS Computing systems: </p>
