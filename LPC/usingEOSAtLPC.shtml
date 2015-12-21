@@ -1,0 +1,462 @@
+<html class=" -webkit-"><head>
+    <meta charset="UTF-8">
+        <meta name="google" value="notranslate">
+            
+<!--#set var="TITLE" value="Using EOS at the LPC"-->
+<!--#include virtual="/includes/atwork_top.shtml"-->
+<style>
+    table, th, td {
+        border: 1px solid green;
+        border-collapse: collapse;
+    }
+th, td {
+    padding: 2px;
+}
+</style>
+
+
+<style>
+article {
+}
+                
+.table-of-icontents a {
+text-decoration: none;
+}
+.table-of-icontents a:hover,
+.table-of-icontents a:active {
+text-decoration: underline;
+}
+                
+h2:target {
+animation: highlight 2s ease;
+}
+h3:target {
+animation: highlight 2s ease;
+}
+                
+@keyframes highlight {
+from { background: green; }
+to { background: white; }
+}
+</style>
+<script>window.console = window.console || function(t) {};</script>
+</head>
+<body>
+
+<article>
+<h1>Using EOS at the LPC</h1>
+
+<p>Users with computing accounts at the LPC have (or using <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, <a href="/uscms_at_work/computing/setup/videos/CMSStorageSpaceRequest.mov" target="_blank">can request</a>) an EOS area to store analysis files. Despite EOS being mounted on the LPC interactive nodes, users must interact with files on EOS using xrootd commands.</p><br>
+
+<div class="all-questions">
+
+<h2 id="checkEOS">How do I check if I have an EOS area?</h2>
+
+<p>Login to <code>cmslpc-sl6.fnal.gov</code> and issue the following command (in blue):</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosls -d /store/user/`whoami`</font>
+<font color=green>jjesus</font>
+</pre></p>
+
+<p>a single line with your own username will indicate that you indeed have an EOS area. If your output instead looks like:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosls -d /store/user/`whoami`</font>
+<font color=red>Unable to stat /eos/uscms/store/user/jjesus; No such file or directory (errc=2)
+(No such file or directory)</font>
+</pre></p>
+
+<p>then you can request an EOS area by filling a simple form on <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, using your services account to login (<a href="/uscms_at_work/computing/setup/videos/CMSStorageSpaceRequest.mov" target="_blank">Show me how - [&beta;]</a>).</p><br>
+
+<h2 id="checkEOSSpace">How much space do I have on EOS?</h2>
+
+<p>EOS areas are created with a default 2 TB <b>logical</b> quota. However, files stored on EOS are by default replicated and because of that, the <b>physical</b> quota, or the real amount of space needed for files on EOS, is twice as much, or 4 TB by default.</p>
+
+<p>However, although files are replicated by default, some areas can be setup in such way that the content in them have no replica. The total amount of space needed to store user's files will then be calculated as the amount of space used by non-replicated files plus twice the amount of space used by replicated ones (one for the original and one of the replica).</p><br>
+
+<p><center><a href="./images/quota.png" target="_blank"><img src="./images/quota.png" width="100%"></a></center></p><br><br>
+
+<p>The system will look at the total amount of space needed for all the files owned by you stored on personal areas and compare that against the physical quota to decide whether there is still space available or not. The amount of space needed for the combination of replicated and non-replicated files on EOS can never go beyond the physical quota.</p>
+
+<p>EOS quota extensions can be requested by filling the same form to request an EOS area on <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a> (using your services account to login) (<a href="/uscms_at_work/computing/LPC/videos/eosQuotaIncrease.mov" target="_blank">Show me how - [&beta;]</a>).</p><br>
+
+<h2 id="checkEOSUsage">How do I check the status of the space of EOS areas?</h2>
+
+<h3 id="personalEOSArea">Personal areas</h3>
+
+<p>To check the space status of your personal EOS area, login to <code>cmslpc-sl6.fnal.gov</code> and issue the following command (in blue):</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosquota</font>
+
+<center><font color="green" size="-1"><table style="width:100%">
+    <tr>
+        <td colspan="10">==> Quota Node: /eos/uscms/store/user/</td>
+    </tr>
+    <tr>
+        <td align="center">user</td>
+        <td align="center">used bytes</td>
+        <td align="center">logi bytes</td>
+        <td align="center">used files</td>
+        <td align="center">aval bytes</td>
+        <td align="center">aval logib</td>
+        <td align="center">aval files</td>
+        <td align="center">filled[%]</td>
+        <td align="center">vol-status</td>
+        <td align="center">ino-status</td>
+    </tr>
+    <tr >
+        <td align="center"><b>jjesus</b></td>
+        <td align="center"><b>17.88 GB</b></td>
+        <td align="center"><b>8.94 GB</b></td>
+        <td align="center"><b>98.06 k-</b></td>
+        <td align="center"><b>4.00 TB</b></td>
+        <td align="center"><b>2.00 TB</b></td>
+        <td align="center"><b>500.00 k-</b></td>
+        <td align="center"><b>0.45</b></td>
+        <td align="center"><b>ok</b></td>
+        <td align="center"><b>ok</b></td>
+    </tr>
+</table>
+<table style="width:100%">
+    <tr>
+        <td colspan="10">==> Quota Node: /eos/uscms/store/user/lpctau/</td>
+    </tr>
+    <tr>
+        <td align="center">user</td>
+        <td align="center">used bytes</td>
+        <td align="center">logi bytes</td>
+        <td align="center">used files</td>
+        <td align="center">aval bytes</td>
+        <td align="center">aval logib</td>
+        <td align="center">aval files</td>
+        <td align="center">filled[%]</td>
+        <td align="center">vol-status</td>
+        <td align="center">ino-status</td>
+    </tr>
+    <tr >
+        <td align="center">jjesus</td>
+        <td align="center">13 B</td>
+        <td align="center">13 B</td>
+        <td align="center">1 -</td>
+        <td align="center">0 B</td>
+        <td align="center">0 B</td>
+        <td align="center">0 -</td>
+        <td align="center">100</td>
+        <td align="center">ignored</td>
+        <td align="center">ignored</td>
+    </tr>
+</table></font></center></pre></p>
+
+<p><font color=red>Note that the output has been formatted for clarity (lines for columns have been added, click <a href="./realQuotaCommandOutput.txt" target="_blank">here</a> for an example of the real output you will see).</font></p>
+
+<p>You are interested in the line in boldface (third row on the first table), as that is reporting the information corresponding to <code>/eos/uscms/store/user/</code>, which is your personal EOS area. As long as <code>used bytes</code> (second column) remains below <code>aval bytes</code> (fifth column), you can still add more files to your area. However, it is also important to note that there is also a limit on the number of files that can be stored. The maximum number of files is reported as <code>aval files</code> (seventh column) and the number of files already stored is shown under <code>used files</code> (fourth column). A quick summary is shown in the last two columns <code>vol-status</code> and <code>ino-status</code>, representing the current situation for space and number of files with the following meanings:
+
+<ul>
+<li><code>ok</code>: current usage is below 90%,</li>
+<li><code>warning</code>: current usage is between 90% and below the quota, and</li>
+<li><code>exceeded</code>: current usage has reached the maximum limit and no more information can be added.</li>
+</ul></p>
+
+<p>A user can only check his/her personal status and not other's from the command line.</p>
+
+<h3 id="groupEOSArea">Group areas</h3>
+
+<p>Similarly, to check the space status of a group EOS area, login to <code>cmslpc-sl6.fnal.gov</code> and issue the following command (in blue):</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosgrpquota lpctau</font>
+
+<center><font color="green" size="-1"><table style="width:100%">
+        <tr>
+            <td colspan="10">==> Quota Node: /eos/uscms/store/user/lpctau/</td>
+        </tr>
+        <tr>
+            <td align="center">user</td>
+            <td align="center">used bytes</td>
+            <td align="center">logi bytes</td>
+            <td align="center">used files</td>
+            <td align="center">aval bytes</td>
+            <td align="center">aval logib</td>
+            <td align="center">aval files</td>
+            <td align="center">filled[%]</td>
+            <td align="center">vol-status</td>
+            <td align="center">ino-status</td>
+        </tr>
+    <tr >
+        <td align="center">jjesus</td>
+        <td align="center">13 B</td>
+        <td align="center">13 B</td>
+        <td align="center">1 -</td>
+        <td align="center">0 B</td>
+        <td align="center">0 B</td>
+        <td align="center">0 -</td>
+        <td align="center">100</td>
+        <td align="center">ignored</td>
+        <td align="center">ignored</td>
+    </tr>
+</table>
+<table style="width:100%">
+        <tr>
+            <td colspan="10">==> Quota Node: /eos/uscms/store/user/lpctau/</td>
+        </tr>
+        <tr>
+            <td align="center">group</td>
+            <td align="center">used bytes</td>
+            <td align="center">logi bytes</td>
+            <td align="center">used files</td>
+            <td align="center">aval bytes</td>
+            <td align="center">aval logib</td>
+            <td align="center">aval files</td>
+            <td align="center">filled[%]</td>
+            <td align="center">vol-status</td>
+            <td align="center">ino-status</td>
+        </tr>
+        <tr >
+            <td align="center"><b>us_cms</b></td>
+            <td align="center"><b>3.88 TB</b></td>
+            <td align="center"><b>1.94 TB</b></td>
+            <td align="center"><b>326.23 k-</b></td>
+            <td align="center"><b>20.00 TB</b></td>
+            <td align="center"><b>10.00 TB</b></td>
+            <td align="center"><b>1.00 M-</b></td>
+            <td align="center"><b>19.40</b></td>
+            <td align="center"><b>ok</b></td>
+            <td align="center"><b>ok</b></td>
+        </tr>
+    </table></font></center></pre></p>
+
+<p><font color=red>Again, note that the output has been formatted for clarity (lines for columns have been added, click <a href="./realQuotaCommandOutput_group.txt" target="_blank">here</a> for an example of the real output you will see).</font></p>
+
+<p>In this case, you are interested in the line in boldface (third row of the second table), as that is reporting the information corresponding to <code>/eos/uscms/store/user/lpctau/</code>, which is the EOS area for that specific group.</p>
+
+<p>Group areas have essentially the same functionality as personal areas, so this table should be interpreted just as the one for a personal area (see explanation on <b>Personal areas</b> above).</p>
+
+<p>There is one basic, but important difference though. Information stored on group areas <b>do not</b> count against personal space. </p>
+
+
+<h2 id="filesOnEOS">Interacting with files on EOS</h2>
+
+<p>Depending on the command being used, files or directories on EOS have to be referred to by using, in some cases, their LFN (Logical File Name, or the part of the absolute path starting with <code>/store/</code>) or in other cases their corresponding URL's, but in general never by their absolute paths. The URL is formed by prepending <code>root://cmseos.fnal.gov/</code> to the LFN. Click on the image below to enlarge.</p>
+
+<p><center><a href="./images/URL.png" target="_blank"><img src="./images/URL.png" width="100%"></a></center></p>
+
+<p>Each action covered on this section include in the description what to use to refer to a file or directory on EOS.</p>
+
+<h3 id="listFilesOnEOS">Listing</h3>
+
+<p>There is a dedicated EOS command to list files or directories stored on EOS areas, it uses the LFN of the file or directory of interest to find it (see the image above if you're not sure what a LFN is):</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosls /store/user/jjesus/</font>
+<font color=green>EOSFile.txt
+MinBias
+README
+basic.C
+testArea
+triggers.py</font>
+</pre></p>
+
+<p>The default behavior of this command produces a single-column standard output (one file or directory per line, which mimics the behavior of <code>ls -1</code> of the local file system, note that the flag here correspond to the number <code>1</code> and not  letter <code>l</code>). what This EOS command can take arguments to modify its basic fuctionality. For example, adding the <code>-l</code> flag will produce a long listing format:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosls -l /store/user/jjesus/</font>
+<font color=green>-rw-r--r--   2 jjesus   us_cms             13 Dec 16 10:24 EOSFile.txt
+drwxr-sr-+   1 jjesus   us_cms              1 Jan 08 14:59 MinBias
+-rw-r--r--   2 jjesus   us_cms            433 Dec 02 14:36 README
+-rw-r--r--   2 jjesus   us_cms            265 Dec 03 13:53 basic.C
+drwxr-sr-+   1 jjesus   us_cms              1 Dec 03 10:48 testArea
+-rw-r--r--   2 jjesus   us_cms            842 Dec 09 09:42 triggers.py</font>
+</pre></p>
+
+<p>while adding the <code>-d</code> flag will list directory entries instead of their content:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosls -d /store/user/jjesus/</font>
+<font color=green>jjesus</font>
+</pre></p>
+
+<p>The output of this command is just the name of the directory and nothing else. Adding the <code>-a</code> flag will show hidden entries as well:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosls -a /store/user/jjesus/</font>
+<font color=green>.
+..
+EOSFile.txt
+MinBias
+README
+basic.C
+testArea
+triggers.py</font></pre></p>
+
+<p>Any combination of the above flags is allowed. The use of multiple flags together (<code>-ld</code>), or separate (<code>-l -d</code>) yields the same result.</p>
+
+<p><b><font color=red>Listing by using simple <code>ls</code> with the absolute path to files or directories on EOS is absolutely discouraged as it can significantly reduce the performance of the interactive node. Furthermore, doing so from a job is a BIG NO.</font></b></p>
+
+<p>There are few things you need to be aware when listing files on EOS areas.</p>
+
+<ul><li>Wildcards. The use of wildcards is not recognized by EOS commands. A <code>'*'</code> included somewhere will be interpreted in general as a part of the name and therefore will return an error. For example:</li>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font><font color=blue> eosls /store/user/jjesus/*</font>
+<font color=red>eos: No match.</font>
+</pre></p>
+
+The same is true for <code>'?'</code>.</ul>
+
+<ul><li>Tab completion. The EOS listing command uses the LFN, which starts with <code>/store</code>. Tab completion is not possible as the local filesystem will misinterpret the LFN as a local path starting with <code>/store</code> which does not exist.</li></ul>
+
+<h3 id="xrdfsls">Other tools for listing</h3>
+
+<p>EOS is a storage filesystem built on the <code><a href="http://xrootd.org" target="_blank">XRootD</a></code> framework. Because of that, some of the <code>XRootD</code> commands can be used when dealing with files on EOS, and there are some useful ways to list things with <code>XRootD</code> commands in a way that EOS dedicated commands are not able to do.</p>
+
+<p>To get directory listing on <code>XRootD</code> we use <code>xrdfs</code> (which is its file and directory meta-data utility), together with the <code>ls</code> command:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>xrdfsls /store/user/jjesus/</font>
+<font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>xrdfs root://cmseos.fnal.gov ls /store/user/jjesus/</font>
+<font color=green>/store/user/jjesus/EOSFile.txt
+/store/user/jjesus/MinBias
+/store/user/jjesus/README
+/store/user/jjesus/basic.C
+/store/user/jjesus/testArea
+/store/user/jjesus/triggers.py
+</font></pre></p>
+
+<p>The default behavior of this command will produce a single-column with one LFN per row, while adding the <code>-u</code> flag:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>xrdfsls -u /store/user/jjesus/</font>
+<font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>xrdfs root://cmseos.fnal.gov ls -u /store/user/jjesus/</font>
+<font color=green>root://131.225.207.127:1094//store/user/jjesus/EOSFile.txt
+root://131.225.207.127:1094//store/user/jjesus/MinBias
+root://131.225.207.127:1094//store/user/jjesus/README
+root://131.225.207.127:1094//store/user/jjesus/basic.C
+root://131.225.207.127:1094//store/user/jjesus/testArea
+root://131.225.207.127:1094//store/user/jjesus/triggers.py
+</font></pre></p>
+
+<p>will print URL's instead. The two <code>xrdfs</code> options for listing can be useful in workflows where either the LFN or the URL of a file or directory on EOS is needed rather than just the simple name.</p>
+
+<h3 id="copyFilesOnEOS">Copying</h3>
+
+<p>In order to copy files into, out-of or between EOS areas you need to use another <code>XRootD</code> command: <code>xrdcp</code>. In this case, EOS locations need to be included as URL's. There are three possible scenarios:</p>
+
+<p>
+<ul><li>Local file to EOS:</li></ul>
+<p><pre><font size="-1" color="black">[jjesus@cmslpc37 ~]$</font><font size="-1" color=blue> xrdcp ~/test.txt root://cmseos.fnal.gov//store/user/jjesus/copyOfLocalFile.txt</font>
+<font size="-1" color=green>[13B/13B][100%][==================================================][0B/s]</font></pre></p>
+
+<ul><li>EOS to local file:</li></ul>
+<p><pre><font size="-1" color="black">[jjesus@cmslpc37 ~]$</font> <font size="-1" color=blue>xrdcp root://cmseos.fnal.gov//store/user/jjesus/EOSFile.txt ~/copyOfEOSFile.txt</font>
+<font size="-1" color=green>[13B/13B][100%][==================================================][0B/s]</font></pre></p>
+
+<ul><li>and finally, EOS to EOS:</li></ul>
+<p><pre><font size="-1" color="black">[jjesus@cmslpc37 ~]$</font><font size="-1" color=blue> xrdcp root://cmseos.fnal.gov//store/user/jjesus/EOSFile.txt \</font>
+<font size="-1" color="black">?</font></font><font size="-1" color=blue> root://cmseos.fnal.gov//store/user/jjesus/EOSFile1.txt</font>
+<font size="-1" color=green>[13B/13B][100%][==================================================][13B/s]</font>
+    </pre></p>
+</ul></p>
+
+<p><code>xrdcp</code> will assume by default that the destination file does not exist. If the destination file already exist, <code>xrdcp</code> will produce an error message like:</p>
+
+<p><pre><font size="-1" color="black">[jjesus@cmslpc37 ~]$</font><font size="-1" color=blue> xrdcp ~/test.txt root://cmseos.fnal.gov//store/user/jjesus/copyOfLocalFile.txt</font>
+<font size="-1" color=red>[0B/0B][100%][==================================================][0B/s]
+Run: [ERROR] Server responded with an error: [3006] Unable to create file
+/eos/uscms/store/user/jjesus/copyOfLocalFile.txt; File exists</font></pre></p>
+
+<p>Overwriting an existing file can be achieved by adding the <code>-f</code> flag to <code>xrdcp</code>:</p>
+
+<p><pre><font size="-1" color="black">[jjesus@cmslpc37 ~]$</font><font size="-1" color=blue> xrdcp -f ~/test.txt root://cmseos.fnal.gov//store/user/jjesus/copyOfLocalFile.txt</font>
+<font size="-1" color=green>[13B/13B][100%][==================================================][0B/s]</font></pre></p>
+
+
+<h3 id="createDirectoriesOnEOS">Creating directories</h3>
+
+<p>In order to create a directory on an EOS area, you need to use the dedicated EOS command <code>mkdir</code> and the LFN of the directory to be created:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosmkdir /store/user/jjesus/newDir</font></pre></p>
+
+<p>In case of success, this command doesn't produce any standard output. Note: all parent directories leading to the new one should exist for this command to succeed.</p>
+
+<p>Adding the <code>-p</code> flag will make parent directories as needed:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosmkdir -p /store/user/jjesus/newDir1/newDir2/newDir3</font></pre></p>
+
+<p>In case of success, this command doesn't produce any standard output and no error is shown if the parents already exist.</p>
+
+<h3 id="removeFilesFromEOS">Removing files and directories</h3>
+
+First thing to remember when removing files from EOS: <font color=red><b>a file removed from EOS is gone for good</b></font>. Second thing to remember when removing files from EOS: <font color=red><b>a replica <u>is not</u> the same as a backup, the concept of backup does not exist on EOS.</b></font> Knowing that can make you understand a bit more why wildcards can't be used on EOS, it can be seen as an extra layer of protection against accidental removal of files in bulk. You've been warned.</p>
+
+<p>In order to remove files from an EOS area, you need to use the dedicated EOS command <code>rm</code> and the LFN of the file to be removed:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosrm /store/user/jjesus/EOSFile.txt</font></pre></p>
+
+<p>This command doesn't produce any standard output.</p>
+
+<p>There is a dedicated EOS command to remove directories, but it only works when the directory is empty. Instead of using that, you can use the extension of the EOS command to remove files that allows the removal of directories whether they are empty or not. To do so, you have to add the <code>-r</code> flag:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosrm -r /store/user/jjesus/dir</font></pre></p>
+
+<p>As in the case for files, this command doesn't produce any standard output. Trying to remove a directory without the <code>-r</code> flag, will result in an error like:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosrm /store/user/jjesus/dir</font>
+<font color="red">error: unable to remove file/directory '/eos/uscms/store/user/jjesus/dir'
+(errc=21) (Is a directory)</font>
+
+</pre></p>
+
+<h2 id="workWithROOTFilesOnEOS">Working with ROOT files on EOS</h2>
+
+<p>Access to <code>ROOT</code> files on EOS should be done in general by using the redirector <code>root://cmsxrootd.fnal.gov</code>.</p>
+ 
+<h3 id="workWithROOTFilesInteractively">Interactive access</h3>
+
+<p>From the command line on an interactive LPC node, (on any location on the local filesystem, usually somewhere inside <code>/uscms_data</code> ) a <code>ROOT</code> file can be directly open in the following way:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font><font color=blue> root -l root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root</font>
+<font color="green">root [0]
+Attaching file root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root as _file0...
+(class TFile *) 0x3edd370</font></pre></p>
+
+<p>and you can now navigate through your file and work with it as usual, for example:</p>
+
+<p><pre><font color="green">root [1]</font><font color="blue"> .ls();</font>
+<font color="green">TNetXNGFile**		root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root
+ TNetXNGFile*		root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root
+root [2] <font color="blue">TH1F *theHist = (TH1F*)_file0->Get("nPU"); </font>
+root [3] <font color="blue">TCanvas *theCanvas = new TCanvas("theCanvas", "Pile-Up", 640, 480);</font>
+root [4] <font color="blue">theHist->Draw();</font>
+root [5] <font color="blue">theCanvas->SaveAs("thePlot.png");</font>
+Info in < TCanvas::Print >: png file thePlot.png has been created
+root [6] <font color="blue">.q</font></font></pre></p>
+
+<p>to load a histogram from the <code>ROOT</code> file previously open, and create the following PNG file out of it:</p>
+
+<p><center><a href="./images/thePlot.png" target="_blank"><img src="./images/thePlot.png" width="70%"></a></center></p>
+
+<p>If you need to open a file from inside an already initiated <code>ROOT</code> session, you can do the folloiwng:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 ~]$</font><font color=blue> root -l</font>
+<font color="green">root [0]
+.
+.
+.
+root [10]</font><font color="blue"> TFile *theFile = TFile::Open("root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root");</font>
+<font color="green">root [11]</font><font color="blue"> .ls();</font>
+<font color="green">TNetXNGFile**		root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root
+ TNetXNGFile*		root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root</font></pre></p>
+
+<p><b>Hint</b>: If you ever need a quick reminder about the proper way to open a <code>ROOT</code> file after you have initiated an interactive <code>ROOT</code> session, a quick way is just to open another file (on a different terminal or your local machine, for example). Once inside <code>ROOT</code>, hit the upwards arrow on your keyboard, and you will be presented with the line that <code>ROOT</code> used to open the file you indicated from the command line, <code>ROOT</code> appends that by default to the history of the current session (<a href="/uscms_at_work/computing/LPC/videos/openROOTFile.mov" target="_blank">Show me how - [&beta;]</a>).
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></article>
+
+<!--#include virtual="/includes/theIndex.shtml"-->
+
+
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
+</body></html>
+
