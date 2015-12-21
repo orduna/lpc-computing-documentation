@@ -1,0 +1,478 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Data and Computing - Facility Operations - Batch System"--><!--#include virtual="/includes/atwork_top.shtml"-->
+</head>
+<body>
+<h1>Data and Computing Facility Operations</h1>
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"--><!-- End: Sidebar -->
+<h2>Facility Operations: Batch System</h2>
+Batch Systems:
+
+<p>The batch system available for users of the UAF is condor which
+allows the user to submit jobs into the lpc batch farm or the
+production farm. On this page we will describe how to use this batch
+system.</p>
+
+<ol type="a">
+ <li>A system that makes it easy to submit many slightly different jobs to the batch system
+   (<a href="http://www.uscms.org/uscms_at_work/physics/lpc.old/support/lpc_computing/RunManyCondor.shtml">click here</a>)
+ </li>
+
+<li>A complete, detailed example of how to submit a simple job as described below:</li>
+<ol>
+<li><a href="#condor_1">How do I use Condor to submit to the lpc batch farm?</a></li>
+<li><a href="#condor_2">How do I manage file input and output in Condor?</a></li>
+<li><a href="#condor_3">How do I use CondorG to submit to the production batch farm?</a></li>
+<li><a href="https://twiki.cern.ch/twiki/bin/view/CMS/CRABonLPCCAF">How do I use CRAB to manage condor batch jobs</a></li>
+<li><a href="#condor_4">How do I report worker nodes with problems</a></li>
+<li><a href="#condor_5">How do I make sure my non-CRAB jobs are NOT accessing shared/BlueArc mounted disk on the job node?</a></li>
+</ol></ol>
+
+
+
+<p>For any information not covered below, visit the condor user's manual</p>
+<p>One important note: compilation of code is <b>not supported</b> on the remote worker node. This includes
+ROOT's ACLiC (i.e. the plus signs at the end of
+<code class="red">root -b -q foo.C+</code>). You can compile on the LPC interactive nodes and
+transfer the executables and shared libraries for use on the worker.
+If you <b>need</b> an SLF5 worker node, you can add <code class="green">(OpSysMajorVer =?= 5)</code> to
+your Requirements string in your Condor JDL. This pool of SLF5 workers
+will shrink as we reinstall nodes to SLF6, however.</p>
+
+<a name="condor_1"></a>
+<h3>1. How do I use Condor to submit to the lpc batch farm? </h3>
+<p>The first step to using the condor system is writing the condor
+submit description file. This file will tell the system what you want
+it to do and how. Below is an example, which will run a system program
+that will sleep for one minute, then quit. If you want to try this out,
+copy everything in <span class="red">red(commands)</span> and <span
+ class="green">green(code)</span> and paste it into your terminal to
+create the file you see below named "sleep_condor". Click on any of the
+green lines below to see what it does.</p>
+<code class="red">
+cat &gt; sleep_condor &lt;&lt; +EOF
+</code><br>
+<br>
+<code>
+<a href="#code_01">universe = vanilla</a><br>
+<a href="#code_02">Executable = /bin/sleep</a><br>
+<a href="#code_03">Requirements = Memory &gt;= 199 &amp;&amp;OpSys ==
+"LINUX"&amp;&amp; (Arch != "DUMMY" )&amp;&amp; Disk &gt; 1000000</a><br>
+<a href="#code_04">Should_Transfer_Files = YES<br>WhenToTransferOutput = ON_EXIT<br>Transfer_Input_Files = file1, file2</a><br>
+<a href="#code_05">Output =
+sleep_\$(Cluster)_\$(Process).stdout</a><br>
+<a href="#code_06">Error =
+sleep_\$(Cluster)_\$(Process).stderr</a><br>
+<a href="#code_07">Log = sleep_\$(Cluster)_\$(Process).log</a><br>
+<a href="#code_08">notify_user = ${LOGNAME}@FNAL.GOV</a><br>
+<a href="#code_10">x509userproxy = $ENV(X509_USER_PROXY)</a><br>
+<a href="#code_09">Arguments = 60</a><br>
+<a href="#code_11">Queue 5</a><br>
+</code>
+<br>
+<code class="red"><a href="#code_11" style="color: rgb(170, 0, 0);">+EOF</a><br>
+<br>
+</code>
+
+Condor jobs are executed on their own 40Gb partition. You must use this space for your job output.
+Use the variable
+<span style="font-weight: bold;">$_CONDOR_SCRATCH_DIR</span>
+for your output path in your job script or .cfg files so that your job output 
+will be copied to the submitting directory on job completion.<br>
+    <br>
+    <br>
+  </li>
+</ul>
+<p>Condor has options available to automatically transfer input files to the worker
+where the job runs and then copy any output files back to the directory you submit from. Jobs should use
+these or read/write data from dcache instead of doing file reads or writes directlly from the Bluearc NFS
+mounted file systems. Direct reads/writes to Bluearc can cause severe performance problems. If this happens
+the CMS T1 Facility team may end of up having to kill your jobs.
+<p> The options for telling condor to copy files into and out of your job are:
+<code class="green">Should_Transfer_Files = YES <br>
+Transfer_Input_Files = file1, file2 <br> 
+WhenToTransferOutput = ON_EXIT </code>
+<br> See the <a href="#code_04">section</a> below for details on their use. 
+</p>
+<p>After you've created the file, you can submit it to the condor
+system using the command condor_submit followed by the name of your
+submit description file, in this example's case "sleep_condor":</p>
+<code class="red">condor_submit sleep_condor</code>
+<p>Your output should look something like this:</p>
+<code class="purple" style="margin-left: 20px;">
+[langley@cmswn094 ~]$ condor_submit sleep_condor<br>
+Submitting job(s).....<br>
+Logging submit event(s).....<br>
+5 job(s) submitted to cluster 154.
+</code>
+<p>You can see the status of all jobs submitted from the node you are
+logged on to by using the following command:</p>
+<code class="red">condor_q</code>
+<p>Your queue ought to show the processes you just submitted, they may
+be idle for up to a minute or so, maybe longer if the system is very
+busy:</p>
+<div style="margin-left: 20px;">
+<code class="purple">[langley@cmswn094 ~]$ condor_q<br>
+<br>
+-- Submitter: cmswn094.fnal.gov : &lt;131.225.207.241:37285&gt; :
+cmswn094.fnal.gov
+</code>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td><code class="purple">ID</code></td>
+      <td><code class="purple">OWNER</code></td>
+      <td><code class="purple">SUBMITTED</code></td>
+      <td><code class="purple">RUN_TIME</code></td>
+      <td><code class="purple">ST</code></td>
+      <td><code class="purple">PRI</code></td>
+      <td><code class="purple">SIZE</code></td>
+      <td><code class="purple">CMD</code></td>
+    </tr>
+    <tr>
+      <td><code class="purple">154.0</code></td>
+      <td><code class="purple">langley</code></td>
+      <td><code class="purple">7/27</code></td>
+      <td><code class="purple">10:33</code></td>
+      <td><code class="purple">0+00:00:00 I</code></td>
+      <td><code class="purple">0</code></td>
+      <td><code class="purple">0.0</code></td>
+      <td><code class="purple">sleep 60</code></td>
+    </tr>
+    <tr>
+      <td><code class="purple">154.1</code></td>
+      <td><code class="purple">langley</code></td>
+      <td><code class="purple">7/27</code></td>
+      <td><code class="purple">10:33</code></td>
+      <td><code class="purple">0+00:00:00 I</code></td>
+      <td><code class="purple">0</code></td>
+      <td><code class="purple">0.0</code></td>
+      <td><code class="purple">sleep 60</code></td>
+    </tr>
+    <tr>
+      <td><code class="purple">154.2</code></td>
+      <td><code class="purple">langley</code></td>
+      <td><code class="purple">7/27</code></td>
+      <td><code class="purple">10:33</code></td>
+      <td><code class="purple">0+00:00:00 I</code></td>
+      <td><code class="purple">0</code></td>
+      <td><code class="purple">0.0</code></td>
+      <td><code class="purple">sleep 60</code></td>
+    </tr>
+    <tr>
+      <td><code class="purple">154.3</code></td>
+      <td><code class="purple">langley</code></td>
+      <td><code class="purple">7/27</code></td>
+      <td><code class="purple">10:33</code></td>
+      <td><code class="purple">0+00:00:00 I</code></td>
+      <td><code class="purple">0</code></td>
+      <td><code class="purple">0.0</code></td>
+      <td><code class="purple">sleep 60</code></td>
+    </tr>
+    <tr>
+      <td><code class="purple">154.4</code></td>
+      <td><code class="purple">langley</code></td>
+      <td><code class="purple">7/27</code></td>
+      <td><code class="purple">10:33</code></td>
+      <td><code class="purple">0+00:00:00 I</code></td>
+      <td><code class="purple">0</code></td>
+      <td><code class="purple">0.0</code></td>
+      <td><code class="purple">sleep 60</code></td>
+    </tr>
+  </tbody>
+</table>
+<code class="purple">
+5 jobs; 5 idle, 0 running, 0 held
+</code></div>
+<p>In condor, each computer has a separate list of requests (queue into
+condor), so sometimes the Job (cluster) number is not sufficient to
+uniquely identify a job. In other words, every computer in the condor
+system has its own list of jobs and job numbers. If you are still
+logged into the computer you submitted your job from, then just using
+the job number will work, but if you are on a different computer you
+must specify which computer you submitted the job from.</p>
+<p>You can specifically get a list of all the jobs and their status for
+a specific user from any machine using this command:</p>
+<code class="red">condor_q -submitter <username></username></code>
+<p>If you want to view the entire queue for a machine that you are not
+logged onto then you can use the following command. This is gives you
+the same information as condor_q (albeit in a different format) without
+needing to be logged into that particular machine. Say you submitted
+the job from cmswn088.fnal.gov:</p>
+<code class="red">condor_status -submitter cmswn094</code>
+<p>This gives all the jobs from all users on the machine in question:</p>
+<code class="purple">
+[langley@cmswn094 ~]$ condor_status -submitter cmswn094
+</code>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td><code class="purple">Name</code></td>
+      <td><code class="purple">Machine</code></td>
+      <td><code class="purple">Running</code></td>
+      <td><code class="purple">IdleJobs</code></td>
+      <td><code class="purple">HeldJobs</code></td>
+    </tr>
+    <tr>
+      <td><code class="purple">langley@fnal.gov</code></td>
+      <td><code class="purple">cmswn094.f</code></td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td><code class="purple">RunningJobs</code></td>
+      <td><code class="purple">IdleJobs</code></td>
+      <td><code class="purple">HeldJobs</code></td>
+    </tr>
+    <tr>
+      <td><code class="purple">langley@fnal.gov</code></td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><code class="purple">Total</code></td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>You can view information about all requests and their submitters
+across all the system with this command:</p>
+<code class="red">condor_status -submitters</code>
+<p>To cancel a job type Condor_rm followed by the job number, for this
+example, 154:</p>
+<code class="red">condor_rm 154</code>
+<p>Again if you are now logged into a different node you must rsh to the node the job was submitted
+from and do the remove:
+<br>
+<code class="red">rsh cmslpc01 condor_rm 154</code>
+<p>If you don't remember what machine you submitted the job from, use
+the condor_q -submitter command from above, it will tell you what
+machine you used for your requests.</p>
+<hr>
+<a name="code_01"></a>
+<p><code>universe = vanilla</code><br>
+The universe variable defines an execution environment for your job, in
+this example we use the vanilla universe which has the least amount of
+built in services, but also the least amount of restrictions. For a
+complete list of universes and what they do, so the condor user's
+manual under 2. Users' Manual &gt; 2.4 Road-map for Running Jobs &gt;
+2.4.1 Choosing a Condor Universe. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_02"></a>
+<p><code>Executable = /bin/sleep</code><br>
+This is the program you want to run. If the program is in the same
+directory as your batch file, just the name will work, example:
+yourscript.csh. If it is in a different directory than your batch file
+then you must give the pathname, example: myscripts/yourscript.csh runs
+the script yourscript.csh located in the directory myscripts. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_03"></a>
+<p><code>Requirements = Memory &gt;= 199 &amp;&amp; OpSys == "LINUX"
+&amp;&amp; (Arch !="dummy")&amp;&amp; Disk &gt; 10000000</code><br>
+Any requirements for the machine chosen to run your program should be
+here. If you exclude this line condor will look for a computer with the
+same structure as yours. The requirements here specifiy an Intel
+machine or 64-bit machine running a Linux operating system with at
+least 199 megabytes of memory and a workspace of 10GB or more. For a complete and long list of possible
+requirement settings, see the condor user's manual. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_04"></a>
+<p><code>Should_Transfer_Files = YES <BR> WhenToTransferOutput = ON_EXIT <br> Transfer_Input_Files = file1, file2</code><br>
+These options tell condor to take input files from your computer
+and send output files back. If these options are not activated then you
+must provide input through some other means (like dcache) and extract the output yourself. 
+Users should avoid doing direct reads or writes from the NFS mounted BlueArc file systems as it
+can cause severe performance issues. The Trasfer_Input_Files option can not take a directory for input but can take files with an absolute path in case your input files are not in the submit dir.<br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_05"></a>
+<p><code>Output = sleep_$(Cluster)_$(Process).stdout</code><br>
+This directs the standard output of the program to a file, in other
+words, everything that would normally be displayed on the screen, so
+that you can read it after it is finished running. Where you see
+$(Cluster) condor will substitute the job number, and $(Process) will
+become the process number, in this case, 0-4. Make sure you are NOT using 
+a full path on this setting so the condor scratch area is utilized. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_06"></a>
+<p><code>Error = sleep_$(Cluster)_$(Process).stderr</code><br>
+This is the same as the Output line, except it applies to standard
+error, this is extremely useful for debugging or figuring out what is
+going wrong (all most always something). Where you see $(Cluster)
+condor will substitute the job number, and $(Process) will become the
+process number, in this case, 0-4. Make sure you are NOT using 
+a full path on this setting so the condor scratch area is utilized.<br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_07"></a>
+<p><code>Log = sleep_$(Cluster)_$(Process).log</code><br>
+The log file contains information about the job in the condor system,
+the ip address of the computer that is processing the job, the time it
+starts and finishes, how many attempts were made to start the job and
+other such data. It is recommended to use a log file, where you see
+$(Cluster) condor will substitute the job number, and $(Process) will
+become the process number, in this case, 0-4. Make sure you are NOT using 
+a full path on this setting so the condor scratch area is utilized. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_08"></a>
+<p><code>notify_user = ${LOGNAME}@FNAL.GOV</code><br>
+Specifies to whom the system will automatically email when the job
+finishes (your email), in the example, the computer should have put
+your email address here. You will recieve a seperate email for every
+process in you job that completes. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_10"></a>
+<p><code>x509userproxy = $ENV(X509_USER_PROXY)</code><br>
+This line tells your job to bring along your grid proxy, which is
+needed for accessing files over xrootd (root://)<br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_09"></a>
+<p><code>Arguments = 60</code><br>
+Here you put any command line arguments for your program, if you have
+none, exclude this line. In this example the program needs one argument
+for the number of seconds to wait. This argument tells the program to
+wait for one minute. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_11"></a>
+<p><code>+LENGTH="SHORT"</code><br>
+Include this line to forfeit your job if it runs longer than an hour
+real time, without this line your job will be forfeit if it runs longer
+than one day real time. It is recommended you include this line for
+small jobs. A portion of the production farm is reserved for jobs
+labeled short, this combined with the hour limit on everyone in front
+of you makes the chances of your job running soon much higher than
+without it. With or without this line your job is only dropped after
+the time limit when another user would be blocked from the queue by
+you, so if no one else is trying to use the system, your job will keep
+running past the time limit. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="code_11"></a>
+<p><code>Queue 5</code><br>
+This is how many times you want to run the program, without this line
+it runs only once. The processes will be numbered starting at zero, so
+in this example they will be: 0, 1, 2, 3, and 4. <br>
+<a href="#condor_1">BACK</a></p>
+<a name="condor_2"></a>
+<h3>2. How do I manage file input/output from within Condor?</h3>
+<p>Condor has options availble to automatically transfer input files to the worker
+where the job runs and then copy any output files back to the directory you submit from. Jobs should use
+these or read/write data from dcache instead of doing file reads or writes directlly from the Bluearc NFS
+mounted file systems. Direct reads/writes to Bluearc can cause severe performance problems. If this happens 
+the CMS T1 Facility team may end of up having to kill your jobs.
+<p> The options for telling condor to copy files into and out of your job are: <br>
+<code>Should_Transfer_Files = YES </code><br>
+<code>Transfer_Input_Files = file1, file2 </code><br>
+<code>WhenToTransferOutput = ON_EXIT </code><br> 
+<p> In addtion you need to make sure you use the correct 
+<a href="#condor_2">BACK</a></p>
+<a name="condor_3"></a>
+<h3>3. How do I use CondorG to submit to the production batch farm?</h3>
+<p>To access the production batch farm you must first have your grid
+credentials. If you do not have your grid credentials please follow the
+procedures outlines on the SRM page.</p>
+<p>Once you have you grid credentials you need to get you grid proxy by
+running</p>
+<h3>voms-proxy-init -voms cms</h3>
+<p>Next you need to modify your job description file as follows:</p>
+<ul>
+  <li>change <code class="red">universe = vanilla</code> to <code
+ class="red">universe = globus</code></li>
+  <li>add <code class="red">globusscheduler =
+cmsosgce.fnal.gov/jobmanager-condor</code></li>
+</ul>
+<p>Finally submit you condor job as normal with condor_submit.</p>
+<a name="condor_4"></a>
+<h3> 4. How do I report worker nodes that have problems.</h3>
+<p>Use the following web page with your grid-certificate loaded to report problem nodes:
+<br>
+<br>
+<a href="https://cmsjobmon.fnal.gov/cgi-bin/heldNode.cgi-bin">https://cmsjobmon.fnal.gov/cgi-bin/heldNode.cgi-bin</a>
+<a name="condor_5"></a>
+<h3> 5. How to I make sure my non-CRAB jobs are not accessing shared/Bluearc disk?</h3> 
+<p> 
+The LPC uses shared filesystems, /uscms/home, /uscms_data/d# and /uscmst1b_scratch/lpc1, between the worker nodes and the interactive nodes. 
+Unfortunately, direct access to these shared filesystems from the workers can negatively affect performance for running jobs and 
+more importantly for interactive users on the cmslpc nodes. The T1 team monitors for this activity and an automated system suspends 
+("holds") jobs when performance is slow and user jobs have too many open file descriptors to these shared filesystems. This short write-up is 
+intended to help you avoid the BlueArc shared filesystems in your batch jobs. 
+
+<h4>Example #1: A Bad Example</h4>
+This is an example of what not to do: this code will perform reads and writes on the shared filesystem directly from the batch job. It also changes the working directory right into the shared filesystem as well.
+
+<pre> bad1.jdl (Note the use of the full path BlueArc to Output/Error/Log):
+<code>
+universe = vanilla
+Executable = bad1.sh
+Output = /uscms_data/d2/burt/bad1.out
+Error = /uscms_data/d2/burt/bad1.err
+Log = /uscms_data/d2/burt/bad1.log
+</code>
+
+bad1.sh (Note the cd to the BlueArc mounted data area):
+<code>
+#!/bin/bash
+# cms software setup
+cd /uscms_data/d2/burt
+root -b -q bad1.C
+</code>
+
+bad1.C (Note the use of the full path BlueArc):
+<code>
+{
+TFile f("/uscms_data/d2/burt/input_file.root");
+output_ntuples = process(f); // do some calculation
+TFile g("/uscms_data/d2/burt/output_file.root", "w");
+g.write(output_ntuples);
+}
+</code> </pre>
+
+<h4>Example #2: A Good Example </h4>
+
+In this case, we avoid the shared filesystem as much as possible. The inputs are transferred to a temporary area on the worker node's 
+local disk, pointed to by the variable _CONDOR_SCRATCH_DIR.
+
+<pre>
+good1.jdl:
+<code>
+universe = vanilla
+Executable = good1.sh
+Output = good1.out
+Error = good1.err
+Log = good1.log
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /uscms_data/d2/burt/input_file.root, /uscms_data/d2/burt/good1.C
+</code>
+
+good1.sh:
+<code>
+#!/bin/bash
+# cms software setup
+cd ${_CONDOR_SCRATCH_DIR}
+root -b -q good1.C
+</code>
+good1.C:
+<code>
+{
+TFile f("input_file.root");
+output_ntuples = process(f); // do some calculation
+TFile g("output_file.root", "w");
+g.write(output_ntuples);
+}
+</code>
+</pre>
+
+<br>
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
+</body>
+</html>
