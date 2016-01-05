@@ -8,12 +8,12 @@
 <!--#include virtual="_sidebar.shtml"--><!-- End: Sidebar -->
 <h1>Access to Mass Storage<h1>
 <h2> EOS </h2>
-<p> EOS is a disk based mass storage system being evaulated on the LPC cluster. It is mounted on the LPC interactive nodes and the LPC batch nodes at the path
+<p> EOS is a disk based mass storage system used on the LPC cluster. It is mounted on the LPC interactive nodes and the LPC batch nodes at the path
 <code>
 /eos/uscms/store/user/
 </code>
 Users may request a directory there by sending email to cms-t1@fnal.gov.</p>
-<p> Unix file commands (cp and mv) work to move files into and out of EOS (which is different from dcache). Running cp between two paths in EOS however does not work. You should also be able to read and write files from programs like Root and CMSSW as well.<p>
+<p> Unix file commands (cp and mv) work to move files into and out of EOS (which is different from dcache). Running cp between two paths in EOS however does not work. You should also be able to read and write files from programs like Root and CMSSW as well although utilizing the xrootd protocol works more quickly.<p>
 
 <p>SRM access - there is also an SRM endpoint available at <br><br>
 <code>srm://cmseos.fnal.gov:8443/srm/v2/server?SFN=/eos/uscms
@@ -39,7 +39,11 @@ More instructions on using xrootd protocol with CMSSW are posted <a href="https:
 <br>The CERN EOS endpoint is<br><code>srm://srm-eoscms.cern.ch:8443/srm/v2/server?SFN=/eos/cms/store/</code><br>
 </p>
 
+<h2> Transferring files Out of Enstore</h2>
+There tools available for helping users transfer files out of dcache/enstore into EOS. These tools are documented 
+<a href="http://uscms.org/uscms_at_work/computing/setup/fts3-user-tools.html">here</a> 
 
+<!-- OLD Dcache info 
 <br>
 <h2>dCache and enstore</h2>
 <p>At
@@ -199,8 +203,9 @@ root [2] hfile-&gt;ls();<br>
 root [3] hfile-&gt;Print();<br>
 root [4] hpx-&gt;Draw();
 </code></p>
-<p>For questions concerning this page and dCache send
-email to: <a href="mailto:gartung@fnal.gov">gartung@fnal.gov</a></p>
+ -->
+<p>For questions concerning this page and MassStorage send
+email to: <a href="mailto:cms-t1@fnal.gov">cms-t1@fnal.gov</a></p>
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
 </body>
 </html>
