@@ -8,14 +8,12 @@
 <!--#include virtual="_sidebar.shtml"--><!-- End: Sidebar -->
 <h1>Access to Mass Storage<h1>
 <h2> EOS </h2>
-<p>EOS is a disk based mass storage system used on the LPC cluster. It is mounted on the LPC interactive nodes and the LPC batch nodes at the path</p>
-<center><code>/eos/uscms/store/user/</code></center>
-<p>
-<p>To get a EOS /store/user directory at Fermilab, submit a request by logging into <a href="https://fermi.service-now.com/fsc" target="_blank">Service Now</a> with your services account.</p>
-<p>Go to the "Self-Service" box, click on "Service Catalog" and look for "Scientific Computing" and fill the form named "CMS Storage Space Request".</p>
-<center><a href="video/CMSStorageSpaceRequest.mov" target="_blank">Show me how (&beta;) - 128 MB</a></center>
-<p>
-<p>Unix file commands (cp and mv) work to move files into and out of EOS (which is different from dcache). You can also be able to read and write files from programs like Root and CMSSW as well although utilizing the xrootd protocol works more quickly.</p>
+<p> EOS is a disk based mass storage system being evaulated on the LPC cluster. It is mounted on the LPC interactive nodes and the LPC batch nodes at the path
+<code>
+/eos/uscms/store/user/
+</code>
+Users may request a directory there by sending email to cms-t1@fnal.gov.</p>
+<p> Unix file commands (cp and mv) work to move files into and out of EOS (which is different from dcache). Running cp between two paths in EOS however does not work. You should also be able to read and write files from programs like Root and CMSSW as well.<p>
 
 <p>SRM access - there is also an SRM endpoint available at <br><br>
 <code>srm://cmseos.fnal.gov:8443/srm/v2/server?SFN=/eos/uscms
@@ -37,15 +35,11 @@ UNL redirector (or just the FNAL one).<br>
 UNL: xrootd.unl.edu<br>
 FNAL: cmssrv32.fnal.gov<br>
 </code>
-More instructions on using xrootd protocol with CMSSW are posted <a href="https://twiki.cern.ch/CMSPublic/WorkBookXrootdService"> here </a>
+More instructions on using xrootd protocol with CMSSW are posted <a href="https://twiki.cern.ch/twiki/bin/view/Main/HdfsXrootdUsage"> here </a>
 <br>The CERN EOS endpoint is<br><code>srm://srm-eoscms.cern.ch:8443/srm/v2/server?SFN=/eos/cms/store/</code><br>
 </p>
 
-<h2> Transferring files Out of Enstore</h2>
-There tools available for helping users transfer files out of dcache/enstore into EOS. These tools are documented 
-<a href="http://uscms.org/uscms_at_work/computing/setup/fts3-user-tools.html">here</a> 
 
-<!-- OLD Dcache info 
 <br>
 <h2>dCache and enstore</h2>
 <p>At
@@ -127,7 +121,7 @@ get the true file size use the special dcache commands <span
 <br>
 <h3>To copy files from dCache with dccp:</h3>
 <p>To copy the file over to your local disk, do</p>
-<p><code>/opt/d-cache/dcap/bin/dccp <br> /pnfs/cms/WAX/11/store/username/myfile.data $PWD</code></p>
+<p><code>/opt/d-cache/dcap/bin/dccp /pnfs/cms/WAX/11/store/username/myfile.data $PWD</code></p>
 <p>dCache can also be accessed (read only) via a URL like
 syntax in case you don't have access to the pnfs file system</p>
 <p> <code>/opt/d-cache/dcap/bin/dccp <br>dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/username/myfile.data $PWD</code></p>
@@ -205,9 +199,8 @@ root [2] hfile-&gt;ls();<br>
 root [3] hfile-&gt;Print();<br>
 root [4] hpx-&gt;Draw();
 </code></p>
- -->
-<p>For questions concerning this page and MassStorage send
-email to: <a href="mailto:cms-t1@fnal.gov">cms-t1@fnal.gov</a></p>
+<p>For questions concerning this page and dCache send
+email to: <a href="mailto:gartung@fnal.gov">gartung@fnal.gov</a></p>
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
 </body>
 </html>
