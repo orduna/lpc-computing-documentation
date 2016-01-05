@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Doing Physics - User Software & Computing - Computing Environment Setup: Resources"--><!--#include virtual="/includes/atwork_top.shtml"-->
+</head>
+<body>
+<h1>User Software and Computing</h1>
+<!-- Sidebar -->
+<!--#include virtual="_sidebar.shtml"--><!-- End: Sidebar -->
+<h2>Computing Environment Setup: Resources</h2>
+<h1>Personal Web Pages</h1>
+You can set up personal web pages in two locations on the cmslpc
+cluster.<br>
+<br>
+<span style="font-weight: bold;">Publicly visible web pages:</span><br>
+&nbsp;&nbsp;&nbsp; You need to create a public_html subdir in your afs
+area<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+/afs/fnal.gov/files/home/room/{1,2or3}<span style="font-style: italic;">/username/</span>public_html<br>
+&nbsp;&nbsp;&nbsp;&nbsp; This will then be visible to<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+http://home.fnal.gov/~<span style="font-style: italic;">username</span><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; You can use up to your afs quota,
+usually 500MB.<br>
+<br>
+<br>
+<br>
+<span style="font-weight: bold;">Private web pages: </span><br>
+We added the ability to make directories in /uscms/home and /uscms_data<br>
+accessible through a web link<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#10152; You need either<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#8226;
+/uscms_data/d1/your_name/public_html<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#8226;
+/uscms/home/your_name/public_html<br>
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &#10152; These will then be visible to<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#8226;
+https://cmslpcweb.fnal.gov/uscms_data/your_name/<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#8226;
+https://cmslpcweb.fnal.gov/uscms/your_name/<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#8226; (Trailing
+slash is important)<br>
+&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &#10152; You need a CMS registered grid
+certificate loaded into your browser to<br>
+see the page<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#8226; Anyone in
+CMS can read the page<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &#10152; Server side scripts are
+disabled and will be see as plain text by the web<br>
+page<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; You can use up to your
+quota, usually 2GB on /uscms/home and 20GB on /uscms_data/d1<br>
+<br>
+<h1> Mass storage: </h1>
+To get a /store/user directory Fermilab submit a request throug ServiceDesk web site:<br>
+http://servicedesk.fnal.gov <br>
+Select  SelfService-> Service Catalog ->  Scientific Computing-> CMS Storage Space Request
+<br>
+<!--#include virtual="/includes/atwork_bottom.shtml"-->
+</body>
+</html>
