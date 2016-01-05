@@ -46,7 +46,7 @@ to { background: white; }
 <article>
 <h1>Using EOS at the LPC</h1>
 
-<p>Users with computing accounts at the LPC have (or using <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, <a href="/uscms_at_work/computing/setup/videos/CMSStorageSpaceRequest.mov" target="_blank">can request</a>) an EOS area to store analysis files. Despite EOS being mounted on the LPC interactive nodes, users must interact with files on EOS using xrootd commands.</p><br>
+<p>Users with computing accounts at the LPC have (or using <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, <a href="/uscms_at_work/computing/setup/videos/CMSStorageSpaceRequest.mov" target="_blank">can request</a>) an EOS area to store analysis files. Despite EOS being mounted on the LPC interactive nodes, users must interact with files on EOS using either EOS-dedicated or xrootd commands, depending on the needs. This page contains most of the information relevant to the use of EOS at the LPC.</p><br>
 
 <div class="all-questions">
 
@@ -229,8 +229,7 @@ to { background: white; }
 
 <p>Group areas have essentially the same functionality as personal areas, so this table should be interpreted just as the one for a personal area (see explanation on <b>Personal areas</b> above).</p>
 
-<p>There is one basic, but important difference though. Information stored on group areas <b>do not</b> count against personal space. </p>
-
+<p>There is one basic, but important difference though. Information stored on group areas <b>do not</b> count against personal space.</p><br>
 
 <h2 id="filesOnEOS">Interacting with files on EOS</h2>
 
@@ -360,6 +359,57 @@ Run: [ERROR] Server responded with an error: [3006] Unable to create file
 <p><pre><font size="-1" color="black">[jjesus@cmslpc37 ~]$</font><font size="-1" color=blue> xrdcp -f ~/test.txt root://cmseos.fnal.gov//store/user/jjesus/copyOfLocalFile.txt</font>
 <font size="-1" color=green>[13B/13B][100%][==================================================][0B/s]</font></pre></p>
 
+<p>By now you may have noticed that <code>xrdcp</code> will show by default a text version of a progress bar: <code>[====]</code> (it may be more noticeable on big files because of the time it takes to transfer them). While this is a good way to visualize the progress of this operation, there are some situations in which you may not want such information. Here is an example: a <code>HTCondor</code> job using <code>xrdcp</code> to transfer a file will include the updates on the progress bar in the <code>stderr</code> file for the job, generating non-zero size error files even when the job is completely ok. Here is a typical <code>stderr</code> for a file that is exactly 1,000,000,000 B copied using <code>xrdcp</code> inside a <code>HTCondor</code> job that doesn't give any error:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 myWorkArea]$</font><font color=blue> more myJob_<i>cluster</i>_<i>process</i>.stderr</font>
+<font size="-1" color="green">[96MB/953.7MB][ 10%][=====>                                            ][19.2MB/s 
+[128MB/953.7MB][ 13%][======>                                           ][21.33MB/s
+[160MB/953.7MB][ 16%][========>                                         ][22.86MB/s
+[176MB/953.7MB][ 18%][=========>                                        ][22MB/s]  
+[208MB/953.7MB][ 21%][==========>                                       ][23.11MB/s
+[240MB/953.7MB][ 25%][============>                                     ][24MB/s]  
+[256MB/953.7MB][ 26%][=============>                                    ][23.27MB/s
+[288MB/953.7MB][ 30%][===============>                                  ][24MB/s]  
+[304MB/953.7MB][ 31%][===============>                                  ][23.38MB/s
+[320MB/953.7MB][ 33%][================>                                 ][22.86MB/s
+[352MB/953.7MB][ 36%][==================>                               ][23.47MB/s
+[384MB/953.7MB][ 40%][====================>                             ][24MB/s]  
+[400MB/953.7MB][ 41%][====================>                             ][23.53MB/s
+[416MB/953.7MB][ 43%][=====================>                            ][23.11MB/s
+[432MB/953.7MB][ 45%][======================>                           ][22.74MB/s
+[448MB/953.7MB][ 46%][=======================>                          ][22.4MB/s]
+[464MB/953.7MB][ 48%][========================>                         ][22.1MB/s]
+[496MB/953.7MB][ 52%][==========================>                       ][22.55MB/s
+[528MB/953.7MB][ 55%][===========================>                      ][22.96MB/s
+[544MB/953.7MB][ 57%][============================>                     ][22.67MB/s
+[560MB/953.7MB][ 58%][=============================>                    ][22.4MB/s]
+[576MB/953.7MB][ 60%][==============================>                   ][22.15MB/s
+[592MB/953.7MB][ 62%][===============================>                  ][21.93MB/s
+[608MB/953.7MB][ 63%][===============================>                  ][21.71MB/s
+[640MB/953.7MB][ 67%][=================================>                ][22.07MB/s
+[672MB/953.7MB][ 70%][===================================>              ][22.4MB/s]
+[688MB/953.7MB][ 72%][====================================>             ][22.19MB/s
+[720MB/953.7MB][ 75%][=====================================>            ][22.5MB/s]
+[736MB/953.7MB][ 77%][======================================>           ][22.3MB/s]
+[768MB/953.7MB][ 80%][========================================>         ][22.59MB/s
+[800MB/953.7MB][ 83%][=========================================>        ][22.86MB/s
+[816MB/953.7MB][ 85%][==========================================>       ][22.67MB/s
+[832MB/953.7MB][ 87%][===========================================>      ][22.49MB/s
+[864MB/953.7MB][ 90%][=============================================>    ][22.74MB/s
+[896MB/953.7MB][ 93%][==============================================>   ][22.97MB/s
+[912MB/953.7MB][ 95%][===============================================>  ][22.8MB/s]
+[928MB/953.7MB][ 97%][================================================> ][22.63MB/s
+[944MB/953.7MB][ 98%][=================================================>][22.48MB/s
+[953.7MB/953.7MB][100%][==================================================][22.71MB
+[953.7MB/953.7MB][100%][==================================================][22.71MB/s]</font></pre></p>
+
+<p>To avoid this, remember to add the <code>-s</code> flag to require <code>xrdcp</code> to be silent, for example:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 myWorkArea]$</font><font color=blue> xrdcp -s root://cmseos.fnal.gov//store/user/jjesus/test.txt .</font></pre></p>
+
+<p>copies the file from EOS to a local area without showing anything.</p>
+
+<p>You can combine these flags into a single one, <code>-fs</code>, or use them separate, <code>-f -s</code>, with the same result.</p>
 
 <h3 id="createDirectoriesOnEOS">Creating directories</h3>
 
@@ -393,24 +443,26 @@ First thing to remember when removing files from EOS: <font color=red><b>a file 
 
 <p><pre><font color="black">[jjesus@cmslpc37 ~]$</font> <font color=blue>eosrm /store/user/jjesus/dir</font>
 <font color="red">error: unable to remove file/directory '/eos/uscms/store/user/jjesus/dir'
-(errc=21) (Is a directory)</font>
-
-</pre></p>
+(errc=21) (Is a directory)</font></pre></p><br>
 
 <h2 id="workWithROOTFilesOnEOS">Working with ROOT files on EOS</h2>
 
-<p>Access to <code>ROOT</code> files on EOS should be done in general by using the redirector <code>root://cmsxrootd.fnal.gov</code>.</p>
+<p>Access to <code>ROOT</code> files on EOS should be done in general by using a redirector, for example: <code>root://cmsxrootd.fnal.gov</code>.</p>
+
+<p>The redirector will look for the file at Fermilab first, if not found, it will continue looking at other sites until the file is found (provided it actually exist).</p>
+
+<p><font color="red">The string <code><font color="red">/eos/uscms</font></code> should never appear while opening a <code><font color="red">ROOT</font></code> file stored on EOS. If it does, the file will open using the FUSE mount, which in general have a negative impact on the performance of the interactive node, degrading the experience collectivelly for all the users connected to the same node. On the worker nodes, <code><font color="red">/eos/uscms</font></code> won't be mounted any more, therefore, jobs making use of the FUSE mount to open <code><font color="red">ROOT</font></code> files on EOS will simply fail.</font></p>
  
 <h3 id="workWithROOTFilesInteractively">Interactive access</h3>
 
-<p>From the command line on an interactive LPC node, (on any location on the local filesystem, usually somewhere inside <code>/uscms_data</code> ) a <code>ROOT</code> file can be directly open in the following way:</p>
+<p>From the command line on any interactive LPC node, (on any location on the local filesystem, usually somewhere inside <code>/uscms_data</code>, <font color="red">never from <code><font color="red">/eos/uscms</font></code></font>) a <code>ROOT</code> file can be directly open after setting the proper environment in the following way:</p>
 
 <p><pre><font color="black">[jjesus@cmslpc37 ~]$</font><font color=blue> root -l root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root</font>
 <font color="green">root [0]
 Attaching file root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root as _file0...
 (class TFile *) 0x3edd370</font></pre></p>
 
-<p>and you can now navigate through your file and work with it as usual, for example:</p>
+<p>Once open, you can navigate through your file and work with it as usual, for example:</p>
 
 <p><pre><font color="green">root [1]</font><font color="blue"> .ls();</font>
 <font color="green">TNetXNGFile**		root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root
@@ -431,7 +483,7 @@ root [6] <font color="blue">.q</font></font></pre></p>
 <p><pre><font color="black">[jjesus@cmslpc37 ~]$</font><font color=blue> root -l</font>
 <font color="green">root [0]
 .
-.
+<i>Some ROOT directives</i>
 .
 root [10]</font><font color="blue"> TFile *theFile = TFile::Open("root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root");</font>
 <font color="green">root [11]</font><font color="blue"> .ls();</font>
@@ -440,12 +492,61 @@ root [10]</font><font color="blue"> TFile *theFile = TFile::Open("root://cmsxroo
 
 <p><b>Hint</b>: If you ever need a quick reminder about the proper way to open a <code>ROOT</code> file after you have initiated an interactive <code>ROOT</code> session, a quick way is just to open another file (on a different terminal or your local machine, for example). Once inside <code>ROOT</code>, hit the upwards arrow on your keyboard, and you will be presented with the line that <code>ROOT</code> used to open the file you indicated from the command line, <code>ROOT</code> appends that by default to the history of the current session (<a href="/uscms_at_work/computing/LPC/videos/openROOTFile.mov" target="_blank">Show me how - [&beta;]</a>).
 
+<h3 id="workWithROOTFilesInScripts">Inside a script</h3>
 
+<p>Existing EOS files that need to be open inside scripts, should be open with the constructor shown in the previous section and using their URL's. On a <code>C++</code>-like script this would look just like accessing the file interactively:</p>
 
+<p><pre><font color="gray">#include &lt;iostream&gt;
+.
+.
+.
+#include "TFile.h"
+.
+.
+.
 
+int main(int argc, const char * argv[]) {
+    <i>Some code here</i>
 
+    //  Proper way to open an EOS ROOT file:</font>
+    </font><font color="blue">TFile *theFile = TFile::Open("root://cmsxrootd.fnal.gov//store/user/jjesus/rootFile.root");</font>
 
+<font color="gray">    <i>Rest of code</i>
 
+    return 0;
+}</font></pre></p>
+
+<h2 id="doNot">Things you shouldn't do</h2>
+
+<h3 id="doNotList">When listing</h3>
+
+<p><b>Do not</b> use regular <code>ls</code> to list EOS areas over the FUSE mount:</p>
+
+<pre><font color="red">                     - - - DON'T DO THIS - - -</font>
+<font color="black">[jjesus@cmslpc37 ~]$</font> <font color="red">ls /eos/uscms/store/.../</font>
+<font color="red">                     - - - DON'T DO THIS - - -</font></pre>
+
+<p>This is particularly bad for areas with large number of files. This is particularly bad when using wildcards: <code>*</code>, <code>?</code>, etc. Do not do it on any interactive node and NEVER do that in a job. See <a href="#filesOnEOS">Interacting with files on EOS</a> on this page to find the correct way to do this.</p>
+
+<h3 id="doNotCopy">When copying</h3>
+
+<p><b>Do not</b> use regular <code>cp</code> to copy EOS files or directories over the FUSE mount:</p>
+
+<pre><font color="red">                     - - - - - - - - - - - DON'T DO ANY OF THIS - - - - - - - - - - -</font>
+<font color="black">[jjesus@cmslpc37 ~]$</font> <font color="red">cp /eos/uscms/store/.../sourceFile /some/local/area/destFile</font>
+<font color="black">[jjesus@cmslpc37 ~]$</font> <font color="red">cp /some/local/area/sourceFile /eos/uscms/store/.../destFile</font>
+<font color="black">[jjesus@cmslpc37 ~]$</font> <font color="red">cp /eos/uscms/store/.../sourceFile /eos/uscms/store/.../destFile</font>
+<font color="red">                     - - - - - - - - - - - DON'T DO ANY OF THIS - - - - - - - - - - -</font></pre>
+
+<p>This is particularly bad when using wildcards, trying to copy large number of files or recursively. Do not do it on any interactive node and NEVER do that in a job. See <a href="#filesOnEOS">Interacting with files on EOS</a> on this page to find the correct way to do this.</p>
+
+<h3 id="doNotRm">When removing</h3>
+
+<p><b>Do not</b> use regular <code>rm</code> to remove files or directories over the FUSE mount:</p>
+
+<pre><font color="red">                     - - - - - - - - - - - - - DON'T DO THIS - - - - - - - - - - - - -</font>
+<font color="black">[jjesus@cmslpc37 ~]$</font> <font color="red">rm /eos/uscms/store/.../fileToRemove</font>
+<font color="red">                     - - - - - - - - - - - - - DON'T DO THIS - - - - - - - - - - - - -</font></pre>
 
 
 
