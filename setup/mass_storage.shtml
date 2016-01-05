@@ -121,7 +121,7 @@ get the true file size use the special dcache commands <span
 <br>
 <h3>To copy files from dCache with dccp:</h3>
 <p>To copy the file over to your local disk, do</p>
-<p><code>/opt/d-cache/dcap/bin/dccp /pnfs/cms/WAX/11/store/username/myfile.data $PWD</code></p>
+<p><code>/opt/d-cache/dcap/bin/dccp <br> /pnfs/cms/WAX/11/store/username/myfile.data $PWD</code></p>
 <p>dCache can also be accessed (read only) via a URL like
 syntax in case you don't have access to the pnfs file system</p>
 <p> <code>/opt/d-cache/dcap/bin/dccp <br>dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/username/myfile.data $PWD</code></p>
