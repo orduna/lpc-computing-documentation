@@ -43,6 +43,41 @@ More instructions on using xrootd protocol with CMSSW are posted <a href="https:
 There tools available for helping users transfer files out of dcache/enstore into EOS. These tools are documented 
 <a href="http://uscms.org/uscms_at_work/computing/setup/fts3-user-tools.html">here</a> 
 
+<h2>Accessing files in FNAL EOS using a ROOT application:</h2>
+
+For more details, see <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookXrootdService">https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookXrootdService</a>
+
+<p><code>
+{<br>
+TFile *hfile = TFile::Open("root://cmsxrootd-site.fnal.gov//store/user/burt/test_histo.root"), "READ","Demo ROOT file with histograms",0);<br>
+hfile-&gt;ls();&nbsp;<br>
+hfile-&gt;Print();<br>
+test-&gt;Draw();<br>
+return 0;<br>
+}</code></p>
+<p>ROOT is used by CMSSW therefore it is setup with the
+CMSSW runtime environment. To set this up: run <code>scramv1 list CMSSW</code>
+to list CMSSW versions
+which are available and their location, change directories to the
+location of a version
+of CMSSW, then run eval <code>`scramv1 runtime -csh`</code></p>
+<p>An example is shown below:</p>
+<p><code>
+scramv1 list
+CMSSW<br>
+cd /uscmst1/prod/sw/cmssw/slc5_amd64_gcc472/cms/cmssw/CMSSW_6_2_0<br>
+eval `scramv1 runtime -csh`<br>
+cd -<br>
+root
+</code></p>
+<p>The commands can be executed directly:</p>
+<p><code>
+root [0] TFile *f = TFile::Open("root://cmsxrootd-site.fnal.gov//store/user/burt/test_histo.root"), "READ","Demo ROOT file with histograms",0);<br>
+root [1] hfile-&gt;ls();<br>
+root [2] hfile-&gt;Print();<br>
+root [3] test-&gt;Draw();
+</code></p>
+
 <!-- OLD Dcache info 
 <br>
 <h2>dCache and enstore</h2>
