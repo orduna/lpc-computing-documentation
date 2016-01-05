@@ -29,10 +29,11 @@ and complete the form. You will get your CMS computing privileges. You will rece
 <p>If you are a remote user but already have a FERMI ID do the following to request an account on the CMS Computing systems: </p>
 <ul>
   <li>Log into the <a href="https://fermi.service-now.com/fsc/" target="_blank">Fermilab Service Desk</a> (Your Services account password is required)</li>
-  <li>Select the "Service Catalog" link in the left frame </li>
+  <li>Select the "Service Request Catalog" link in the left frame </li>
   <li>Select Affiliation\Experiment Computing Account Request from the "Accounts" box. (The form should be auto-filled from your info.)</li>
-  <li>Submit the form.</li>
-  <li>If you have any questions, please contact the <a href="mailto:servicedesk@fnal.gov" target="_blank">Fermilab Service Desk</a>.</li>
+  <li>Select CMS from the pulldown menu under "Select Affiliation/Experiment" as shown in the following image:</li>
+  <center><a href="./images/select_affiliation_CMS.png" title="CMS" target="_blank"><img src="./images/select_affiliation_CMS.png" width="300px"></a></center>
+  <li>Complete the remaining fields and submit the form.</li>
 </ul>
 
 <p> To renew your Fermilab Kerberos credentials follow the directions on <a href="https://fermi.service-now.com/kb_view.do?sysparm_article=KB0010797">this page</a> under the heading Renew Accounts. </p>
