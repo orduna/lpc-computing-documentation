@@ -8,12 +8,14 @@
 <!--#include virtual="_sidebar.shtml"--><!-- End: Sidebar -->
 <h1>Access to Mass Storage<h1>
 <h2> EOS </h2>
-<p> EOS is a disk based mass storage system used on the LPC cluster. It is mounted on the LPC interactive nodes and the LPC batch nodes at the path
-<code>
-/eos/uscms/store/user/
-</code>
-Users may request a directory there by sending email to cms-t1@fnal.gov.</p>
-<p> Unix file commands (cp and mv) work to move files into and out of EOS (which is different from dcache). Running cp between two paths in EOS however does not work. You should also be able to read and write files from programs like Root and CMSSW as well although utilizing the xrootd protocol works more quickly.<p>
+<p>EOS is a disk based mass storage system used on the LPC cluster. It is mounted on the LPC interactive nodes and the LPC batch nodes at the path</p>
+<center><code>/eos/uscms/store/user/</code></center>
+<p>
+<p>To get a EOS /store/user directory at Fermilab, submit a request by logging into <a href="https://fermi.service-now.com/fsc" target="_blank">Service Now</a> with your services account.</p>
+<p>Go to the "Self-Service" box, click on "Service Catalog" and look for "Scientific Computing" and fill the form named "CMS Storage Space Request".</p>
+<center><a href="video/CMSStorageSpaceRequest.mov" target="_blank">Show me how (&beta;) - 128 MB</a></center>
+<p>
+<p>Unix file commands (cp and mv) work to move files into and out of EOS (which is different from dcache). You can also be able to read and write files from programs like Root and CMSSW as well although utilizing the xrootd protocol works more quickly.</p>
 
 <p>SRM access - there is also an SRM endpoint available at <br><br>
 <code>srm://cmseos.fnal.gov:8443/srm/v2/server?SFN=/eos/uscms
@@ -35,48 +37,13 @@ UNL redirector (or just the FNAL one).<br>
 UNL: xrootd.unl.edu<br>
 FNAL: cmssrv32.fnal.gov<br>
 </code>
-More instructions on using xrootd protocol with CMSSW are posted <a href="https://twiki.cern.ch/twiki/bin/view/Main/HdfsXrootdUsage"> here </a>
+More instructions on using xrootd protocol with CMSSW are posted <a href="https://twiki.cern.ch/CMSPublic/WorkBookXrootdService"> here </a>
 <br>The CERN EOS endpoint is<br><code>srm://srm-eoscms.cern.ch:8443/srm/v2/server?SFN=/eos/cms/store/</code><br>
 </p>
 
 <h2> Transferring files Out of Enstore</h2>
 There tools available for helping users transfer files out of dcache/enstore into EOS. These tools are documented 
 <a href="http://uscms.org/uscms_at_work/computing/setup/fts3-user-tools.html">here</a> 
-
-<h2>Accessing files in FNAL EOS using a ROOT application:</h2>
-
-For more details, see <a href="https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookXrootdService">https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookXrootdService</a>
-
-<p><code>
-{<br>
-TFile *hfile = TFile::Open("root://cmsxrootd-site.fnal.gov//store/user/burt/test_histo.root"), "READ","Demo ROOT file with histograms",0);<br>
-hfile-&gt;ls();&nbsp;<br>
-hfile-&gt;Print();<br>
-test-&gt;Draw();<br>
-return 0;<br>
-}</code></p>
-<p>ROOT is used by CMSSW therefore it is setup with the
-CMSSW runtime environment. To set this up: run <code>scramv1 list CMSSW</code>
-to list CMSSW versions
-which are available and their location, change directories to the
-location of a version
-of CMSSW, then run eval <code>`scramv1 runtime -csh`</code></p>
-<p>An example is shown below:</p>
-<p><code>
-scramv1 list
-CMSSW<br>
-cd /uscmst1/prod/sw/cmssw/slc5_amd64_gcc472/cms/cmssw/CMSSW_6_2_0<br>
-eval `scramv1 runtime -csh`<br>
-cd -<br>
-root
-</code></p>
-<p>The commands can be executed directly:</p>
-<p><code>
-root [0] TFile *f = TFile::Open("root://cmsxrootd-site.fnal.gov//store/user/burt/test_histo.root"), "READ","Demo ROOT file with histograms",0);<br>
-root [1] hfile-&gt;ls();<br>
-root [2] hfile-&gt;Print();<br>
-root [3] test-&gt;Draw();
-</code></p>
 
 <!-- OLD Dcache info 
 <br>
