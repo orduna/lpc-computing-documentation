@@ -49,10 +49,10 @@ CMS can read the page<br>
 disabled and will be see as plain text by the web<br>
 page<br>
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; You can use up to your
-quota, usually 2GB on /uscms/home and 20GB on /uscms_data/d1<br>
+quota, usually 2GB on /uscms/home and 100GB on /uscms_data/d1<br>
 <br>
 <h1> Mass storage: </h1>
-To get a /store/user directory Fermilab submit a request throug ServiceDesk web site:<br>
+To get a /store/user directory Fermilab submit a request through ServiceDesk web site:<br>
 http://servicedesk.fnal.gov <br>
 Select  SelfService-> Service Catalog ->  Scientific Computing-> CMS Storage Space Request
 <br>
