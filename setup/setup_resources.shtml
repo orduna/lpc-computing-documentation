@@ -12,16 +12,19 @@
 You can set up personal web pages in two locations on the cmslpc
 cluster.<br>
 <br>
-<span style="font-weight: bold;">Publicly visible web pages:</span><br>
-&nbsp;&nbsp;&nbsp; You need to create a public_html subdir in your afs
-area<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-/afs/fnal.gov/files/home/room/{1,2or3}<span style="font-style: italic;">/username/</span>public_html<br>
-&nbsp;&nbsp;&nbsp;&nbsp; This will then be visible to<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-http://home.fnal.gov/~<span style="font-style: italic;">username</span><br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; You can use up to your afs quota,
-usually 500MB.<br>
+<span style="font-weight: bold;">Publicly visible web pages:</span><br><br>
+If you already have a FNALU account you can skip the next step.<br><br>
+If you don't have a FNALU account, you can request one by logging into 
+<a href="https://fermi.service-now.com/fsc" target="_blank">Service Now</a>, on the "Self-Service"
+box click on "Service Catalog" and then fill the "Request FNALU Account" form on the
+"Accounts" section (<a href="fnaluAccountRequest.mov" target="_blank">show me how [&beta;]</a>). Once your account is created, continue with the following steps.<br><br>
+You need to create a public_html subdir in your afs
+area<br><br>
+/afs/fnal.gov/files/home/room/{1,2or3}<span style="font-style: italic;">/username/</span>public_html<br><br>
+(<a href="createPublicHtmlFolder.mov" target="_blank">show me how [&beta;]</a>)<br><br>
+This will then be visible to<br><br>
+http://home.fnal.gov/~<span style="font-style: italic;">username</span><br><br>
+You can use up to your afs quota, usually 500 MB.<br>
 <br>
 <br>
 <br>
@@ -52,10 +55,11 @@ page<br>
 quota, usually 2GB on /uscms/home and 100GB on /uscms_data/d1<br>
 <br>
 <h1> Mass storage: </h1>
-To get a /store/user directory Fermilab submit a request through ServiceDesk web site:<br>
-http://servicedesk.fnal.gov <br>
-Select  SelfService-> Service Catalog ->  Scientific Computing-> CMS Storage Space Request
-<br>
+
+<p>To get a EOS /store/user directory at Fermilab, submit a request by logging into <a href="https://fermi.service-now.com/fsc" target="_blank">Service Now</a> with your services account.</p>
+
+<p>Go to the "Self-Service" box, click on "Service Catalog" and look for "Scientific Computing" and fill the form named "CMS Storage Space Request".</p>
+<center><a href="video/CMSStorageSpaceRequest.mov" target="_blank">Show me how (&beta;) - 128 MB</a></center>
 <!--#include virtual="/includes/atwork_bottom.shtml"-->
 </body>
 </html>
