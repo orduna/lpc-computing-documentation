@@ -516,6 +516,31 @@ int main(int argc, const char * argv[]) {
     return 0;
 }</font></pre></p>
 
+<h3 id="haddROOTFiles">Merge files with histograms and trees</h3>
+
+<p>Multiple <code>ROOT</code> files stored on EOS can be merged from the command line on any interactive LPC node (from any location on the local filesystem, usually somewhere inside <code>/uscms_data</code>, <font color="red">never from <code><font color="red">/eos/uscms</font></code></font>). After setting the proper environment, <code>hadd</code> can be used by referring to the list of files to be merged by their corresponding URLs. The list can be easily obtained by using the <code>-u</code> option of the <code>xrdfs</code> tool for listing (as explained above). For example, from a CMSSW relase area located inside <code>/uscms_data/d3/jjesus/</code>, after <code>cmsenv</code> one can do:</p>
+
+<p><pre><font color="black">[jjesus@cmslpc37 src]$</font><font color=blue> hadd myTarget.root `xrdfsls -u /store/user/jjesus/rootFiles | grep '\.root'`</font>
+<font color="green">hadd Target file: myTarget.root
+hadd Source file 1: root://131.225.207.127:1094//store/user/jjesus/rootFiles/rootFile0.root
+hadd Source file 2: root://131.225.207.127:1094//store/user/jjesus/rootFiles/rootFile1.root
+hadd Source file 3: root://131.225.207.127:1094//store/user/jjesus/rootFiles/rootFile2.root
+hadd Target path: myTarget.root:/
+hadd Target path: myTarget.root:/2h_cone_eta_totalpT_nPU
+hadd Target path: myTarget.root:/2h_cone_eta_totalpT_nPU/all
+hadd Target path: myTarget.root:/2h_cone_eta_totalpT_nPU/h
+hadd Target path: myTarget.root:/2h_cone_eta_totalpT_nPU/e
+.
+.
+.
+hadd Target path: myTarget.root:/2p_cone_eta_nPU_totalpT_nPV/h_HF
+hadd Target path: myTarget.root:/2p_cone_eta_nPU_totalpT_nPV/egamma_HF
+hadd Target path: myTarget.root:/2p_cone_eta_nPU_totalpT_nPV/chs</font></pre></p>
+
+<p>which merges the three files into a single one named <code>myTarget.root</code>.</p>
+
+<p>There are multiple parts to the line responsible for merging the files. First <code>xrdfsls</code> is used to obtain the list of files on the LFN given as argument, the output will be formatted as URLs instead of just LFNs by adding the <code>-u</code> option. Then, the result of this command is filtered by piping to a <code>grep</code> command which will look just for the <code>.root</code> file extension. This is an important step, files to be merged need to be <code>ROOT</code> files and have the same structure. If the directory where the the files are stored contain other files, trying to use <code>hadd</code> without filtering will fail when trying to initialize a non-<code>ROOT</code> file, exiting due to the error. Note: if the <code>ROOT</code> files don't have the same structure, <code>hadd</code> will still create a target file, it will most likely show warning and error messages and the final product will probably be not precisely what it is supposed to be. Finally, as this command is enclosed inside <a href="https://en.wikipedia.org/wiki/Grave_accent" target="_blank">grave accent marks</a> (<code>`</code>), this will be executed first and the output will be put in place at the end of the <code>hadd</code> command as its last argument.</p>
+
 <h2 id="doNot">Things you shouldn't do</h2>
 
 <h3 id="doNotList">When listing</h3>
