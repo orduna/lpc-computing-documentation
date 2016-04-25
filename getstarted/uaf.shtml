@@ -1,71 +1,202 @@
-<!--#set var="TITLE" value="U.S. CMS - U.S. CMS @ Work - Data and Computing - Facility Operations - Connect to UAF"-->
-
-<!--#include virtual="/includes/atwork_top.shtml"-->
-
-<!-- Sidebar -->
-<!--#include virtual="_sidebar.shtml"-->
-<!-- End: Sidebar -->
+<html class=" -webkit-"><head>
+    <meta charset="UTF-8">
+        <meta name="google" value="notranslate">
+            
+            <!--#set var="TITLE" value="Using EOS at the LPC"-->
+            <!--#set var="TITLE" value="Connect to LPC Cluster"-->
+            
+            <!--#include virtual="/includes/atwork_top.shtml"-->
+            <style>
+                table, th, td {
+                    border: 1px solid green;
+                    border-collapse: collapse;
+                }
+            th, td {
+                padding: 2px;
+            }
+            </style>
+            
+            
+            <style>
+                article {
+                }
+            
+            .table-of-icontents a {
+                text-decoration: none;
+            }
+            .table-of-icontents a:hover,
+            .table-of-icontents a:active {
+                text-decoration: underline;
+            }
+            
+            h2:target {
+                animation: highlight 2s ease;
+            }
+            h3:target {
+                animation: highlight 2s ease;
+            }
+            
+            @keyframes highlight {
+                from { background: green; }
+                to { background: white; }
+            }
+            </style>
+            <script>window.console = window.console || function(t) {};</script>
+</head>
+<body>
+    <article>
 
 
 <h1>Connect to LPC Cluster</h1>
 
+<p>The LPC cluster is a group of interactive nodes running <a href="https://fermilinux.fnal.gov" target="_blank">Scientific Linux Fermi (or SL)</a> that LPC users are able to connect to, to develop and debug their code, submit jobs, do analysis, and so on. It is divided in two main sets of computers according to the major version of SL they are running, currently versions 5 or 6, in the following way:</p>
 
-<h2>How to get access to the cluster:</h2>
+<p><center><a href="./images/cmslpc.png" target="_blank"><img src="./images/cmslpc.png" width="100%"></a></center></p><br><br>
 
-<p>Any modern Linux distribution with OpenSSH configured with gssapi and Kerberos configured for the FNAL.GOV realm should be able to connect to the LPC cluster.</p>
+<p>Most operative systems with OpenSSH configured with GSSAPI and Kerberos configured for the FNAL.GOV realm should be able to connect to the LPC cluster.</p>
 
 <p>It is assumed that you already have a Fermilab ID and Kerberos principal. If not visit the "<a href="/uscms_at_work/physics/computing/getstarted/getaccount.shtml">Get an Account</a>" section.</p>
 
-<p>Access to the LPC cluster is controlled by a switch which redirects incoming connections to individual nodes in a round-robin queue.</p>
+<p>Access to the LPC cluster is controlled by a switch which redirects incoming connections to individual nodes and this page should serve as a guide on how to connect to the LPC cluster in most typical situations.</p>
 
-<p><h2>Connecting to the LPC from Linux or OS X</h2></p>
+<div class="all-questions">
 
-<p>To connect to the LPC cluster you need to have Kerberos and openssh with gss support installed on your system. This is already included in Scientific Linux and OS X. In addtion you will need to get the krb5.conf file for Fermilab that corresponds to your specific OS, which you can download from: <a href="http://computing.fnal.gov/authentication/krb5conf/">Fermilab Kerberos Configuration Files</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 
-<p>Save the appropriate file to your home directory. Then run</p>
+<h3 id="prerequisiteKerberosConfig">Kerberos configuration file</h3>
 
-<p><code>sudo cp krb5.conf /etc/krb5.conf</code></p>
+<p>To connect to the LPC cluster you need to have Kerberos installed on your system. This is already included in Scientific Linux and OS X. In addtion you will need to get the krb5.conf file for Fermilab that corresponds to your specific OS. You can download this file from: <a href="http://computing.fnal.gov/authentication/krb5conf/">Fermilab Kerberos Configuration Files</a>.</p>
 
-<p>you will be prompted for you root or admin password, depending on your system.</p>
+<p>Save the appropriate file to your home directory and then run (depending on your system, you will be prompted for you root or admin password):</p>
 
-<p>Also make sure the following lines are present in your <code>~/.ssh/config</code> file:</p>
+<p><pre><font color="black">[localMachine:Desktop localUser]$</font> <font color=blue>sudo mv -v krb5.conf /etc/krb5.conf</font>
+<font color=green>Password:
+krb5.conf -> /etc/krb5.conf</font></pre></p>
 
-<p><code>
-GSSAPIAuthentication yes<br>
-GSSAPIDelegateCredentials yes<br>
-</code></p>
+<p>Once done, the file will be moved to the appropriate location on your system. Note: if you already have a <code>krb5.conf</code> file, it is a good idea to backup it up before placing the new file.</p>
 
-<p>To connect to the LPC cluster:</p>
+<p><code>krb5.conf</code> is a text file that you can review and compare to the one found on <a href="http://computing.fnal.gov/authentication/krb5conf/">Fermilab Kerberos Configuration Files</a> to determine whether you already have the most recent one or you need to update it.</p>
 
-<p>Get a Kerberos ticket for the FNAL.GOV Kerberos realm:</p>
+<h3 id="prerequisiteSSHConfig">SSH configuration file</h3>
 
-<code>kinit <i>username</i>@FNAL.GOV</code></p>
+<p>In order to give SSH the proper configuration to login to the LPC cluster, make sure the following lines are present in your <code>~/.ssh/config</code> file (depending on your OS):</p>
 
-<p>You will be prompted for your Kerberos password in the FNAL.GOV realm.</p>
+<p><pre><font color="black">[localMachine:Desktop localUser]$</font> <font color=blue>more ~/.ssh/config</font>
+<font color="red">- - - - - - - - - - - - LINUX - - - - - - - - - - - -</font>
+<font color=green>Host cmslpc-sl5.fnal.gov
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    GSSAPITrustDNS yes
+Host cmslpc-sl6.fnal.gov
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    GSSAPITrustDNS yes</font>
+<font color="red">- - - - - - - - - - - - LINUX - - - - - - - - - - - -</font>
 
-<p>If you want to verify that a Kerberos ticket was created, you can issue the following command:</p>
+<font color="red">- - - - - - - - - - - - OS X - - - - - - - - - - - -</font>
+<font color=green>Host cmslpc-sl5.fnal.gov
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    GSSAPITrustDNS yes
+Host cmslpc-sl6.fnal.gov
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes</font>
+<font color="red">- - - - - - - - - - - - OS X - - - - - - - - - - - -</font></pre></p>
 
-<p><code>klist</code></p>
+<h2 id="connectFromLinuxOrOSX">Connecting to the LPC cluster</h2>
 
-<p><a href="video/kinit_klist.mov" target="_blank">Show me how (&beta;)</a></p>
+<p>Once your system has the appropriate <a href="#prerequisites">prerequisites</a> to connect to the LPC cluster, do the following to login.</p>
 
-<p><strong>LPC interactive nodes.</strong></p>
+<h3 id="getKerberosTicket">Get a Kerberos ticket</h3>
 
-<p>There are two sets of interactive nodes, running Scientific Linux (SL) 5 and 6, respectively. To access either one, get a Kerberos ticket on your local computer (see above) and then:
+<p>A valid Kerberos ticket for the FNAL.GOV Kerberos realm is needed to login to the LPC cluster, you can get one from your terminal by doing:</p>
 
-<ul>
-        <li> SL6: <code>ssh <i>username</i>@cmslpc-sl6.fnal.gov</code> </li>
-        <li> SL5: <code>ssh <i>username</i>@cmslpc-sl5.fnal.gov</code> </li>
-</ul>
+<p><pre><font color="black">[localMachine:Desktop localUser]$</font> <font color=blue>kinit <i>username</i>@FNAL.GOV</font>
+<font color="red">- - - - - - LINUX - - - - - -</font>
+<font color=green>Password for <i>username</i>@FNAL.GOV:</font>
+<font color="red">- - - - - - LINUX - - - - - -</font>
 
-<p>Some (older) versions of ssh for Linux or Windows PC's may not work correctly (i.e. AFS authentication error messages at login) with the <code>cmslpc-slX</code> aliases. If accessing the LPC cluster through these produces error messages, you can try accessing the LPC cluster through one of the following direct access nodes:</p>
+<font color="red">- - - - - - OS X - - - - - -</font>
+<font color=green><i>username</i>@FNAL.GOV's password:</font>
+<font color="red">- - - - - - OS X - - - - - -</font>
+</pre></p>
 
-<ul>
-	<li> SL6: <code>ssh <i>username</i>@cmslpc41.fnal.gov</code> </li>
-	<li> SL5: <code>ssh <i>username</i>@cmslpc42.fnal.gov</code> </li>
-</ul>
+<p>if successful, there is no output to this command. You can always verify that a Kerberos ticket was created by issuing the following command:</p>
 
-<p><h2>Connecting to the LPC Cluster from a Windows PC</h2> (to be reviewed)</p>
+<p><pre><font color="black">[localMachine:Desktop localUser]$</font> <font color=blue>klist</font>
+<font color="red">- - - - - - - - - - - - - - LINUX - - - - - - - - - - - - - -</font>
+<font color=green>Ticket cache: FILE:/tmp/krb5cc_500
+Default principal: <i>username</i>@FNAL.GOV
+
+Valid starting     Expires            Service principal
+04/25/16 16:46:53  04/26/16 18:45:29  krbtgt/FNAL.GOV@FNAL.GOV
+        renew until 05/02/16 16:45:29</font>
+<font color="red">- - - - - - - - - - - - - - LINUX - - - - - - - - - - - - - -</font>
+
+<font color="red">- - - - - - - - - - - - - - - - OS X - - - - - - - - - - - - - - - -</font>
+<font color=green>Credentials cache: API:123DS3AA-1554-4A12-9A08-1982938328
+        Principal: <i>username</i>@FNAL.GOV
+    
+  Issued                Expires               Principal
+Apr 25 16:46:53 2016  Apr 26 18:45:29 2016  krbtgt/FNAL.GOV@FNAL.GOV</font>
+<font color="red">- - - - - - - - - - - - - - - - OS X - - - - - - - - - - - - - - - -</font></pre></p>
+
+<p><a href="video/kinit_klist.mov" target="_blank">Show me these two commands (&beta;).</a></p>
+
+<h3 id="sshCMSLPC">SSH to a specific cluster</h3>
+
+<p>With a valid <a href="#getKerberosTicket">Kerberos ticket</a>, you can now login to a SL6 machine on the LPC cluster by doing:</p>
+
+<p><pre><font color="black">[localMachine:Desktop localUser]$</font> <font color=blue>ssh <i>username</i>@cmslpc-sl6.fnal.gov</font>
+<font color=green>Last login: Mon Apr 25 16:57:22 2016 from localMachine.dhcp.fnal.gov
+                              NOTICE TO USERS
+        
+       This  is a Federal computer (and/or it is directly connected to a
+       Fermilab local network system) that is the property of the United
+       States Government.  It is for authorized use only.  Users (autho-
+       rized or unauthorized) have no explicit or  implicit  expectation
+       of privacy.
+
+       Any  or  all uses of this system and all files on this system may
+       be intercepted, monitored, recorded,  copied, audited, inspected,
+       and  disclosed  to authorized site, Department of Energy  and law
+       enforcement personnel, as  well as authorized officials of  other
+       agencies,  both  domestic and foreign.  By using this system, the
+       user consents to such interception, monitoring, recording,  copy-
+       ing,  auditing,  inspection,  and disclosure at the discretion of
+       authorized site or Department of Energy personnel.
+
+       Unauthorized or improper use of this system may result in  admin-
+       istrative  disciplinary  action and civil and criminal penalties.
+       By continuing to use this system you indicate your  awareness  of
+       and  consent to these terms and conditions of use.  LOG OFF IMME-
+       DIATELY if you do not agree to  the  conditions  stated  in  this
+       warning.
+
+       Fermilab  policy  and  rules for computing, including appropriate
+       use, may be found at http://www.fnal.gov/cd/main/cpolicy.html
+
+       #################################################################
+       #  --- NOTICE:  This node is running Scientific Linux (Fermi) 6 #
+       #################################################################
+
+
+cmslpc41.fnal.gov - cmslpc/itb (SLF 6.7)
+24-core Xeon X5650 @ 2.67GHz (PowerEdge R410); 31.34 GB RAM, 20.00 GB swap
+
+
+   ##########################################################################
+    For information about computing at the LPC go to: lpc.fnal.gov/computing
+   ##########################################################################
+
+[<i>username</i>@cmslpc41 ~]$</font></pre></p>
+
+<p>Similarly, you can login to a SL5 machine (legacy node) by replacing <code>sl6</code> for <code>sl5</code> in the command above.</p>
+
+<p><b>Note: the lines just above the prompt each time you login have an important message, is a quick reminder on where to go if you need to look for some information about computing at the LPC.</b></p>
+
+
+<!--p><h2>Connecting to the LPC Cluster from a Windows PC</h2> (to be reviewed)</p>
 
 <p>Connecting to the LPC cluster through the round-robin queue from a Windows PC is known to work with Kerberized PuTTY. Other terminal programs such as WRQ Relection ssh and openssh for Cygwin only work with the direct access nodes (see above). Directions are given below for establishing a connection to the LPC cluster with Kerberized PuTTY. Directions for installing Cygwin/X or Xming, both free X servers for Windows, are also given. These packages are optional since commercial alternatives such as WRQ Reflection and Exceed exist. Also included are directions for using WinSCP and OpenAFS for Windows to access files in your account.</p>
     
@@ -141,9 +272,14 @@ GSSAPIDelegateCredentials yes<br>
     Select room1, room2 or room3 until you find you home directory <br>
     Click and drag that folder to your desktop to create a symbolic link.
 
- 	</p>
+ 	</p!-->
 
 
 
-<!--#include virtual="/includes/atwork_bottom.shtml"-->
 
+        </div></article>
+    
+    <!--#include virtual="/includes/theIndex.shtml"-->
+    
+    <!--#include virtual="/includes/atwork_bottom.shtml"-->
+</body></html>
