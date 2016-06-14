@@ -46,7 +46,7 @@ to { background: white; }
 <article>
 <h1>Using EOS at the LPC</h1>
 
-<p>Users with computing accounts at the LPC have (or using <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, <a href="/uscms_at_work/computing/setup/videos/CMSStorageSpaceRequest.mov" target="_blank">can request</a>) an EOS area to store analysis files. Despite EOS being mounted on the LPC interactive nodes, users must interact with files on EOS using either EOS-dedicated or xrootd commands, depending on the needs. This page contains most of the information relevant to the use of EOS at the LPC.</p><br>
+<p>Users with computing accounts at the LPC have (or using <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, <a href="/uscms_at_work/computing/setup/video/CMSStorageSpaceRequest.mov" target="_blank">can request</a>) an EOS area to store analysis files. Despite EOS being mounted on the LPC interactive nodes, users must interact with files on EOS using either EOS-dedicated or xrootd commands, depending on the needs. This page contains most of the information relevant to the use of EOS at the LPC.</p><br>
 
 <div class="all-questions">
 
@@ -65,7 +65,7 @@ to { background: white; }
 (No such file or directory)</font>
 </pre></p>
 
-<p>then you can request an EOS area by filling a simple form on <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, using your services account to login (<a href="/uscms_at_work/computing/setup/videos/CMSStorageSpaceRequest.mov" target="_blank">Show me how - [&beta;]</a>).</p><br>
+<p>then you can request an EOS area by filling a simple form on <a href="https://fermi.service-now.com/fsc/" target="_blank">Service Now</a>, using your services account to login (<a href="/uscms_at_work/computing/setup/video/CMSStorageSpaceRequest.mov" target="_blank">Show me how - [&beta;]</a>).</p><br>
 
 <h2 id="checkEOSSpace">How much space do I have on EOS?</h2>
 
